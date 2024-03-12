@@ -1,11 +1,44 @@
 .injectedHTMLFframe
 {
     margin: 0;
+    padding: 0;
     border: none;
+    height: calc(128px + 32px);
+    width: 100vw;
+    position: sticky;
+    top: 0;
 }
 
 body, html
 {
     margin: 0;
     padding: 0;
+    background-color: #040F16;
+}
+
+body
+{
+    height: 2000px;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+.header
+{
+    position: sticky;
+    top: 0;
+    height: 162px;
+    margin-bottom: -40px;
+}
+
+@media screen and (max-width: 768px)
+{
+    .header
+    {
+        height: 226px;
+    }
+}
+
+.testImg
+{
+    width: 100vw;
 }
