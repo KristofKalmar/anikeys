@@ -1,0 +1,11 @@
+.injectedHTMLFframe
+{
+    margin: 0;
+    border: none;
+}
+
+body, html
+{
+    margin: 0;
+    padding: 0;
+}
