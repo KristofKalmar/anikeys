@@ -1,3 +1,6 @@
+@import url('./components/header/header.css');
+@import url('./components/showcasedItem/showcasedItem.css');
+
 .injectedHTMLFframe
 {
     margin: 0;
@@ -22,14 +25,6 @@ body
     font-family: 'Helvetica', 'Arial', sans-serif;
 }
 
-.header
-{
-    position: sticky;
-    top: 0;
-    height: 162px;
-    margin-bottom: -40px;
-}
-
 .footer
 {
     height: 768px;
@@ -46,4 +41,24 @@ body
 .testImg
 {
     width: 100vw;
+    height: 512px;
+    object-fit: cover;
+}
+
+.itemsContainer
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: -128px;
+    height: fit-content;
+    background-color: #000;
+}
+
+.item
+{
+    height: 432px;
+    width: 320px;
 }
