@@ -1,3 +1,30 @@
+let prevSize = 0;
+
+window.addEventListener('resize', () =>
+{
+    if (window.innerWidth >= 1280 && prevSize !== 0)
+    {
+        prevSize = 0;
+
+        showNumberOfElements(4);
+    } else if (window.innerWidth < 1280 && window.innerWidth >= 960 && prevSize !== 1)
+    {
+        prevSize = 1;
+
+        showNumberOfElements(3);
+    } else if (window.innerWidth < 960 && window.innerWidth >= 640 && prevSize !== 2)
+    {
+        prevSize = 2;
+
+        showNumberOfElements(2);
+    } else if (window.innerWidth < 640 && prevSize !== 3)
+    {
+        prevSize = 3;
+
+        showNumberOfElements(1);
+    }
+});
+
 function generateItem()
 {
     return (
@@ -19,17 +46,29 @@ function generateItem()
     )
 }
 
-$(document).ready(function()
+function showNumberOfElements(number)
 {
-    const element =
+    let element1 =
     `<div class="showcasedContainer">
-            <div class="showcasedItemsListContainer">
-            ${generateItem()}
-            ${generateItem()}
-            ${generateItem()}
-            ${generateItem()}
-        </div>
+            <div class="showcasedItemsListContainer">`;
+
+    let element2 = ``;
+
+
+    Array.from({length: number}, (_, i) => i).forEach(() =>
+       element2 = element2.concat(generateItem())
+    );
+
+    let element3 =
+    `</div>
     </div>`;
 
-    $("#showcasedItems").replaceWith(element);
+    element1 = element1.concat(element2, element3);
+
+    document.getElementById('showcasedItems').innerHTML = element1;
+}
+
+$(document).ready(function()
+{
+    showNumberOfElements(4);
 })

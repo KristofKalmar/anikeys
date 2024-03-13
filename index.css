@@ -1,41 +1,14 @@
 @import url('./components/header/header.css');
 @import url('./components/showcasedItem/showcasedItem.css');
-
-.injectedHTMLFframe
-{
-    margin: 0;
-    padding: 0;
-    border: none;
-    height: calc(128px + 32px);
-    width: 100vw;
-    position: sticky;
-    top: 0;
-}
+@import url('./components/rowList/rowList.css');
+@import url('./components/footer/footer.css');
 
 body, html
 {
     margin: 0;
     padding: 0;
     background-color: #040F16;
-}
-
-body
-{
-    height: 2000px;
     font-family: 'Helvetica', 'Arial', sans-serif;
-}
-
-.footer
-{
-    height: 768px;
-}
-
-@media screen and (max-width: 768px)
-{
-    .header
-    {
-        height: 202px;
-    }
 }
 
 .testImg
@@ -43,22 +16,4 @@ body
     width: 100vw;
     height: 512px;
     object-fit: cover;
-}
-
-.itemsContainer
-{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin-top: -128px;
-    height: fit-content;
-    background-color: #000;
-}
-
-.item
-{
-    height: 432px;
-    width: 320px;
 }

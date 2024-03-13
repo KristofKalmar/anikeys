@@ -5,18 +5,61 @@ body, html
     font-family: 'Helvetica', 'Arial', sans-serif;
 }
 
-.showcasedContainer
+.rowListContainer
 {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-top: -96px;
     width: 100%;
-    background-color: #0076D7;
+    background-color: #040F16;
 }
 
-.showcasedItemsListContainer
+.nintendoVerticalContainer
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.nintedoTitleContainer
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    height: 32px;
+    padding: 32px 0;
+    font-size: 32px;
+    color: #fff;
+    width: 100%;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.rowListDivider
+{
+    height: 2px;
+    width: 100%;
+    background-color: #00A2D5;
+    margin-left: 32px;
+}
+
+.nintendoItemsContainer
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.rowListTitleLogo
+{
+    height: 48px;
+    margin-right: 32px;
+}
+
+.rowListVerticalContainer
 {
     display: flex;
     flex-direction: row;
@@ -27,64 +70,55 @@ body, html
     max-width: 1280px;
 }
 
-.showcasedItem
+.nintendoItem
 {
     display: flex;
     flex-direction: column;
-    width: 320px;
-    min-width: 320px;
+    width: 296px;
+    min-width: 296px;
     height: fit-content;
     cursor: pointer;
+    background-color: #001829;
+    margin-right: 32px;
 }
 
-.itemImgContainer
+.nintendoItem:last-child
 {
-    width: calc(100% - 64px);
-    margin-left: 32px;
+    margin-right: 0;
+}
+
+.nintendoImageItemContainer
+{
     height: fit-content;
 }
 
 .itemImg
 {
     width: 100%;
-    transition: transform 0.15s ease-in-out;
-    transform: scale(100%);
+    box-sizing: border-box;
 }
 
-.shadow
-{
-    background-color: #0076D7;
-    position: absolute;
-    top: 0;
-    width: calc(100% - 32px);
-    height: 100%;
-    margin: 0 16px;
-    filter: blur(16px);
-}
-
-.dataContainer
+.nintendoDataContainer
 {
     position: relative;
-    color: white;
-    margin-top: -25%;
+    color: #fff;
+    padding: 16px;
 }
 
-.titleText
+.nintendoTitleText
 {
     position: relative;
     font-size: 20px;
     font-weight: bold;
-    margin-left: 32px;
 }
 
-.cartButtonContainer
+.nintendoCartButtonContainer
 {
     position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
     margin-top: 16px;
-    margin-left: 32px;
 }
 
 .price
@@ -107,9 +141,4 @@ body, html
     border-width: 2px;
     border-style: solid;
     cursor: pointer;
-}
-
-.showcasedItem:hover .itemImg
-{
-    transform: scale(110%);
 }
