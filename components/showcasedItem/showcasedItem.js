@@ -1,52 +1,28 @@
-let prevSize = 0;
-
-window.addEventListener('resize', () =>
+function generateShowcasedItem()
 {
-    if (window.innerWidth >= 1280 && prevSize !== 0)
-    {
-        prevSize = 0;
+    const img = "assets/avatar.jpg";
+    const title = "Avatar Frontiers of Pandora (Standard edition) - PS5";
+    const price = "27,490 Ft";
 
-        showNumberOfElements(4);
-    } else if (window.innerWidth < 1280 && window.innerWidth >= 960 && prevSize !== 1)
-    {
-        prevSize = 1;
-
-        showNumberOfElements(3);
-    } else if (window.innerWidth < 960 && window.innerWidth >= 640 && prevSize !== 2)
-    {
-        prevSize = 2;
-
-        showNumberOfElements(2);
-    } else if (window.innerWidth < 640 && prevSize !== 3)
-    {
-        prevSize = 3;
-
-        showNumberOfElements(1);
-    }
-});
-
-function generateItem()
-{
     return (
         `<div class="showcasedItem">
-            <div class="itemImgContainer">
-                <img class="itemImg" src="assets/game1.webp" />
+            <div class="showcasedItemImgContainer">
+                <img class="showcasedItemImg" src="${img}" />
             </div>
-            <div class="dataContainer">
-                <div class="shadow"></div>
-                <div class="titleText">Hogwarts Legacy - Xbox One</div>
-                <div class="cartButtonContainer">
-                    <button class="cartButton">
+            <div class="showcasedItemDataContainer">
+                <div class="showcasedItemTitle">${title}</div>
+                <div class="showcasedItemCartButtonContainer">
+                    <button class="showcasedItemCartButton">
                         Kosárba
                     </button>
-                    <div class="price">27,490 Ft</div>
+                    <div class="showcasedItemPrice">${price}</div>
                 </div>
             </div>
         </div>`
     )
 }
 
-function showNumberOfElements(number)
+function generateShowcasedItems()
 {
     let element1 =
     `<div class="showcasedContainer">
@@ -55,8 +31,8 @@ function showNumberOfElements(number)
     let element2 = ``;
 
 
-    Array.from({length: number}, (_, i) => i).forEach(() =>
-       element2 = element2.concat(generateItem())
+    Array.from({length: 4}, (_, i) => i).forEach(() =>
+       element2 = element2.concat(generateShowcasedItem())
     );
 
     let element3 =
@@ -70,5 +46,5 @@ function showNumberOfElements(number)
 
 $(document).ready(function()
 {
-    showNumberOfElements(4);
+    generateShowcasedItems(4);
 })

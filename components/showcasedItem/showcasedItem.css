@@ -11,7 +11,7 @@ body, html
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-top: -96px;
+    margin-top: -64px;
     width: 100%;
     background-color: #0076D7;
 }
@@ -21,73 +21,73 @@ body, html
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 32px;
+    width: calc(100% - 32px);
     max-width: 1280px;
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0 16px;
+    padding-bottom: 32px;
 }
 
 .showcasedItem
 {
     display: flex;
     flex-direction: column;
-    width: 320px;
-    min-width: 320px;
+    width: 296px;
+    min-width: 296px;
     height: fit-content;
     cursor: pointer;
+    background-color: #001829;
+    margin-right: 32px;
+    scroll-snap-align: start;
+    scroll-margin: 16px;
 }
 
-.itemImgContainer
+.showcasedItem:last-child
 {
-    width: calc(100% - 64px);
-    margin-left: 32px;
-    height: fit-content;
+    margin-right: 0;
 }
 
-.itemImg
+.showcasedItemImgContainer
+{
+    height: fit-content;
+    overflow: hidden;
+}
+
+.showcasedItemImg
 {
     width: 100%;
-    transition: transform 0.15s ease-in-out;
-    transform: scale(100%);
-}
-
-.shadow
-{
-    background-color: #0076D7;
-    position: absolute;
-    top: 0;
-    width: calc(100% - 32px);
     height: 100%;
-    margin: 0 16px;
-    filter: blur(16px);
+    object-fit: cover;
+    box-sizing: border-box;
+    transform: scale(100%);
+    transition: transform 0.15s ease-in-out;
 }
 
-.dataContainer
+.showcasedItemDataContainer
 {
     position: relative;
-    color: white;
-    margin-top: -25%;
+    color: #fff;
+    padding: 16px;
 }
 
-.titleText
+.showcasedItemTitle
 {
     position: relative;
     font-size: 20px;
     font-weight: bold;
-    margin-left: 32px;
 }
 
-.cartButtonContainer
+.showcasedItemCartButtonContainer
 {
     position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
     margin-top: 16px;
-    margin-left: 32px;
 }
 
-.price
+.showcasedItemPrice
 {
     font-size: 16px;
     font-weight: lighter;
@@ -95,7 +95,7 @@ body, html
     color: gold;
 }
 
-.cartButton
+.showcasedItemCartButton
 {
     font-size: 18px;
     border: none;
@@ -111,5 +111,10 @@ body, html
 
 .showcasedItem:hover .itemImg
 {
-    transform: scale(110%);
+    transform: scale(110%) translateY(16px);
+}
+
+.showcasedItem:hover .showcasedItemImg
+{
+    transform: scale(125%);
 }

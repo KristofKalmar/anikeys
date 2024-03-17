@@ -89,12 +89,14 @@
     padding: 0;
     margin: 0;
     min-width: 96px;
+    cursor: pointer;
 }
 
 .searchIcon
 {
     height: 20px;
     width: 20px;
+    pointer-events: none;
 }
 
 .headerButtonsContainer

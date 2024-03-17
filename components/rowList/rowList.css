@@ -15,24 +15,24 @@ body, html
     background-color: #040F16;
 }
 
-.nintendoVerticalContainer
+.contentVerticalContainer
 {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-.nintedoTitleContainer
+.contentTitleContainer
 {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     height: 32px;
-    padding: 32px 0;
+    padding: 32px 16px;
     font-size: 32px;
     color: #fff;
-    width: 100%;
+    width: calc(100% - 32px);
     font-weight: bold;
     white-space: nowrap;
 }
@@ -45,12 +45,16 @@ body, html
     margin-left: 32px;
 }
 
-.nintendoItemsContainer
+.contentItemsContainer
 {
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 100%;
+    width: calc(100% - 32px);
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0 16px;
+    padding-bottom: 32px;
 }
 
 .rowListTitleLogo
@@ -66,11 +70,10 @@ body, html
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin-bottom: 32px;
-    max-width: 1280px;
+    max-width: 1312px;
 }
 
-.nintendoItem
+.rowListItem
 {
     display: flex;
     flex-direction: column;
@@ -80,39 +83,46 @@ body, html
     cursor: pointer;
     background-color: #001829;
     margin-right: 32px;
+    scroll-snap-align: start;
+    scroll-margin: 16px;
 }
 
-.nintendoItem:last-child
+.rowListItem:last-child
 {
     margin-right: 0;
 }
 
-.nintendoImageItemContainer
+.rowListItemImageContainer
 {
     height: fit-content;
+    overflow: hidden;
 }
 
-.itemImg
+.rowListItemImg
 {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
     box-sizing: border-box;
+    transform: scale(100%);
+    transition: transform 0.15s ease-in-out;
 }
 
-.nintendoDataContainer
+.rowListItemDataContainer
 {
     position: relative;
     color: #fff;
     padding: 16px;
 }
 
-.nintendoTitleText
+.rowListItemTitle
 {
     position: relative;
     font-size: 20px;
     font-weight: bold;
 }
 
-.nintendoCartButtonContainer
+.rowListItemCartButtonContainer
 {
     position: relative;
     display: flex;
@@ -121,7 +131,7 @@ body, html
     margin-top: 16px;
 }
 
-.price
+.rowListItemPrice
 {
     font-size: 16px;
     font-weight: lighter;
@@ -129,7 +139,7 @@ body, html
     color: gold;
 }
 
-.cartButton
+.rowListItemCartButton
 {
     font-size: 18px;
     border: none;
@@ -141,4 +151,9 @@ body, html
     border-width: 2px;
     border-style: solid;
     cursor: pointer;
+}
+
+.rowListItem:hover .rowListItemImg
+{
+    transform: scale(125%);
 }

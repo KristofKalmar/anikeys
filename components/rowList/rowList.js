@@ -27,18 +27,22 @@ window.addEventListener('resize', () =>
 
 function generateRowListItem(element)
 {
+    const img = "assets/avatar.jpg";
+    const title = "Avatar Frontiers of Pandora (Standard edition) - PS5";
+    const price = "27,490 Ft";
+
     return (
-        `<div class="nintendoItem" style="background-color: ${element.getAttribute('data-themeColor')}">
-            <div class="nintendoImageItemContainer">
-                <img class="itemImg" src="assets/avatar.jpg" />
+        `<div class="rowListItem" style="background-color: ${element.getAttribute('data-themeColor')}">
+            <div class="rowListItemImageContainer">
+                <img class="rowListItemImg" src="${img}" />
             </div>
-            <div class="nintendoDataContainer">
-                <div class="nintendoTitleText">Hogwarts Legacy - Xbox One</div>
-                <div class="nintendoCartButtonContainer">
-                    <button class="cartButton">
+            <div class="rowListItemDataContainer">
+                <div class="rowListItemTitle">${title}</div>
+                <div class="rowListItemCartButtonContainer">
+                    <button class="rowListItemCartButton">
                         Kosárba
                     </button>
-                    <div class="price">27,490 Ft</div>
+                    <div class="rowListItemPrice">${price}</div>
                 </div>
             </div>
         </div>`
@@ -56,13 +60,13 @@ function populateRowList(number)
         let element1 =
         `<div class="rowListContainer">
                 <div class="rowListVerticalContainer">
-                    <div class="nintendoVerticalContainer">
-                        <div class="nintedoTitleContainer">
+                    <div class="contentVerticalContainer">
+                        <div class="contentTitleContainer">
                             <object class="rowListTitleLogo" data="assets/${replaceElements[i].getAttribute('data-logo')}"></object>
                             ${replaceElements[i].getAttribute('data-title')}
                             <div class="rowListDivider"></div>
                         </div>
-                        <div class="nintendoItemsContainer">`;
+                        <div class="contentItemsContainer">`;
 
         let element2 = ``;
 
