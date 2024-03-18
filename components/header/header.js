@@ -14,28 +14,29 @@ $(document).ready(function()
       <div class="underContainer">
         <object class="logo" data="assets/logo.svg"></object>
         <div class="headerButtonsContainer">
-          <div class="headerButton">
+          <button class="headerButton">
             <object class="headerButtonIcon" data="assets/user.svg"></object>
-          </div>
-          <div class="headerButton">
-            <object class="headerButtonIcon" data="assets/cart.svg"></object>
+          </button>
+            <button class="headerButton">
+              <object class="headerButtonIcon" data="assets/cart.svg"></object>
+            </button>
           </div>
         </div>
       </div>
     </div>
     <div class="linksContainer">
-      <div class="linkItem">
+      <a class="linkItem">
         <label class="linkItemText">PC</label>
-      </div>
-      <div class="linkItem">
+      </a>
+      <a class="linkItem">
         <label class="linkItemText">Playstation</label>
-      </div>
-      <div class="linkItem">
+      </a>
+      <a class="linkItem">
         <label class="linkItemText">Xbox</label>
-      </div>
-      <div class="linkItem">
+      </a>
+      <a class="linkItem">
         <label class="linkItemText">Nintendo</label>
-      </div>
+      </a>
     </div>
     </header>`;
 
