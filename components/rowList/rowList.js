@@ -1,30 +1,3 @@
-let prevSizeNintendo = 0;
-
-window.addEventListener('resize', () =>
-{
-    if (window.innerWidth >= 1280 && prevSizeNintendo !== 0)
-    {
-        prevSizeNintendo = 0;
-
-        showNumberOfElements(4);
-    } else if (window.innerWidth < 1280 && window.innerWidth >= 960 && prevSizeNintendo !== 1)
-    {
-        prevSizeNintendo = 1;
-
-        showNumberOfElements(3);
-    } else if (window.innerWidth < 960 && window.innerWidth >= 640 && prevSizeNintendo !== 2)
-    {
-        prevSizeNintendo = 2;
-
-        showNumberOfElements(2);
-    } else if (window.innerWidth < 640 && prevSizeNintendo !== 3)
-    {
-        prevSizeNintendo = 3;
-
-        showNumberOfElements(1);
-    }
-});
-
 function generateRowListItem(element)
 {
     const img = "assets/avatar.jpg";
@@ -58,7 +31,7 @@ function populateRowList(number)
     for(var i = 0; i < replaceElements.length; i++)
     {
         let element1 =
-        `<div class="rowListContainer">
+        `<div class="rowListContainer${replaceElements[i].getAttribute('data-multiLine') === 'true' ? " rowList_multiLine" : ""}">
                 <div class="rowListVerticalContainer">
                     <div class="contentVerticalContainer">
                         <div class="contentTitleContainer">
@@ -69,7 +42,6 @@ function populateRowList(number)
                         <div class="contentItemsContainer">`;
 
         let element2 = ``;
-
 
         Array.from({length: number}, (_, i) => i).forEach(() =>
            element2 = element2.concat(generateRowListItem(replaceElements[i]))
@@ -93,5 +65,5 @@ function populateRowList(number)
 
 $(document).ready(function()
 {
-    populateRowList(4);
+    populateRowList(12);
 })

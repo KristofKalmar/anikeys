@@ -50,6 +50,7 @@ body, html
 
 .showcasedItemImgContainer
 {
+    display: flex;
     height: fit-content;
     overflow: hidden;
 }

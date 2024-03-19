@@ -57,6 +57,19 @@ body, html
     padding-bottom: 32px;
 }
 
+.rowList_multiLine .contentItemsContainer
+{
+    display: block;
+    position: relative;
+    padding-bottom: 0;
+}
+
+.rowList_multiLine .rowListItem
+{
+    float: left;
+    margin-bottom: 32px;
+}
+
 .rowListTitleLogo
 {
     height: 48px;
@@ -94,6 +107,7 @@ body, html
 
 .rowListItemImageContainer
 {
+    display: flex;
     height: fit-content;
     overflow: hidden;
 }
@@ -156,4 +170,76 @@ body, html
 .rowListItem:hover .rowListItemImg
 {
     transform: scale(125%);
+}
+
+@media screen and (min-width: 1312px)
+{
+    .rowList_multiLine .rowListItem:nth-child(4n)
+    {
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 1311px)
+{
+    .rowList_multiLine .rowListItem
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItem:nth-child(3n)
+    {
+        margin-right: 0;
+    }
+
+    .rowList_multiLine .rowListItem
+    {
+        width: calc((100% - 64px) / 3);
+    }
+}
+
+@media screen and (max-width: 984px)
+{
+    .rowList_multiLine .rowListItem
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItem:nth-child(3n)
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItem:nth-child(2n)
+    {
+        margin-right: 0;
+    }
+
+    .rowList_multiLine .rowListItem
+    {
+        width: calc((100% - 32px) / 2);
+    }
+}
+
+@media screen and (max-width: 656px)
+{
+    .rowList_multiLine .rowListItem
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItem:nth-child(3n)
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItem:nth-child(2n)
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItem
+    {
+        width: 100%;
+    }
 }
