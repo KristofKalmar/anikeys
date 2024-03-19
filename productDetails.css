@@ -31,6 +31,7 @@
 {
     color: white;
     font-size: 18px;
+    margin: 0;
 }
 
 .productDetailsBuyContainer
@@ -123,6 +124,15 @@
 .productDetailsTableSpacer
 {
     height: 64px;
+}
+
+.productDetailsTitle
+{
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #000;
 }
 
 @media screen and (max-width: 1312px)
