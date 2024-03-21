@@ -2,6 +2,11 @@ $(document).ready(function()
 {
     const element =
     `<header class="header">
+    <div class="headerAdminBanner">
+      <div class="headerAdminBannerContentContainer">
+      asd
+      </div>
+    </div>
     <div class="headerContentContainer">
       <div class="searchBarContainer">
         <div class="searchBar">

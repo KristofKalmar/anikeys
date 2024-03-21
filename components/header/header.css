@@ -14,6 +14,26 @@
     z-index: 10;
 }
 
+.headerAdminBanner
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    height: 32px;
+    background-color: white;
+}
+
+.headerAdminBannerContentContainer
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    max-width: 1280px;
+}
+
 .logo
 {
     height: 40px;
@@ -267,5 +287,13 @@
     {
         width: calc((100vw - 32px) / 4);
         min-width: calc((100vw - 32px) / 4);
+    }
+}
+
+@media screen and (max-width: 1312px)
+{
+    .headerAdminBannerContentContainer
+    {
+        max-width: calc(100% - 32px);
     }
 }

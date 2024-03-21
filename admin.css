@@ -1,0 +1,128 @@
+html, body
+{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    background-color: #f0f0f0;
+}
+
+header
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #000;
+    height: 64px;
+    width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+    position: sticky;
+    top: 0;
+    left: 0px;
+    right: 0;
+    z-index: 3;
+}
+
+.logo
+{
+    height: 32px;
+}
+
+main
+{
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+}
+
+table
+{
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+thead
+{
+
+}
+
+tr
+{
+
+}
+
+th
+{
+    font-size: 18px;
+    font-weight: 600;
+    text-align: left;
+    height: 48px;
+    padding: 0 16px;
+    background-color: #fff;
+    position: sticky;
+    top: 64px;
+    border-bottom: 1px solid #dbdbdb;
+    border-right: none;
+}
+
+th:nth-child(1)
+{
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    border-left: none;
+    border: none;
+    box-shadow: 1px 0 0 0 #fff;
+}
+
+th:last-child
+{
+    position: sticky;
+    right: 0;
+    z-index: 2;
+}
+
+tbody
+{
+
+}
+
+td
+{
+    padding: 0 16px;
+    height: 32px;
+    border: 1px solid #dbdbdb;
+    border-right: none;
+    border-top: none;
+}
+
+tr td:nth-child(1)
+{
+    background-color: #fff;
+    position: sticky;
+    left: 0;
+    border: none;
+    box-shadow: 1px 0 0 0 #dbdbdb;
+}
+
+tr td:last-child
+{
+    position: sticky;
+    right: 0;
+    top: 64px;
+    background-color: #f0f0f0;
+}
+
+tr:last-child td
+{
+    border-bottom: none;
+}
+
+.table_corner
+{
+    position: absolute;
+    right: -8px;
+    bottom: -7px;
+}
