@@ -6,15 +6,15 @@ function generateRowListItem(element)
 
     return (
         `<div class="rowListItem" style="background-color: ${element.getAttribute('data-themeColor')}">
-            <div class="rowListItemImageContainer">
+            <a href="productDetails.html" class="rowListItemImageContainer">
                 <img class="rowListItemImg" src="${img}" />
-            </div>
+            </a>
             <div class="rowListItemDataContainer">
                 <div class="rowListItemTitle">${title}</div>
                 <div class="rowListItemCartButtonContainer">
-                    <button class="rowListItemCartButton">
+                    <a class="rowListItemCartButton">
                         Kosárba
-                    </button>
+                    </a>
                     <div class="rowListItemPrice">${price}</div>
                 </div>
             </div>

@@ -70,6 +70,12 @@ body, html
     margin-bottom: 32px;
 }
 
+.rowList_multiLine .rowListItemLink
+{
+    float: left;
+    margin-bottom: 32px;
+}
+
 .rowListTitleLogo
 {
     height: 48px;
@@ -93,11 +99,25 @@ body, html
     width: 296px;
     min-width: 296px;
     height: fit-content;
-    cursor: pointer;
     background-color: #001829;
     margin-right: 32px;
     scroll-snap-align: start;
     scroll-margin: 16px;
+}
+
+.rowListItemLink
+{
+    display: flex;
+    flex-direction: column;
+    width: 296px;
+    min-width: 296px;
+    height: fit-content;
+    background-color: #001829;
+    margin-right: 32px;
+    scroll-snap-align: start;
+    scroll-margin: 16px;
+    text-decoration: none;
+    color: white;
 }
 
 .rowListItem:last-child
@@ -165,6 +185,7 @@ body, html
     border-width: 2px;
     border-style: solid;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .rowListItem:hover .rowListItemImg
@@ -196,6 +217,20 @@ body, html
     {
         width: calc((100% - 64px) / 3);
     }
+    .rowList_multiLine .rowListItemLink
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItemLink:nth-child(3n)
+    {
+        margin-right: 0;
+    }
+
+    .rowList_multiLine .rowListItemLink
+    {
+        width: calc((100% - 64px) / 3);
+    }
 }
 
 @media screen and (max-width: 984px)
@@ -219,6 +254,25 @@ body, html
     {
         width: calc((100% - 32px) / 2);
     }
+    .rowList_multiLine .rowListItemLink
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItemLink:nth-child(3n)
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItemLink:nth-child(2n)
+    {
+        margin-right: 0;
+    }
+
+    .rowList_multiLine .rowListItemLink
+    {
+        width: calc((100% - 32px) / 2);
+    }
 }
 
 @media screen and (max-width: 656px)
@@ -239,6 +293,25 @@ body, html
     }
 
     .rowList_multiLine .rowListItem
+    {
+        width: 100%;
+    }
+    .rowList_multiLine .rowListItemLink
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItemLink:nth-child(3n)
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItemLink:nth-child(2n)
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItemLink
     {
         width: 100%;
     }

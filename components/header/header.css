@@ -17,6 +17,7 @@
 .logo
 {
     height: 40px;
+    pointer-events: none;
 }
 
 .headerContentContainer
@@ -29,6 +30,23 @@
     width: calc(100% - 32px);
     max-width: 1280px;
     justify-content: space-between;
+}
+
+.headerCartButtonNumberIndicator
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    right: -8px;
+    background-color: red;
+    border-radius: 10px;
+    color: white;
+    font-size: 12px;
 }
 
 .searchBarContainer
@@ -79,6 +97,10 @@
 
 .searchButton
 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     width: 96px;
     height: 100%;
     background: #040F16;
@@ -129,6 +151,7 @@
     min-width: 192px;
     height: 64px;
     color: white;
+    text-decoration: none;
 }
 
 .linkItemText
@@ -140,6 +163,7 @@
     align-items: flex-end;
     justify-content: center;
     font-size: 18px;
+    pointer-events: none;
 }
 
 .headerButton
@@ -172,6 +196,7 @@
     width: 100%;
     height: 100%;
     justify-content: space-between;
+    z-index: 1;
 }
 
 .header_cart_function_container

@@ -5,7 +5,8 @@ html, body
     margin: 0;
     padding: 0;
     font-family: 'Helvetica', 'Arial', sans-serif;
-    background-color: #f0f0f0;
+    background-color: #f5fbff;
+    width: fit-content;
 }
 
 header
@@ -15,7 +16,7 @@ header
     align-items: center;
     background-color: #000;
     height: 64px;
-    width: 100%;
+    width: 100vw;
     padding: 0 16px;
     box-sizing: border-box;
     position: sticky;
@@ -28,11 +29,19 @@ header
 .logo
 {
     height: 32px;
+    pointer-events: none;
+}
+
+.adminLogoAnchor
+{
+    margin: 0;
+    padding: 0;
+    height: 32px;
 }
 
 main
 {
-    background-color: #f0f0f0;
+    background-color: #f5fbff;
     display: flex;
     flex-direction: column;
 }
@@ -53,6 +62,11 @@ tr
 
 }
 
+tr td, tr th
+{
+    white-space: nowrap;
+}
+
 th
 {
     font-size: 18px;
@@ -60,11 +74,10 @@ th
     text-align: left;
     height: 48px;
     padding: 0 16px;
-    background-color: #fff;
+    background-color: #0076D7;
     position: sticky;
     top: 64px;
-    border-bottom: 1px solid #dbdbdb;
-    border-right: none;
+    color: white;
 }
 
 th:nth-child(1)
@@ -74,45 +87,107 @@ th:nth-child(1)
     z-index: 1;
     border-left: none;
     border: none;
-    box-shadow: 1px 0 0 0 #fff;
 }
 
 th:last-child
 {
     position: sticky;
     right: 0;
+    width: 32px;
+    padding: 0;
+    z-index: 2;
+}
+
+th:nth-last-child(2)
+{
+    position: sticky;
+    right: 32px;
     z-index: 2;
 }
 
 tbody
 {
+}
 
+tr:nth-child(1) td
+{
+    border-top: none;
+}
+
+tr:nth-child(even) td
+{
+    background-color: #e5f4ff;
+}
+
+tr:nth-child(even) td .tableCap_left
+{
+    background-color: #e5f4ff;
+}
+
+tr:nth-child(even) td .tableCap_right
+{
+    background-color: #e5f4ff;
 }
 
 td
 {
     padding: 0 16px;
-    height: 32px;
-    border: 1px solid #dbdbdb;
-    border-right: none;
-    border-top: none;
+    height: 48px;
+    background-color: #f5fbff;
 }
 
 tr td:nth-child(1)
 {
-    background-color: #fff;
     position: sticky;
     left: 0;
     border: none;
-    box-shadow: 1px 0 0 0 #dbdbdb;
+    width: 32px;
+    padding: 0;
+    background-color: #f5fbff;
+}
+
+.tableCap_left
+{
+    margin-left: 16px;
+    width: 16px;
+    height: 100%;
+    background-color: #f5fbff;
+    border-radius: 8px 0 0 8px;
+}
+
+.tableCap_right
+{
+    margin-right: 16px;
+    width: 16px;
+    height: 100%;
+    background-color: #f5fbff;
+    border-radius: 0 8px 8px 0;
 }
 
 tr td:last-child
 {
     position: sticky;
     right: 0;
-    top: 64px;
-    background-color: #f0f0f0;
+    background-color: #f5fbff;
+    width: 32px;
+    padding: 0;
+}
+
+.admin_table_button_anchor
+{
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+tr td:nth-last-child(2)
+{
+    position: sticky;
+    right: 32px;
+    width: 48px;
+    padding: 0;
 }
 
 tr:last-child td

@@ -36,6 +36,19 @@ body, html
     width: 296px;
     min-width: 296px;
     height: fit-content;
+    background-color: #001829;
+    margin-right: 32px;
+    scroll-snap-align: start;
+    scroll-margin: 16px;
+}
+
+.showcasedItemLink
+{
+    display: flex;
+    flex-direction: column;
+    width: 296px;
+    min-width: 296px;
+    height: fit-content;
     cursor: pointer;
     background-color: #001829;
     margin-right: 32px;

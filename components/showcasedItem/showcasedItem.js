@@ -6,15 +6,15 @@ function generateShowcasedItem()
 
     return (
         `<div class="showcasedItem">
-            <div class="showcasedItemImgContainer">
+            <a href="productDetails.html" class="showcasedItemImgContainer">
                 <img class="showcasedItemImg" src="${img}" />
-            </div>
+            </a>
             <div class="showcasedItemDataContainer">
                 <div class="showcasedItemTitle">${title}</div>
                 <div class="showcasedItemCartButtonContainer">
-                    <button class="showcasedItemCartButton">
+                    <a class="showcasedItemCartButton">
                         Kosárba
-                    </button>
+                    </a>
                     <div class="showcasedItemPrice">${price}</div>
                 </div>
             </div>
