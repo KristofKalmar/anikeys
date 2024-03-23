@@ -231,3 +231,50 @@ tr td:last-child
     align-items: center;
     justify-content: center;
 }
+
+.indexPic
+{
+    height: 32px;
+    width: 32px;
+    object-fit: cover;
+    margin-right: 16px;
+    margin-left: 16px;
+}
+
+tr td:not(:first-child):not(:last-child)
+{
+    min-width: 256px;
+}
+
+
+tr td:first-child
+{
+    position: sticky;
+    left: 0;
+}
+
+tr td:last-child
+{
+    min-width: 48px;
+    position: sticky;
+    right: 0;
+    box-shadow: -1px 0 0 #dbdbdb;
+}
+
+tr th:first-child
+{
+    position: sticky;
+    left: 0;
+    z-index: 2;
+}
+
+tr th:last-child
+{
+    position: sticky;
+    right: 0;
+}
+
+input[type="file"]
+{
+    width: 100%;
+}
