@@ -2,13 +2,19 @@
 @import url('./components/footer/footer.css');
 @import url('./components/rowList/rowList.css');
 
+body
+{
+    overflow-x: hidden;
+}
+
 .productDetailsContainer
 {
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: center;
-    background-color: #040F16;
+    background-color: #fff;
+    position: relative;
 }
 
 .productDetailsContentContainer
@@ -17,6 +23,7 @@
     flex-direction: column;
     width: 100%;
     max-width: 1280px;
+    position: relative;
 }
 
 .productDetailsHeroImage
@@ -25,13 +32,27 @@
     height: 512px;
     background-color: black;
     object-fit: cover;
+    position: relative;
+    mask-image: linear-gradient(rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0) 100%);
+}
+
+.productDetailsHeroBackgroundImage
+{
+    position: absolute;
+    width: calc(100% + 128px);
+    height: calc(100% + 32px);
+    top: -32px;
+    left: -64px;
+    object-fit: cover;
+    filter: blur(32px) brightness(0.75);
 }
 
 .productDetailsDescriptionText
 {
-    color: white;
+    color: #fff;
     font-size: 18px;
     margin: 0;
+    margin-bottom: 48px;
 }
 
 .productDetailsBuyContainer
@@ -96,7 +117,7 @@
 
 .productDetailsTable
 {
-    color: white;
+    color: #fff;
     border-collapse: collapse;
     text-align: left;
     font-size: 18px;
@@ -104,7 +125,7 @@
 
 .productDetailsTable tr th, .productDetailsTable tr td
 {
-    background-color: #001829;
+    background-color: rgba(255, 255, 255, 0.25);
     height: 48px;
     padding: 0 16px;
 }
@@ -118,7 +139,7 @@
 {
     margin-bottom: 16px;
     font-size: 18px;
-    color: white;
+    color: #fff;
 }
 
 .productDetailsTableSpacer
@@ -128,11 +149,9 @@
 
 .productDetailsTitle
 {
-    font-size: 24px;
+    font-size: 32px;
     font-weight: bold;
-    color: white;
-    padding-bottom: 32px;
-    border-bottom: 1px solid #000;
+    color: #fff;
 }
 
 @media screen and (max-width: 1312px)

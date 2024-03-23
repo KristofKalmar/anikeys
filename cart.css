@@ -1,12 +1,12 @@
-@import url('cart/header/header.css');
-@import url('cart/footer/footer.css');
+@import url('components/header/header.css');
+@import url('components/footer/footer.css');
 
-body,
-html {
-  margin: 0;
-  padding: 0;
-  font-family: 'Helvetica', 'Arial', sans-serif;
-    background-image: url("assets/hogwarts.jpg");
+html, body
+{
+    margin: 0;
+    padding: 0;
+    background-color: #040F16;
+    font-family: 'Helvetica', 'Arial', sans-serif;
 }
 
 .card {
@@ -179,6 +179,43 @@ html {
 }
 .card .checkOut div:nth-child(2):hover {
   background-color: #0076d7;
+}
+
+.cartPrevOrdersContainer
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.cartPrevOrdersContentContainer
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1280px;
+}
+
+.cartPrevOrdersTitleContainer
+{
+    color: white;
+}
+
+.cartPrevOrdersContainerOuterTable
+{
+    border-collapse: collapse;
+    color: white;
+}
+
+.cartPrevOrdersContainerOuterTable thead tr th
+{
+
+}
+
+.cartPrevOrdersContainerOuterTable tbody tr td
+{
+
 }
 
 @media only screen and (max-width: 1024px) {

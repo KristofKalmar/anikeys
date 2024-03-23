@@ -12,12 +12,12 @@
     <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
     <link rel="stylesheet" href="cart.css">
     <script src="jquery-3.7.1.min.js"></script>
-    <title>ANI KEYS</title>
+    <title>Kosár</title>
 </head>
 <body>
-    <script src="cart/header/header.js"></script>
-    <script src="cart/footer/footer.js"></script>
-
+	<script src="cart.js"></script>
+    <script src="components/header/header.js"></script>
+    <script src="components/footer/footer.js"></script>
 	<div id="header"></div>
     <div class="card">
         <h1>Kosár</h1>
@@ -27,8 +27,26 @@
             <div class="pay">Fizetés</div>
         </div>
     </div>
+    <div class="cartPrevOrdersContainer">
+        <div class="cartPrevOrdersContentContainer">
+            <div class="cartPrevOrdersTitleContainer">
+                Korábbi rendelések
+            </div>
+            <table class="cartPrevOrdersContainerOuterTable">
+                <thead>
+                    <tr>
+                        <th>Rendelés Dátuma</th>
+                        <th>Tételek Száma</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 	<div id="footer"></div>
-	
 </body>
-	<script src="cart.js"></script>
 </html>

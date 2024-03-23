@@ -65,5 +65,5 @@ function populateRowList(number)
 
 $(document).ready(function()
 {
-    populateRowList(12);
+    populateRowList(24);
 })

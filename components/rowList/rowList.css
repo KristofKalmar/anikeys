@@ -8,11 +8,11 @@ body, html
 .rowListContainer
 {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
-    background-color: #040F16;
+    background-color: #fff;
 }
 
 .contentVerticalContainer
@@ -31,7 +31,7 @@ body, html
     height: 32px;
     padding: 32px 16px;
     font-size: 32px;
-    color: #fff;
+    color: #0076D7;
     width: calc(100% - 32px);
     font-weight: bold;
     white-space: nowrap;
@@ -41,7 +41,7 @@ body, html
 {
     height: 2px;
     width: 100%;
-    background-color: #00A2D5;
+    background-color: #0076D7;
     margin-left: 32px;
 }
 
@@ -64,10 +64,16 @@ body, html
     padding-bottom: 0;
 }
 
+.rowList_multiLine
+{
+    background-color: #e5f4ff;
+}
+
 .rowList_multiLine .rowListItem
 {
     float: left;
     margin-bottom: 32px;
+    background-color: #cceaff;
 }
 
 .rowList_multiLine .rowListItemLink
@@ -99,7 +105,7 @@ body, html
     width: 296px;
     min-width: 296px;
     height: fit-content;
-    background-color: #001829;
+    background-color: #e5f4ff;
     margin-right: 32px;
     scroll-snap-align: start;
     scroll-margin: 16px;
@@ -117,7 +123,7 @@ body, html
     scroll-snap-align: start;
     scroll-margin: 16px;
     text-decoration: none;
-    color: white;
+    color: #001829;
 }
 
 .rowListItem:last-child
@@ -145,7 +151,7 @@ body, html
 .rowListItemDataContainer
 {
     position: relative;
-    color: #fff;
+    color: #001829;
     padding: 16px;
 }
 
@@ -170,7 +176,7 @@ body, html
     font-size: 16px;
     font-weight: lighter;
     margin-left: 16px;
-    color: gold;
+    color: #0076D7;
 }
 
 .rowListItemCartButton

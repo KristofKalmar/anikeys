@@ -72,32 +72,6 @@ let products = [
 
 let listCards = [];
 
-const initApp = () => {
-    products.forEach((value, key) => {
-        let newDiv = document.createElement("div");
-        newDiv.classList.add("item");
-        newDiv.setAttribute("data-product-id", value.id); // Új attribútum hozzáadása az azonosítóhoz
-        newDiv.innerHTML = `
-            <img src="assets/${value.images}">
-            <div class="title">${value.name}</div>
-            <div class="price">${value.price.toLocaleString()}</div>
-            <button onclick="addToCart(${key})">Kosárba helyezés</button>
-        `;
-        list.appendChild(newDiv);
-
-
-        const productId = value.id;
-        newDiv.addEventListener("mouseenter", () => {
-            magnifyProduct(productId);
-        });
-        newDiv.addEventListener("mouseleave", () => {
-            newDiv.style.transform = "scale(1)";
-        });
-    });
-};
-
-initApp();
-
 const addToCart = (key) => {
     if (listCards[key] == null) {
         listCards[key] = JSON.parse(JSON.stringify(products[key]));
@@ -124,11 +98,11 @@ const reloadCard = () => {
                 <div class="cardPrice" style="font-weight: bolder">${value.price.toLocaleString()}</div>
                 <div>
                     <button style="background-color: #00243D"
-                    class="cardButton" onclick="changeQuantity(${key}, 
+                    class="cardButton" onclick="changeQuantity(${key},
                     ${value.quantity - 1})">-</button>
                     <div class="count" style="font-weight: bolder">${value.quantity}</div>
                     <button style="background-color: #00243D"
-                    class="cardButton" onclick="changeQuantity(${key}, 
+                    class="cardButton" onclick="changeQuantity(${key},
                     ${value.quantity + 1})">+</button>
                 </div>
             `;
@@ -162,3 +136,29 @@ const magnifyProduct = (productId) => {
 
     product.style.transform = 'scale(1.1)';
 };
+
+const initApp = () => {
+    products.forEach((value, key) => {
+        let newDiv = document.createElement("div");
+        newDiv.classList.add("item");
+        newDiv.setAttribute("data-product-id", value.id); // Új attribútum hozzáadása az azonosítóhoz
+        newDiv.innerHTML = `
+            <img src="assets/${value.images}">
+            <div class="title">${value.name}</div>
+            <div class="price">${value.price.toLocaleString()}</div>
+            <button onclick="addToCart(${key})">Kosárba helyezés</button>
+        `;
+        list.appendChild(newDiv);
+
+
+        const productId = value.id;
+        newDiv.addEventListener("mouseenter", () => {
+            magnifyProduct(productId);
+        });
+        newDiv.addEventListener("mouseleave", () => {
+            newDiv.style.transform = "scale(1)";
+        });
+    });
+};
+
+initApp();
