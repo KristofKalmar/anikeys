@@ -5,8 +5,9 @@ html, body
     margin: 0;
     padding: 0;
     font-family: 'Helvetica', 'Arial', sans-serif;
-    background-color: #f5fbff;
+    background-color: #fff;
     width: fit-content;
+    font-size: 16px;
 }
 
 header
@@ -14,6 +15,7 @@ header
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     background-color: #000;
     height: 64px;
     width: 100vw;
@@ -41,7 +43,7 @@ header
 
 main
 {
-    background-color: #f5fbff;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
 }
@@ -78,31 +80,8 @@ th
     position: sticky;
     top: 64px;
     color: white;
-}
-
-th:nth-child(1)
-{
-    position: sticky;
-    left: 0;
+    box-shadow: 0 1px 0 0 #000;
     z-index: 1;
-    border-left: none;
-    border: none;
-}
-
-th:last-child
-{
-    position: sticky;
-    right: 0;
-    width: 32px;
-    padding: 0;
-    z-index: 2;
-}
-
-th:nth-last-child(2)
-{
-    position: sticky;
-    right: 32px;
-    z-index: 2;
 }
 
 tbody
@@ -116,61 +95,53 @@ tr:nth-child(1) td
 
 tr:nth-child(even) td
 {
-    background-color: #e5f4ff;
 }
 
-tr:nth-child(even) td .tableCap_left
+thead tr
 {
-    background-color: #e5f4ff;
-}
-
-tr:nth-child(even) td .tableCap_right
-{
-    background-color: #e5f4ff;
+    box-shadow: 0 0 8px 0 red;
 }
 
 td
 {
-    padding: 0 16px;
+    padding: 0;
     height: 48px;
-    background-color: #f5fbff;
+    background-color: #fff;
+    border-bottom: 1px solid #dbdbdb;
+    border-right: 1px solid #dbdbdb;
 }
 
-tr td:nth-child(1)
+tbody tr td:last-child
 {
-    position: sticky;
-    left: 0;
-    border: none;
-    width: 32px;
     padding: 0;
-    background-color: #f5fbff;
+    width: 48px;
 }
 
-.tableCap_left
+tbody tr td:first-child
 {
-    margin-left: 16px;
-    width: 16px;
-    height: 100%;
-    background-color: #f5fbff;
-    border-radius: 8px 0 0 8px;
-}
-
-.tableCap_right
-{
-    margin-right: 16px;
-    width: 16px;
-    height: 100%;
-    background-color: #f5fbff;
-    border-radius: 0 8px 8px 0;
-}
-
-tr td:last-child
-{
-    position: sticky;
-    right: 0;
-    background-color: #f5fbff;
-    width: 32px;
+    width: 48px;
     padding: 0;
+}
+
+.tableDeleteIcon
+{
+    pointer-events: none;
+    opacity: 0.1;
+}
+
+tbody tr:hover .tableDeleteIcon
+{
+    opacity: 1;
+}
+
+.tableDeleteIconContainer
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
 }
 
 .admin_table_button_anchor
@@ -182,22 +153,81 @@ tr td:last-child
     justify-content: center;
 }
 
-tr td:nth-last-child(2)
-{
-    position: sticky;
-    right: 32px;
-    width: 48px;
-    padding: 0;
-}
-
 tr:last-child td
 {
     border-bottom: none;
 }
 
-.table_corner
+tr td:last-child
 {
-    position: absolute;
-    right: -8px;
-    bottom: -7px;
+    border-right: none;
+}
+
+.tableInput
+{
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0 16px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.tableInput:hover, .tableInput:focus
+{
+    background-color: #e5f4ff;
+}
+
+.headerButtonsContainer
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.headerButton
+{
+    color: white;
+    padding: 0 16px;
+    cursor: pointer;
+}
+
+.tableInputContainer:hover
+{
+    background-color: #e5f4ff;
+}
+
+.tableInputContainer:has(.tableInput:focus)
+{
+    background-color: #e5f4ff;
+}
+
+.tableInputContainer
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.tableInputSelect
+{
+    -webkit-appearance: none;
+}
+
+.tablePriceText
+{
+    margin-right: 16px;
+}
+
+.tableCheckboxContainer
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

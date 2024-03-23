@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="admin.css">
-    <title>Document</title>
+    <meta name="theme-color" content="#000">
+    <title>Admin</title>
 </head>
 <body>
     <header>
@@ -14,211 +15,793 @@
             data="assets/logo.svg"
         ></object>
         </a>
+        <div class="headerButtonsContainer">
+            <div class="headerButton">
+                Mentés
+            </div>
+            <div class="headerButton">
+                Új termék
+            </div>
+        </div>
     </header>
     <main>
         <table>
             <thead>
                 <tr>
-                    <th></th>
+                    <th><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></th>
                     <th>Név</th>
                     <th>Leírás</th>
                     <th>Bruttó ár</th>
                     <th>Kedvezmény</th>
                     <th>Kategória</th>
                     <th></th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><div class="tableCap_left"></div></td>
-                    <td>Avatar: Frontiers of Pandora (PS5)</td>
-                    <td>LEÍRÁS</td>
-                    <td>27,490 Ft</td>
-                    <td>50%</td>
-                    <td>Playstation 5</td>
-                    <td><a class="admin_table_button_anchor"><object data="assets/modify.svg"></object></a></td>
-                    <td><div class="tableCap_right"></div></td>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
                 </tr>
                 <tr>
-                    <td><div class="tableCap_left"></div></td>
-                    <td>Avatar: Frontiers of Pandora (PS5)</td>
-                    <td>LEÍRÁS</td>
-                    <td>27,490 Ft</td>
-                    <td>50%</td>
-                    <td>Playstation 5</td>
-                    <td><a class="admin_table_button_anchor"><object data="assets/modify.svg"></object></a></td>
-                    <td><div class="tableCap_right"></div></td>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
                 </tr>
                 <tr>
-                    <td><div class="tableCap_left"></div></td>
-                    <td>Avatar: Frontiers of Pandora (PS5)</td>
-                    <td>LEÍRÁS</td>
-                    <td>27,490 Ft</td>
-                    <td>50%</td>
-                    <td>Playstation 5</td>
-                    <td><a class="admin_table_button_anchor"><object data="assets/modify.svg"></object></a></td>
-                    <td><div class="tableCap_right"></div></td>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
                 </tr>
                 <tr>
-                    <td><div class="tableCap_left"></div></td>
-                    <td>Avatar: Frontiers of Pandora (PS5)</td>
-                    <td>LEÍRÁS</td>
-                    <td>27,490 Ft</td>
-                    <td>50%</td>
-                    <td>Playstation 5</td>
-                    <td><a class="admin_table_button_anchor"><object data="assets/modify.svg"></object></a></td>
-                    <td><div class="tableCap_right"></div></td>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
                 </tr>
                 <tr>
-                    <td><div class="tableCap_left"></div></td>
-                    <td>Avatar: Frontiers of Pandora (PS5)</td>
-                    <td>LEÍRÁS</td>
-                    <td>27,490 Ft</td>
-                    <td>50%</td>
-                    <td>Playstation 5</td>
-                    <td><a class="admin_table_button_anchor"><object data="assets/modify.svg"></object></a></td>
-                    <td><div class="tableCap_right"></div></td>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
                 </tr>
                 <tr>
-                    <td><div class="tableCap_left"></div></td>
-                    <td>Avatar: Frontiers of Pandora (PS5)</td>
-                    <td>LEÍRÁS</td>
-                    <td>27,490 Ft</td>
-                    <td>50%</td>
-                    <td>Playstation 5</td>
-                    <td><a class="admin_table_button_anchor"><object data="assets/modify.svg"></object></a></td>
-                    <td><div class="tableCap_right"></div></td>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
                 </tr>
                 <tr>
-                    <td><div class="tableCap_left"></div></td>
-                    <td>Avatar: Frontiers of Pandora (PS5)</td>
-                    <td>LEÍRÁS</td>
-                    <td>27,490 Ft</td>
-                    <td>50%</td>
-                    <td>Playstation 5</td>
-                    <td><a class="admin_table_button_anchor"><object data="assets/modify.svg"></object></a></td>
-                    <td><div class="tableCap_right"></div></td>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
                 </tr>
                 <tr>
-                    <td><div class="tableCap_left"></div></td>
-                    <td>Avatar: Frontiers of Pandora (PS5)</td>
-                    <td>LEÍRÁS</td>
-                    <td>27,490 Ft</td>
-                    <td>50%</td>
-                    <td>Playstation 5</td>
-                    <td><a class="admin_table_button_anchor"><object data="assets/modify.svg"></object></a></td>
-                    <td><div class="tableCap_right"></div></td>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
                 </tr>
                 <tr>
-                    <td><div class="tableCap_left"></div></td>
-                    <td>Avatar: Frontiers of Pandora (PS5)</td>
-                    <td>LEÍRÁS</td>
-                    <td>27,490 Ft</td>
-                    <td>50%</td>
-                    <td>Playstation 5</td>
-                    <td><a class="admin_table_button_anchor"><object data="assets/modify.svg"></object></a></td>
-                    <td><div class="tableCap_right"></div></td>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
                 </tr>
                 <tr>
-                    <td><div class="tableCap_left"></div></td>
-                    <td>Avatar: Frontiers of Pandora (PS5)</td>
-                    <td>LEÍRÁS</td>
-                    <td>27,490 Ft</td>
-                    <td>50%</td>
-                    <td>Playstation 5</td>
-                    <td><a class="admin_table_button_anchor"><object data="assets/modify.svg"></object></a></td>
-                    <td><div class="tableCap_right"></div></td>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
                 </tr>
                 <tr>
-                    <td><div class="tableCap_left"></div></td>
-                    <td>Avatar: Frontiers of Pandora (PS5)</td>
-                    <td>LEÍRÁS</td>
-                    <td>27,490 Ft</td>
-                    <td>50%</td>
-                    <td>Playstation 5</td>
-                    <td><a class="admin_table_button_anchor"><object data="assets/modify.svg"></object></a></td>
-                    <td><div class="tableCap_right"></div></td>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
                 </tr>
                 <tr>
-                    <td><div class="tableCap_left"></div></td>
-                    <td>Avatar: Frontiers of Pandora (PS5)</td>
-                    <td>LEÍRÁS</td>
-                    <td>27,490 Ft</td>
-                    <td>50%</td>
-                    <td>Playstation 5</td>
-                    <td><a class="admin_table_button_anchor"><object data="assets/modify.svg"></object></a></td>
-                    <td><div class="tableCap_right"></div></td>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
                 </tr>
                 <tr>
-                    <td><div class="tableCap_left"></div></td>
-                    <td>Avatar: Frontiers of Pandora (PS5)</td>
-                    <td>LEÍRÁS</td>
-                    <td>27,490 Ft</td>
-                    <td>50%</td>
-                    <td>Playstation 5</td>
-                    <td><a class="admin_table_button_anchor"><object data="assets/modify.svg"></object></a></td>
-                    <td><div class="tableCap_right"></div></td>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
                 </tr>
                 <tr>
-                    <td><div class="tableCap_left"></div></td>
-                    <td>Avatar: Frontiers of Pandora (PS5)</td>
-                    <td>LEÍRÁS</td>
-                    <td>27,490 Ft</td>
-                    <td>50%</td>
-                    <td>Playstation 5</td>
-                    <td><a class="admin_table_button_anchor"><object data="assets/modify.svg"></object></a></td>
-                    <td><div class="tableCap_right"></div></td>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
                 </tr>
                 <tr>
-                    <td><div class="tableCap_left"></div></td>
-                    <td>Avatar: Frontiers of Pandora (PS5)</td>
-                    <td>LEÍRÁS</td>
-                    <td>27,490 Ft</td>
-                    <td>50%</td>
-                    <td>Playstation 5</td>
-                    <td><a class="admin_table_button_anchor"><object data="assets/modify.svg"></object></a></td>
-                    <td><div class="tableCap_right"></div></td>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
                 </tr>
                 <tr>
-                    <td><div class="tableCap_left"></div></td>
-                    <td>Avatar: Frontiers of Pandora (PS5)</td>
-                    <td>LEÍRÁS</td>
-                    <td>27,490 Ft</td>
-                    <td>50%</td>
-                    <td>Playstation 5</td>
-                    <td><a class="admin_table_button_anchor"><object data="assets/modify.svg"></object></a></td>
-                    <td><div class="tableCap_right"></div></td>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
                 </tr>
                 <tr>
-                    <td><div class="tableCap_left"></div></td>
-                    <td>Avatar: Frontiers of Pandora (PS5)</td>
-                    <td>LEÍRÁS</td>
-                    <td>27,490 Ft</td>
-                    <td>50%</td>
-                    <td>Playstation 5</td>
-                    <td><a class="admin_table_button_anchor"><object data="assets/modify.svg"></object></a></td>
-                    <td><div class="tableCap_right"></div></td>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
                 </tr>
                 <tr>
-                    <td><div class="tableCap_left"></div></td>
-                    <td>Avatar: Frontiers of Pandora (PS5)</td>
-                    <td>LEÍRÁS</td>
-                    <td>27,490 Ft</td>
-                    <td>50%</td>
-                    <td>Playstation 5</td>
-                    <td><a class="admin_table_button_anchor"><object data="assets/modify.svg"></object></a></td>
-                    <td><div class="tableCap_right"></div></td>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
                 </tr>
                 <tr>
-                    <td><div class="tableCap_left"></div></td>
-                    <td>Avatar: Frontiers of Pandora (PS5)</td>
-                    <td>LEÍRÁS</td>
-                    <td>27,490 Ft</td>
-                    <td>50%</td>
-                    <td>Playstation 5</td>
-                    <td><a class="admin_table_button_anchor"><object data="assets/modify.svg"></object></a></td>
-                    <td><div class="tableCap_right"></div></td>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
+                </tr>
+                <tr>
+                    <td><div class="tableCheckboxContainer"><input class="checkbox" type="checkbox"></div></td>
+                    <td><input class="tableInput" placeholder="Termék neve" value="Avatar: Frontiers of Pandora"></td>
+                    <td><input class="tableInput" value="Leírás"></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="27490"><div class="tablePriceText">Ft</div></div></td>
+                    <td><div class="tableInputContainer"><input type="number" class="tableInput tableInputPrice" value="0"><div class="tablePriceText">%</div></div></td>
+                    <td><select class="tableInput tableInputSelect">
+                        <option>...</option>
+                        <option>PC</option>
+                        <option>Playstation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                    </select></td>
+                    <td><div class="tableDeleteIconContainer"><object class="tableDeleteIcon" data="assets/delete.svg"></object></div></td>
                 </tr>
             </tbody>
         </table>
