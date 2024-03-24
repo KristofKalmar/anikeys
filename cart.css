@@ -9,6 +9,11 @@ html, body
     font-family: 'Helvetica', 'Arial', sans-serif;
 }
 
+body
+{
+    overflow-x: hidden;
+}
+
 .cardContainer
 {
     display: flex;
@@ -232,6 +237,13 @@ html, body
 
 }
 
+.tableContainer
+{
+    display: flex;
+    width: 100%;
+    overflow: auto;
+}
+
 table
 {
     width: 100%;
@@ -263,6 +275,19 @@ table tbody tr td
     font-size: 0;
     line-height: 0;
     white-space: nowrap;
+    position: sticky;
+}
+
+table thead tr th:nth-child(4)
+{
+    position: sticky;
+    right: 0;
+}
+
+table thead tr th:nth-child(3)
+{
+    position: sticky;
+    right: 138px;
 }
 
 table tbody tr:last-child td
@@ -270,9 +295,31 @@ table tbody tr:last-child td
   border-bottom: none;
 }
 
+table tbody tr td
+{
+    overflow: scroll;
+}
+
+table tbody tr td:nth-child(1)
+{
+  left: 0;
+  z-index: 1;
+}
+
+table tbody tr td:nth-child(4)
+{
+  right: 0;
+}
+
+table tbody tr td:nth-child(3)
+{
+  right: 138px;
+}
+
 table tbody tr td:nth-child(2)
 {
     width: 100%;
+    position: relative;
 }
 
 table tbody tr td div
@@ -369,41 +416,4 @@ table tbody tr:nth-child(1)
   cursor: pointer;
   margin-left: auto;
   font-weight: bold;
-}
-
-@media only screen and (max-width: 1024px) {
-  .card {
-    width: 85%;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .card {
-    width: 90%;
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  .card {
-    width: 95%;
-  }
-
-  .card .checkOut {
-    width: 90%;
-  }
-
-  .card .checkOut div {
-    width: 100%;
-    margin: 5px 0;
-  }
-}
-
-@media (max-width: 800px) {
-  .row {
-    flex-direction: column-reverse;
-  }
-
-  .col-25 {
-    margin-bottom: 20px;
-  }
 }
