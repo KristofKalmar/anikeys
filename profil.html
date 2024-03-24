@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil</title>
+    <link rel="stylesheet" href="profil.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <script src="jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <script src="./components/header/header.js"></script>
+    <script src="./components/footer/footer.js"></script>
+	<div id="header"></div>
+    <div class="sidenav">
+        <div class="profile">
+            <img src="assets/profilkep.jpg" alt="" width="100" height="100">
+            <div class="name">
+                Tóth Martin Erik
+            </div>
+            <div class="job">
+                Egyetemista - SZTE
+            </div>
+        </div>
+
+        <div class="sidenav-url">
+            <div class="url">
+                <a href="#profile" onclick="showIdentity()">Profil</a>
+                <hr align="center">
+            </div>
+            <div class="url">
+                <a href="#settings" onclick="showSettings()">Beállítások</a>
+                <hr align="center">
+            </div>
+            <div class="url">
+                <a href="#changepass" onclick="showChangePassword()">Jelszó változtatás</a>
+                <hr align="center">
+            </div>
+            <div class="url">
+                <a href="#notifications" onclick="showNotifications()">Értesítések</a>
+                <hr align="center">
+            </div>
+        </div>
+    </div>
+
+    <!-- Profil (általános) Section -->
+    <div class="main">
+        <div id="identitySection">
+            <h2>Általános</h2>
+            <div class="card">
+                <div class="card-body">
+                    <i class="fa fa-pen fa-xs edit"></i>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Neved</td>
+                                <td>:</td>
+                                <td>Tóth Martin Erik</td>
+                            </tr>
+                            <tr>
+                                <td>Felhasználónév</td>
+                                <td>:</td>
+                                <td>Hiimmartin</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>:</td>
+                                <td>minta@gmail.com</td>
+                            </tr>
+                            <tr>
+                                <td>Lakcím</td>
+                                <td>:</td>
+                                <td>minta, Hungary</td>
+                            </tr>
+                            <tr>
+                                <td>Telefonszám:</td>
+                                <td>:</td>
+                                <td>+36 5 555 555</td>
+                            </tr>
+                            <tr>
+                                <td>Születésnap</td>
+                                <td>:</td>
+                                <td>2004.04.29</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Beállítások Section -->
+        <div id="settingsSection" style="display:none;">
+            <h2>Beállítások</h2>
+            <div class="card">
+                <div class="card-body">
+                    <i class="fa fa-pen fa-xs edit"></i>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Kommunikációs preferenciák</td>
+                                <td>:</td>
+                                <td>
+                                    <label><input type="checkbox" name="email_notification" checked> Email értesítések</label><br>
+                                    <label><input type="checkbox" name="newsletter_subscription" checked> Hírlevél feliratkozás</label><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Privát beállítások</td>
+                                <td>:</td>
+                                <td>
+                                    <label><input type="checkbox" name="profile_visibility" checked> Profil láthatósága</label><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Nyelvi preferenciák</td>
+                                <td>:</td>
+                                <td>
+                                    <div class="select-wrapper">
+                                        <select name="select2" size=”1”>
+                                            <option value="angol">Angol</option>
+                                            <option value="nemet">Német</option>
+                                            <option value="magyar" selected>Magyar</option>
+                                         </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <td>
+                                <button class="button">Adatok mentése</button>
+                            </td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Jelszó változtatás Section -->
+        <div id="changepassSection" style="display:none;">
+            <h2>Jelszó változtatás</h2>
+            <div class="card">
+                <div class="card-body">
+                    <i class="fa fa-pen fa-xs edit"></i>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Felhasználó neved</td>
+                                <td>:</td>
+                                <td>
+                                    <div class="input-wrapper">
+                                        <input type="text" name="" minlength="8" maxlength="25" id="felhasznaloneved"  placeholder="Minta név" required> 
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Jelszód</td>
+                                <td>:</td>
+                                <td>
+                                    <div class="input-wrapper">
+                                        <input type="password" name="" minlength="8" maxlength="25" required id="jelszod"> 
+                                    </div>
+                                </td>
+                            </tr>
+                                <td>Jelszód mégegyszer</td>
+                                <td>:</td>
+                                <td>
+                                    <div class="input-wrapper">
+                                        <input type="password" name="" minlength="8" maxlength="25" required id="jelszod">   
+                                    </div>
+                                </td>
+                            </tr>
+                            <td>
+                                <button class="button">Adatok mentése</button>
+                            </td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Értesítések Section -->
+        <div id="notificationsSection" style="display:none;">
+            <h2>Értesítések</h2>
+            <div class="card">
+                <div class="card-body">
+                     <i class="fa fa-pen fa-xs edit"></i>
+                    <table>
+                        <tbody>
+                            <h6>Általános</h6>
+                            <tr>
+                                <td>
+                                    <label class="switcher">
+                                    <input type="checkbox" class="switcher-input" checked>
+                                    <span class="switcher-indicator">
+                                        <span class="switcher-yes"></span>
+                                        <span class="switcher-no"></span>
+                                    </span>
+                                    <span class="switcher-label">Születésnapi ajánlatok</span> 
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="switcher">
+                                        <input type="checkbox" class="switcher-input" unchecked>
+                                        <span class="switcher-indicator">
+                                            <span class="switcher-yes"></span>
+                                            <span class="switcher-no"></span>
+                                        </span>
+                                        <span class="switcher-label">Kiemelt események és időszakok</span> 
+                                    </label>         
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="switcher">
+                                        <input type="checkbox" class="switcher-input" checked>
+                                        <span class="switcher-indicator">
+                                            <span class="switcher-yes"></span>
+                                            <span class="switcher-no"></span>
+                                        </span>
+                                        <span class="switcher-label">Kiemelt ajánlatok és promóciók</span> 
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="switcher">
+                                        <input type="checkbox" class="switcher-input" unchecked>
+                                        <span class="switcher-indicator">
+                                            <span class="switcher-yes"></span>
+                                            <span class="switcher-no"></span>
+                                        </span>
+                                        <span class="switcher-label">Fontos frissítések és változások</span> <br>
+                                    </label>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <label class="switcher">
+                                        <input type="checkbox" class="switcher-input" checked>
+                                        <span class="switcher-indicator">
+                                            <span class="switcher-yes"></span>
+                                            <span class="switcher-no"></span>
+                                        </span>
+                                        <span class="switcher-label">Elhagyott kosár emlékeztető</span> <br>
+                                    </label> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="switcher">
+                                        <input type="checkbox" class="switcher-input" unchecked>
+                                        <span class="switcher-indicator">
+                                            <span class="switcher-yes"></span>
+                                            <span class="switcher-no"></span>
+                                        </span>
+                                        <span class="switcher-label">Rendelés visszaigazolása</span> <br>
+                                    </label> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="switcher">
+                                        <input type="checkbox" class="switcher-input" checked>
+                                        <span class="switcher-indicator">
+                                            <span class="switcher-yes"></span>
+                                            <span class="switcher-no"></span>
+                                        </span>
+                                        <span class="switcher-label">Rendelés státusza</span> <br>
+                                    </label>  
+                                </td>
+                            </tr>
+                            <td>
+                                <button class="button">Adatok mentése</button>
+                            </td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="footer"></div>
+</body>
+    <script src="profile.js"></script>
+</html>
