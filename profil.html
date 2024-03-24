@@ -10,46 +10,55 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link rel="manifest" href="favicon/site.webmanifest">
     <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
-    <script src="jquery-3.7.1.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
     <script src="./components/header/header.js"></script>
     <script src="./components/footer/footer.js"></script>
 	<div id="header"></div>
-    <div class="sidenav">
-        <div class="profile">
-            <img src="assets/profilkep.jpg" alt="" width="100" height="100">
-            <div class="name">
-                Tóth Martin Erik
-            </div>
-            <div class="job">
-                Egyetemista - SZTE
+    <div class="container">
+        <div class="colorBG">
+
+        </div>
+        <div class="verticalContainer">
+        <div class="profileContentContainer">
+            <div class="profileContentWidthContainer">
+                <img class="profileBlurBG" src="assets/profilkep.jpg" />
+                <div class="profile">
+                    <img src="assets/profilkep.jpg" alt="">
+                    <div class="profileTextContainer">
+                        <div class="name">
+                            Tóth Martin Erik
+                        </div>
+                        <div class="job">
+                            Egyetemista - SZTE
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    <div class="contentContainer">
+    <div class="sidenav">
 
         <div class="sidenav-url">
             <div class="url">
                 <a href="#profile" onclick="showIdentity()">Profil</a>
-                <hr align="center">
             </div>
             <div class="url">
                 <a href="#settings" onclick="showSettings()">Beállítások</a>
-                <hr align="center">
             </div>
             <div class="url">
                 <a href="#changepass" onclick="showChangePassword()">Jelszó változtatás</a>
-                <hr align="center">
             </div>
             <div class="url">
                 <a href="#notifications" onclick="showNotifications()">Értesítések</a>
-                <hr align="center">
             </div>
         </div>
     </div>
 
     <!-- Profil (általános) Section -->
     <div class="main">
-        <div id="identitySection">
+        <div class="identitySection" id="identitySection">
             <h2>Általános</h2>
             <div class="card">
                 <div class="card-body">
@@ -150,7 +159,7 @@
                                 <td>:</td>
                                 <td>
                                     <div class="input-wrapper">
-                                        <input type="text" name="" minlength="8" maxlength="25" id="felhasznaloneved"  placeholder="Minta név" required> 
+                                        <input type="text" name="" minlength="8" maxlength="25" id="felhasznaloneved"  placeholder="Minta név" required>
                                     </div>
                                 </td>
                             </tr>
@@ -159,7 +168,7 @@
                                 <td>:</td>
                                 <td>
                                     <div class="input-wrapper">
-                                        <input type="password" name="" minlength="8" maxlength="25" required id="jelszod"> 
+                                        <input type="password" name="" minlength="8" maxlength="25" required id="jelszod">
                                     </div>
                                 </td>
                             </tr>
@@ -167,7 +176,7 @@
                                 <td>:</td>
                                 <td>
                                     <div class="input-wrapper">
-                                        <input type="password" name="" minlength="8" maxlength="25" required id="jelszod">   
+                                        <input type="password" name="" minlength="8" maxlength="25" required id="jelszod">
                                     </div>
                                 </td>
                             </tr>
@@ -197,7 +206,7 @@
                                         <span class="switcher-yes"></span>
                                         <span class="switcher-no"></span>
                                     </span>
-                                    <span class="switcher-label">Születésnapi ajánlatok</span> 
+                                    <span class="switcher-label">Születésnapi ajánlatok</span>
                                     </label>
                                 </td>
                             </tr>
@@ -209,8 +218,8 @@
                                             <span class="switcher-yes"></span>
                                             <span class="switcher-no"></span>
                                         </span>
-                                        <span class="switcher-label">Kiemelt események és időszakok</span> 
-                                    </label>         
+                                        <span class="switcher-label">Kiemelt események és időszakok</span>
+                                    </label>
                                 </td>
                             </tr>
                             <tr>
@@ -221,7 +230,7 @@
                                             <span class="switcher-yes"></span>
                                             <span class="switcher-no"></span>
                                         </span>
-                                        <span class="switcher-label">Kiemelt ajánlatok és promóciók</span> 
+                                        <span class="switcher-label">Kiemelt ajánlatok és promóciók</span>
                                     </label>
                                 </td>
                             </tr>
@@ -237,7 +246,7 @@
                                     </label>
                                 </td>
                             </tr>
-                            
+
                             <tr>
                                 <td>
                                     <label class="switcher">
@@ -247,7 +256,7 @@
                                             <span class="switcher-no"></span>
                                         </span>
                                         <span class="switcher-label">Elhagyott kosár emlékeztető</span> <br>
-                                    </label> 
+                                    </label>
                                 </td>
                             </tr>
                             <tr>
@@ -259,7 +268,7 @@
                                             <span class="switcher-no"></span>
                                         </span>
                                         <span class="switcher-label">Rendelés visszaigazolása</span> <br>
-                                    </label> 
+                                    </label>
                                 </td>
                             </tr>
                             <tr>
@@ -271,7 +280,7 @@
                                             <span class="switcher-no"></span>
                                         </span>
                                         <span class="switcher-label">Rendelés státusza</span> <br>
-                                    </label>  
+                                    </label>
                                 </td>
                             </tr>
                             <td>
@@ -284,6 +293,10 @@
         </div>
 
     </div>
+
+    </div>
+
+</div></div>
     <div id="footer"></div>
 </body>
     <script src="profile.js"></script>
