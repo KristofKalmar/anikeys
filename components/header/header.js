@@ -16,6 +16,9 @@ $(document).ready(function()
         <object class="logo" data="assets/logo.svg"></object>
       </a>
         <div class="headerButtonsContainer">
+          <a href="admin.html" class="headerButton">
+            <object class="headerButtonIcon" data="assets/admin.svg"></object>
+          </a>
           <a href="logreg.html" class="headerButton">
             <object class="headerButtonIcon" data="assets/user.svg"></object>
           </a>
