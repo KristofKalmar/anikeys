@@ -1,72 +1,60 @@
-const openShopping = document.querySelector(".shopping");
 const closeShopping = document.querySelector(".closeShopping");
-const list = document.querySelector(".list");
-const listCard = document.querySelector(".listCard");
-const total = document.querySelector(".total");
 const body = document.querySelector("body");
-const quantity = document.querySelector(".quantity");
-
-openShopping.addEventListener("click", () => {
-    body.classList.add("active");
-});
-closeShopping.addEventListener("click", () => {
-    body.classList.remove("active");
-});
 
 let products = [
     {
         id: 1,
         name: "Hogwarts Legacy",
         images: "4.jpg",
-        price: 2000
+        price: 27490
     },
     {
         id: 2,
         name: "Hogwarts Legacy",
         images: "4.jpg",
-        price: 2000
+        price: 27490
     },
     {
         id: 3,
         name: "Hogwarts Legacy",
         images: "4.jpg",
-        price: 2000
+        price: 27490
     },
     {
         id: 4,
         name: "Hogwarts Legacy",
         images: "4.jpg",
-        price: 2000
+        price: 27490
     },
     {
         id: 5,
         name: "Hogwarts Legacy",
         images: "4.jpg",
-        price: 2000
+        price: 27490
     },
     {
         id: 6,
         name: "Hogwarts Legacy",
         images: "4.jpg",
-        price: 2000
+        price: 27490
     },
     {
         id: 7,
         name: "Hogwarts Legacy",
         images: "4.jpg",
-        price: 2000
+        price: 27490
     },
     {
         id: 8,
         name: "Hogwarts Legacy",
         images: "4.jpg",
-        price: 2000
+        price: 27490
     },
     {
         id: 9,
         name: "Hogwarts Legacy",
         images: "4.jpg",
-        price: 2000
+        price: 27490
     }
 ];
 
@@ -82,6 +70,10 @@ const addToCart = (key) => {
 };
 
 const reloadCard = () => {
+    const listCard = document.querySelector(".listCard");
+    const total = document.querySelector(".total");
+    const quantity = document.querySelector(".quantity");
+
     listCard.innerHTML = "";
     let count = 0;
     let totalPrice = 0;
@@ -138,6 +130,8 @@ const magnifyProduct = (productId) => {
 };
 
 const initApp = () => {
+    /*const list = document.querySelector(".list");
+
     products.forEach((value, key) => {
         let newDiv = document.createElement("div");
         newDiv.classList.add("item");
@@ -158,7 +152,15 @@ const initApp = () => {
         newDiv.addEventListener("mouseleave", () => {
             newDiv.style.transform = "scale(1)";
         });
-    });
+    });*/
+
+    addToCart(1);
+    addToCart(2);
+    addToCart(3);
+    addToCart(4);
 };
 
-initApp();
+$(document).ready(function()
+{
+    initApp();
+});

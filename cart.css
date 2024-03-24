@@ -1,38 +1,53 @@
 @import url('components/header/header.css');
 @import url('components/footer/footer.css');
+@import url('./components/rowList/rowList.css');
 
 html, body
 {
     margin: 0;
     padding: 0;
-    background-color: #040F16;
     font-family: 'Helvetica', 'Arial', sans-serif;
 }
 
-.card {
-  border-radius: 20px;
-  margin: auto;
-  width: 80%;
-  margin-top: 2%;
-  margin-bottom: 2%;
-  height: 75vh;
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 90%, rgba(0, 0, 0, 1) 125%);
-  transition: 0.5s;
-  -webkit-transition: 0.5s;
-  -moz-transition: 0.5s;
-  -ms-transition: 0.5s;
-  -o-transition: 0.5s;
+.cardContainer
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    min-height: calc(100vh - 130px - 210.5px - 422px);
+    background-color: #e5f4ff;
 }
 
-.card h1 {
-  color: #fff;
-  font-weight: 300;
-  font-weight: bolder;
-  margin: 0;
-  padding: 0 20px;
-  height: 80px;
-  display: flex;
-  align-items: center;
+.card
+{
+    width: calc(100% - 32px);
+    max-width: 1280px;
+    padding-bottom: 32px;
+}
+
+.cardTitleContainer
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 32px;
+    padding: 32px 0;
+}
+
+.cardTitleDivider
+{
+    height: 2px;
+    width: 100%;
+    background-color: #0076D7;
+}
+
+.card h1
+{
+  color: #0076D7;
+  font-weight: bold;
+  font-size: 32px;
+  margin-right: 32px;
 }
 
 .card .checkOut {
@@ -136,10 +151,9 @@ html, body
 
 .listCard li{
     display: grid;
-    grid-template-columns: 100px repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     color: #1C1F25;
     row-gap: 10px;
-    margin-right: 5%;
 }
 
 .listCard li div{
@@ -216,6 +230,93 @@ html, body
 .cartPrevOrdersContainerOuterTable tbody tr td
 {
 
+}
+
+table
+{
+    width: 100%;
+    border-collapse: collapse;
+    color: #001829;
+}
+
+table thead tr th
+{
+    background-color: #fff;
+    padding: 16px;
+    text-align: left;
+}
+
+.tableImg
+{
+    height: 96px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    margin: 0;
+    padding: 0;
+}
+
+table tbody tr td
+{
+    padding: 0 16px;
+    background-color: #cceaff;
+    font-size: 0;
+    line-height: 0;
+    white-space: nowrap;
+}
+
+table tbody tr td:nth-child(2)
+{
+    width: 100%;
+}
+
+table tbody tr td div
+{
+    font-size: 18px;
+    line-height: normal;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+table tbody tr td div button
+{
+    border: none;
+    border-radius: 0;
+    background: #000;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 0 16px;
+    color: white;
+}
+
+table tbody tr td div button:first-child
+{
+    margin-left: 0;
+}
+
+table tbody tr td div button:last-child
+{
+    margin-right: 0;
+}
+
+table tbody tr td div button:hover
+{
+    background: #0076D7;
+}
+
+table tbody tr td:nth-child(1)
+{
+    width: 96px;
+    padding: 0;
+}
+
+table tbody tr:nth-child(odd)
+{
+    height: 32px;
 }
 
 @media only screen and (max-width: 1024px) {

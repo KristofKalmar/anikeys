@@ -51,6 +51,59 @@ html, body
     color: white;
 }
 
+.pagionationContainer
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    background-color: #e5f4ff;
+    color: #001829;
+}
+
+.paginationContentContainer
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - 32px);
+    max-width: 1280px;
+    padding-bottom: 32px;
+}
+
+.paginationPage
+{
+    width: 32px;
+    height: 32px;
+    background-color: #cceaff;
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.paginationPage:hover, .paginationPage:first-child
+{
+    background-color: #0076D7;
+    color: white;
+}
+
+.paginationPage:last-child
+{
+    margin-right: 0;
+}
+
+.paginationDots
+{
+    width: 128px;
+    margin-right: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 @media screen and (max-width: 1312px)
 {
     .titleImageContainerTextbox

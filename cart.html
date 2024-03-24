@@ -15,38 +15,53 @@
     <title>Kosár</title>
 </head>
 <body>
-	<script src="cart.js"></script>
     <script src="components/header/header.js"></script>
     <script src="components/footer/footer.js"></script>
+    <script src="./components/rowList/rowList.js"></script>
+	<script src="cart.js"></script>
 	<div id="header"></div>
-    <div class="card">
-        <h1>Kosár</h1>
-        <ul class="listCard"></ul>
-        <div class="checkOut">
-            <div class="total">0</div>
-            <div class="pay">Fizetés</div>
-        </div>
-    </div>
-    <div class="cartPrevOrdersContainer">
-        <div class="cartPrevOrdersContentContainer">
-            <div class="cartPrevOrdersTitleContainer">
-                Korábbi rendelések
+    <div class="cardContainer">
+        <div class="card">
+            <div class="cardTitleContainer">
+                <h1>Kosár</h1>
+                <div class="cardTitleDivider"></div>
             </div>
-            <table class="cartPrevOrdersContainerOuterTable">
+            <table>
                 <thead>
                     <tr>
-                        <th>Rendelés Dátuma</th>
-                        <th>Tételek Száma</th>
+                        <th></th>
+                        <th>Név</th>
+                        <th>Bruttó ár</th>
+                        <th>Mennyiség</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <tr></tr>
                     <tr>
-
+                        <td><img class="tableImg" src="assets/avatar.jpg" /></td>
+                        <td><div>Avatar: Frontiers of Pandora (PS5)</div></td>
+                        <td><div>27,490 Ft</div></td>
+                        <td><div><button>-</button>1<button>+</button></div></td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td><img class="tableImg" src="assets/avatar.jpg" /></td>
+                        <td><div>Avatar: Frontiers of Pandora (PS5)</div></td>
+                        <td><div>27,490 Ft</div></td>
+                        <td><div><button>-</button>1<button>+</button></div></td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td><img class="tableImg" src="assets/avatar.jpg" /></td>
+                        <td><div>Avatar: Frontiers of Pandora (PS5)</div></td>
+                        <td><div>27,490 Ft</div></td>
+                        <td><div><button>-</button>1<button>+</button></div></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
+    <div data-title="Kiemelt ajánlatok" data-logo="sale.svg" id="rowList"></div>
 	<div id="footer"></div>
 </body>
 </html>
