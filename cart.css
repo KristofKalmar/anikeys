@@ -16,7 +16,7 @@ html, body
     justify-content: center;
     width: 100%;
     min-height: calc(100vh - 130px - 210.5px - 422px);
-    background-color: #e5f4ff;
+    background-color: #0076D7;
 }
 
 .card
@@ -39,12 +39,12 @@ html, body
 {
     height: 2px;
     width: 100%;
-    background-color: #0076D7;
+    background-color: #fff;
 }
 
 .card h1
 {
-  color: #0076D7;
+  color: #fff;
   font-weight: bold;
   font-size: 32px;
   margin-right: 32px;
@@ -236,7 +236,7 @@ table
 {
     width: 100%;
     border-collapse: collapse;
-    color: #001829;
+    color: #fff;
 }
 
 table thead tr th
@@ -244,6 +244,7 @@ table thead tr th
     background-color: #fff;
     padding: 16px;
     text-align: left;
+    color: #001829;
 }
 
 .tableImg
@@ -258,10 +259,15 @@ table thead tr th
 table tbody tr td
 {
     padding: 0 16px;
-    background-color: #cceaff;
+    background-color: #005aa3;
     font-size: 0;
     line-height: 0;
     white-space: nowrap;
+}
+
+table tbody tr:last-child td
+{
+  border-bottom: none;
 }
 
 table tbody tr td:nth-child(2)
@@ -316,7 +322,53 @@ table tbody tr td:nth-child(1)
 
 table tbody tr:nth-child(odd)
 {
+    height: 4px;
+}
+
+table tbody tr:nth-child(1)
+{
     height: 32px;
+}
+.buttonsContainer
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  margin-top: 32px;
+}
+
+.finalPrice
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.payButton
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 20px;
+  border: none;
+  padding: 0 32px;
+  height: 56px;
+  box-sizing: border-box;
+  width: 256px;
+  background-color: #040F16;
+  color: white;
+  box-shadow: 0 24px 16px -16px rgba(0, 0, 0, 0.5), 0 16px 32px -8px rgba(0, 0, 0, 0.5);
+  border-image: linear-gradient(#00A2D5, #0076D7) 1;
+  border-width: 2px;
+  border-style: solid;
+  cursor: pointer;
+  margin-left: auto;
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 1024px) {
