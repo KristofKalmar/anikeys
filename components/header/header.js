@@ -16,7 +16,11 @@ $(document).ready(function()
         <object class="logo" data="assets/logo.svg"></object>
       </a>
         <div class="headerButtonsContainer">
+<<<<<<< HEAD
           <a href="profil/profil.html" class="headerButton">
+=======
+          <a href="logreg.html" class="headerButton">
+>>>>>>> 4180c96929b7701121c7729ea59dc812cf1ff790
             <object class="headerButtonIcon" data="assets/user.svg"></object>
           </a>
             <a href="cart.html" class="headerButton">
