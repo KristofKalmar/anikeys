@@ -100,7 +100,8 @@ body
     overflow-x: hidden;
     padding-right: 32px;
     box-sizing: border-box;
-    width: 256px;
+    width: 228px;
+    min-width: 228px;
     padding-bottom: 32px;
 }
 
@@ -343,33 +344,27 @@ table td
     height: 100%;
 }
 
-@media only screen and (max-width: 480px) {
-    .title {
-        left: 25%;
+@media only screen and (max-width: 768px)
+{
+    .contentContainer
+    {
+        flex-direction: column;
     }
 
-    .sidenav {
-        width: 100%;
-        height: auto;
-        position: relative;
-        top: 0;
-        left: 0;
-        margin-top: 10px;
-        border-radius: 0;
+    .sidenav
+    {
+        height: calc(32.5 * 4);
+        padding-bottom: 0;
     }
 
-    .sidenav a {
-        padding: 8px 12px;
-        font-size: 16px;
+    .sidenav-url
+    {
+        height: calc(32.5 * 4);
+        margin-top: 0;
     }
 
-    .main {
-        margin-left: 2%;
-        width: 96%;
-        font-size: 18px;
-    }
-
-    .main .card {
-        padding: 10px;
+    .url
+    {
+        text-align: left;
     }
 }
