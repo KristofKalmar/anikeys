@@ -12,6 +12,7 @@
     <link rel="manifest" href="favicon/site.webmanifest">
     <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
     <link rel="stylesheet" href="css/logreg.css">
+    
     <title>ANI KEYS</title>
 </head>
 <body>
@@ -23,8 +24,8 @@
             <form action="#" method="get" class="LoginForm">
                 <h2>Bejelentkezés</h2>
                 <div class="input-box">
-                    <input type="text" maxlength="25" required>
-                    <label for="">Felhasználónév</label>
+                    <input type="text" maxlength="25" id="username" required>
+                    <label for="username">Felhasználónév</label>
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">
@@ -34,7 +35,7 @@
                 </div>
                 <div class="forget-section">
                     <p>
-                        <input type="checkbox" name="" id="">
+                        <input type="checkbox" name="save" id="passsave">
                         Jegyezz meg!
                     </p>
                     <a href="#">Elfelejtetted a jelszavad?</a>
