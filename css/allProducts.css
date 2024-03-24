@@ -1,0 +1,113 @@
+@import url('../components/header/header.css');
+@import url('../components/footer/footer.css');
+@import url('../components/rowList/rowList.css');
+
+html, body
+{
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+.titleImageContainer
+{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 512px;
+    position: relative;
+    justify-content: center;
+}
+
+.titleImage
+{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0) 50%,rgba(0,0,0,0.8) 90%,rgba(0,0,0,1) 125%);
+}
+
+.vignette
+{
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0) 50%,rgba(0,0,0,0.8) 90%,rgba(0,0,0,1) 125%);
+    border-radius: 0;
+    position: absolute;
+    top: 0; left: 0;
+}
+
+.titleImageContainerTextbox
+{
+    position: absolute;
+    bottom: 96px;
+    width: 100%;
+    max-width: 1280px;
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+}
+
+.pagionationContainer
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    background-color: #e5f4ff;
+    color: #001829;
+}
+
+.paginationContentContainer
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - 32px);
+    max-width: 1280px;
+    padding-bottom: 32px;
+}
+
+.paginationPage
+{
+    width: 32px;
+    height: 32px;
+    background-color: #cceaff;
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.paginationPage:hover, .paginationPage:first-child
+{
+    background-color: #0076D7;
+    color: white;
+}
+
+.paginationPage:last-child
+{
+    margin-right: 0;
+}
+
+.paginationDots
+{
+    width: 128px;
+    margin-right: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+@media screen and (max-width: 1312px)
+{
+    .titleImageContainerTextbox
+    {
+        left: 16px;
+    }
+}
