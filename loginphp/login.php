@@ -76,7 +76,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
             
             // Ellenőrzi a felhasználó által megadott jelszót a hashelt jelszóval az adatbázisban
             if (password_verify($password, $hashed_password_from_database)) {
-                // Sikeres bejelentkezés
                 $_SESSION['loggedin'] = true;
                 $_SESSION['username'] = $username;
                 header("Location: index.php");
