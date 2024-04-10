@@ -35,7 +35,7 @@ body
 
 .container
 {
-    height: 512px;
+    height: 550px;
     width: 448px;
     border-image: linear-gradient(#00A2D5, #0076D7) 1;
     border-width: 2px;

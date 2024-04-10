@@ -38,7 +38,7 @@
                         <input type="checkbox" name="save" id="passsave">
                         Jegyezz meg!
                     </p>
-                    <a href="#">Elfelejtetted a jelszavad?</a>
+                    <a href="forgot_password.php">Elfelejtetted a jelszavad?</a>
                 </div>
                 <button class="btn" name="login">Bejelentkezés</button>
                 <div class="account-creation">
@@ -52,11 +52,12 @@
 </html>
 
 <?php
-include ('config/config.php');
+include ('config.php');
 session_start();
 
 // Ellenőrzi, hogy a bejelentkezési űrlap elküldésre került-e
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
+    
     if (!empty($_POST['username']) && !empty($_POST['password'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
@@ -68,27 +69,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
         $stmt->execute();
         $result = $stmt->get_result();
         
-		
         // Ellenőrzi, hogy a felhasználó létezik-e az adatbázisban
         if ($result->num_rows == 1) {
             $row = $result->fetch_assoc();
             $hashed_password_from_database = $row['hashed_password'];
             
-            // Ellenőrzi a felhasználó által megadott jelszót a hashelt jelszóval az adatbázisban
+            
             if (password_verify($password, $hashed_password_from_database)) {
+                
                 $_SESSION['loggedin'] = true;
                 $_SESSION['username'] = $username;
-                header("Location: index.php");
+                
+                // Ellenőrzi, hogy a felhasználó bepipálta-e a "Jegyezz meg!" opciót
+                if(isset($_POST['save']) && $_POST['save'] == 'on') {
+                    // Ha igen, akkor generálunk egy véletlenszerű token-t
+                    $token = bin2hex(random_bytes(32)); // 32 bájt hosszú véletlen token
+                    
+                    // Elmentjük a token-t az adatbázisban
+                    $sql = "UPDATE users SET token = ? WHERE username = ?";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param('ss', $token, $username);
+                    $stmt->execute();
+                    
+                    // Elmentjük a token-t a felhasználó gépén cookie-ban
+                    setcookie('remember_me', $token, time() + (30 * 24 * 60 * 60), '/'); // 30 napig
+                }
+                
+                header("Location: index.php"); 
                 exit();
             } else {
                 $error = "Hibás felhasználónév vagy jelszó!";
             }
         } else {
+
             $error = "Hibás felhasználónév vagy jelszó!";
         }
         $stmt->close();
     } else {
-        $error = echo "Kérlek add meg a felhasználóneved és a jelszavad!";
+
+        $error = "Kérlek add meg a felhasználóneved és a jelszavad!";
     }
 }
 ?>

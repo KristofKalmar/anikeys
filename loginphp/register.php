@@ -1,13 +1,14 @@
 <?php
-include ('config/config.php');
+include ('config.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
-    if (!empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['confirm_password'])) {
+    if (!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['confirm_password'])) {
         $username = $_POST['username'];
+        $email = $_POST['email'];
         $password = $_POST['password'];
         $confirm_password = $_POST['confirm_password'];
             
-        
+        // Ellenőrizd, hogy a felhasználónév már létezik-e az adatbázisban
         $sql_check_username = "SELECT * FROM users WHERE username = ?";
         $stmt_check_username = $conn->prepare($sql_check_username);
         $stmt_check_username->bind_param('s', $username);
@@ -20,14 +21,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
             if ($password === $confirm_password) {
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
                 
-                // SQL lekérdezés az adatbázisba történő felvételhez - adatok beillesztése (!)
-                $sql = "INSERT INTO users (username, hashed_password) VALUES (?, ?)";
+                // SQL lekérdezés az adatbázisba történő felvételhez
+                $sql = "INSERT INTO users (username, email, hashed_password) VALUES (?, ?, ?)";
                 
-                
+                // Prepared statement előkészítése
                 $stmt = $conn->prepare($sql);
-                $stmt->bind_param('ss', $username, $hashed_password);
+                $stmt->bind_param('sss', $username, $email, $hashed_password);
                 
-                // Lekérdezés 
+                // Lekérdezés végrehajtása
                 if ($stmt->execute()) {
                     $success = "Sikeres regisztráció! Most már bejelentkezhetsz.";
                     header("Location: login.php");
@@ -36,13 +37,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
                     $error = "Hiba történt a regisztráció során. Kérlek próbáld újra később.";
                 }
                 
-                $stmt->close(); 
+                $stmt->close(); // Bezárjuk a prepared statementet
             } else {
                 $error = "A jelszavak nem egyeznek!";
             }
         }
         
-        $stmt_check_username->close();
+        $stmt_check_username->close(); // Bezárjuk a prepared statementet a felhasználónév ellenőrzéséhez
     } else {
         $error = "Kérlek töltsd ki az összes mezőt!";
     }
@@ -73,10 +74,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
         <div class="form-box">
             <form action="register.php" method="post" class="LoginForm">
                 <h2>Regisztráció</h2>
+                <?php if(isset($error)) { ?>
+                    <div class="error"><?php echo $error; ?></div>
+                <?php } ?>
+                <?php if(isset($success)) { ?>
+                    <div class="success"><?php echo $success; ?></div>
+                <?php } ?>
                 <div class="input-box">
                     <input type="text" name="username" id="username" maxlength="25" required>
                     <label for="username">Felhasználónév</label>
                     <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box">
+                    <input type="email" name="email" id="email" maxlength="50" required>
+                    <label for="email">E-mail cím</label>
+                    <i class='bx bxs-envelope'></i>
                 </div>
                 <div class="input-box">
                     <input type="password" id="password" name="password" required>
