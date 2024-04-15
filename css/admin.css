@@ -10,6 +10,17 @@ html, body
     font-size: 16px;
 }
 
+.tableRowUnSaved td
+{
+    background-color: #e5f4ff;
+    border-color: #0076D7;
+}
+
+.tableRowUnSaved td:last-child
+{
+    box-shadow: -1px 0 0 #0076D7;
+}
+
 header
 {
     display: flex;
@@ -64,6 +75,12 @@ tr
 
 }
 
+.headerButton:disabled
+{
+    opacity: 0.5;
+    cursor: default;
+}
+
 tr td, tr th
 {
     white-space: nowrap;
@@ -97,11 +114,6 @@ tr:nth-child(even) td
 {
 }
 
-thead tr
-{
-    box-shadow: 0 0 8px 0 red;
-}
-
 td
 {
     padding: 0;
@@ -115,12 +127,6 @@ tbody tr td:last-child
 {
     padding: 0;
     width: 48px;
-}
-
-tbody tr td:first-child
-{
-    width: 48px;
-    padding: 0;
 }
 
 .tableDeleteIcon
@@ -142,6 +148,8 @@ tbody tr:hover .tableDeleteIcon
     width: 100%;
     height: 100%;
     cursor: pointer;
+    background: none;
+    border: none;
 }
 
 .admin_table_button_anchor
@@ -177,7 +185,7 @@ tr td:last-child
 
 .tableInput:hover, .tableInput:focus
 {
-    background-color: #e5f4ff;
+    background-color: #cce8ff;
 }
 
 .headerButtonsContainer
@@ -192,16 +200,30 @@ tr td:last-child
     color: white;
     padding: 0 16px;
     cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 16px;
+    font-weight: normal;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+.headerButton a
+{
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: normal;
+    font-family: 'Helvetica', 'Arial', sans-serif;
 }
 
 .tableInputContainer:hover
 {
-    background-color: #e5f4ff;
+    background-color: #cce8ff;
 }
 
 .tableInputContainer:has(.tableInput:focus)
 {
-    background-color: #e5f4ff;
+    background-color: #cce8ff;
 }
 
 .tableInputContainer
@@ -236,21 +258,17 @@ tr td:last-child
 {
     height: 32px;
     width: 32px;
+    min-height: 32px;
+    min-width: 32px;
     object-fit: cover;
     margin-right: 16px;
     margin-left: 16px;
+    object-fit: cover;
 }
 
-tr td:not(:first-child):not(:last-child)
+tr td:not(:last-child)
 {
     min-width: 256px;
-}
-
-
-tr td:first-child
-{
-    position: sticky;
-    left: 0;
 }
 
 tr td:last-child
@@ -259,13 +277,6 @@ tr td:last-child
     position: sticky;
     right: 0;
     box-shadow: -1px 0 0 #dbdbdb;
-}
-
-tr th:first-child
-{
-    position: sticky;
-    left: 0;
-    z-index: 2;
 }
 
 tr th:last-child
@@ -277,4 +288,111 @@ tr th:last-child
 input[type="file"]
 {
     width: 100%;
+}
+
+.isBeingDeleted td
+{
+    background-color: #f99;
+    border-color: red;
+    color: white;
+}
+
+.isBeingDeleted td div, .isBeingDeleted td input, .isBeingDeleted td input::placeholder, .isBeingDeleted td select
+{
+    color: white;
+}
+
+.isBeingDeleted td select:hover, .isBeingDeleted .tableInput:hover, .isBeingDeleted .tableInput:focus, .isBeingDeleted td .tableInputContainer:hover, .isBeingDeleted td select:focus, .isBeingDeleted .tableInputContainer:has(.tableInput:focus)
+{
+    background-color: red;
+}
+
+.isBeingDeleted td:last-child
+{
+    box-shadow: -1px 0 0 red;
+}
+
+.hasError td
+{
+    background-color: red;
+    border-color: darkred;
+    color: white;
+}
+
+.hasError td div, .hasError td input, .hasError td input::placeholder, .hasError td select
+{
+    color: white;
+}
+
+.hasError td select:hover, .hasError .tableInput:hover, .hasError .tableInput:focus, .hasError td .tableInputContainer:hover, .hasError td select:focus, .hasError .tableInputContainer:has(.tableInput:focus)
+{
+    background-color: darkred;
+}
+
+.hasError td:last-child
+{
+    box-shadow: -1px 0 0 darkred;
+}
+
+.errorAnimation
+{
+    animation: errorAnimation 0.5s linear;
+}
+
+@keyframes errorAnimation
+{
+    0%
+    {
+        transform: translateX(0);
+    }
+
+    10%
+    {
+        transform: translateX(-32px);
+    }
+
+    20%
+    {
+        transform: translateX(0);
+    }
+
+    30%
+    {
+        transform: translateX(32px);
+    }
+
+    40%
+    {
+        transform: translateX(0);
+    }
+
+    50%
+    {
+        transform: translateX(-32px);
+    }
+
+    60%
+    {
+        transform: translateX(0);
+    }
+
+    70%
+    {
+        transform: translateX(32px);
+    }
+
+    80%
+    {
+        transform: translateX(0);
+    }
+
+    90%
+    {
+        transform: translateX(-32px);
+    }
+
+    100%
+    {
+        transform: translateX(0);
+    }
 }
