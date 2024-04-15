@@ -80,10 +80,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
                 $_SESSION['loggedin'] = true;
                 $_SESSION['username'] = $username;
                 
-                // Ellenőrzi, hogy a felhasználó bepipálta-e a "Jegyezz meg!" opciót
                 if(isset($_POST['save']) && $_POST['save'] == 'on') {
-                    // Ha igen, akkor generálunk egy véletlenszerű token-t
-                    $token = bin2hex(random_bytes(32)); // 32 bájt hosszú véletlen token
+                    $token = bin2hex(random_bytes(32)); 
                     
                     // Elmentjük a token-t az adatbázisban
                     $sql = "UPDATE users SET token = ? WHERE username = ?";
@@ -91,11 +89,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
                     $stmt->bind_param('ss', $token, $username);
                     $stmt->execute();
                     
-                    // Elmentjük a token-t a felhasználó gépén cookie-ban
                     setcookie('remember_me', $token, time() + (30 * 24 * 60 * 60), '/'); // 30 napig
                 }
                 
-                header("Location: index.php"); 
+                header("Location: profil.php"); 
                 exit();
             } else {
                 $error = "Hibás felhasználónév vagy jelszó!";
