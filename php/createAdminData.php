@@ -50,15 +50,35 @@ if (!empty($_FILES)) {
 // Construct the SQL query
 $imageURL = !empty($_FILES) ? 'uploads/' . $_FILES['imageURL']['name'] : '';
 
-$query = "INSERT INTO products (name, price, description, sale, category_id, imageURL)
-          VALUES ('$name', $priceVAT, '{$_POST['descriptionHTML']}', $sale, $category, '$imageURL')";
+$sql = "CREATE TABLE IF NOT EXISTS products (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price INT NOT NULL,
+    description TEXT NOT NULL,
+    sale INT NOT NULL,
+    category_id INT NOT NULL,
+    creationDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    imageURL VARCHAR(255) DEFAULT NULL,
+    CONSTRAINT CHK_Sale CHECK (sale BETWEEN 0 AND 100),
+    CONSTRAINT CHK_CategoryID CHECK (category_id BETWEEN 0 AND 4)
+);";
 
-// Execute the query
-if (mysqli_query($conn, $query)) {
-    echo "Product inserted successfully!";
-} else {
-    echo "Error: " . mysqli_error($conn);
-}
+  // Execute the CREATE TABLE statement
+  if (!mysqli_query($conn, $sql)) {
+    echo "Error creating table: " . mysqli_error($conn);
+  } else {
+    // If table creation is successful, proceed with the INSERT statement
+
+    $sql = "INSERT INTO products (name, price, description, sale, category_id, imageURL)
+    VALUES ('$name', $priceVAT, '{$_POST['descriptionHTML']}', $sale, $category, '$imageURL');";
+
+    // Execute the INSERT statement
+    if (!mysqli_query($conn, $sql)) {
+      echo "Error inserting data: " . mysqli_error($conn);
+    } else {
+      // Data inserted successfully (optional: show success message)
+    }
+  }
 
 // Close the database connection
 mysqli_close($conn);

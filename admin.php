@@ -13,9 +13,22 @@ if ($conn->connect_error) {
     die("Sikertelen kapcsolódás az adatbázishoz: " . $conn->connect_error);
 }
 
-$result = mysqli_query($conn, "SELECT *
-FROM products ORDER BY name
-");
+$table_name = 'products';
+$sql = "SELECT table_name
+        FROM information_schema.tables
+        WHERE table_name = '$table_name'
+        LIMIT 1";
+$table_result = $conn->query($sql);
+
+if ($table_result->num_rows > 0) {
+    // Table found, download its contents
+    $download_sql = "SELECT * FROM $table_name";
+    $result = $conn->query($download_sql);
+} else {
+    $result = [];
+}
+
+$conn->close();
 
 ?>
 
@@ -69,7 +82,7 @@ FROM products ORDER BY name
                 <?php
                     $i = 0;
 
-                    while($row = mysqli_fetch_assoc($result))
+                    while($result == [] ? $row = NULL : $row = mysqli_fetch_assoc($result))
                     {
                 ?>
                 <tr name="<?php echo $row["id"] ?>" id="tableRow_final_<?php echo $i ?>">
