@@ -1,0 +1,134 @@
+body, html
+{
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+.showcasedContainer
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: -64px;
+    width: 100%;
+    background-color: #0076D7;
+}
+
+.showcasedItemsListContainer
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: calc(100% - 32px);
+    max-width: 1280px;
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0 16px;
+    padding-bottom: 32px;
+}
+
+.showcasedItem
+{
+    display: flex;
+    flex-direction: column;
+    width: 296px;
+    min-width: 296px;
+    height: fit-content;
+    background-color: #001829;
+    margin-right: 32px;
+    scroll-snap-align: start;
+    scroll-margin: 16px;
+}
+
+.showcasedItemLink
+{
+    display: flex;
+    flex-direction: column;
+    width: 296px;
+    min-width: 296px;
+    height: fit-content;
+    cursor: pointer;
+    background-color: #001829;
+    margin-right: 32px;
+    scroll-snap-align: start;
+    scroll-margin: 16px;
+}
+
+.showcasedItem:last-child
+{
+    margin-right: 0;
+}
+
+.showcasedItemImgContainer
+{
+    display: flex;
+    height: fit-content;
+    overflow: hidden;
+}
+
+.showcasedItemImg
+{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-sizing: border-box;
+    transform: scale(100%);
+    transition: transform 0.15s ease-in-out;
+}
+
+.showcasedItemDataContainer
+{
+    position: relative;
+    color: #fff;
+    padding: 16px;
+}
+
+.showcasedItemTitle
+{
+    position: relative;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.showcasedItemCartButtonContainer
+{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.showcasedItemPrice
+{
+    font-size: 16px;
+    font-weight: lighter;
+    margin-left: 16px;
+    color: gold;
+}
+
+.showcasedItemCartButton
+{
+    font-size: 18px;
+    border: none;
+    padding: 8px 32px;
+    background-color: #040F16;
+    color: white;
+    box-shadow: 0 24px 16px -16px rgba(0, 0, 0, 0.5), 0 16px 32px -8px rgba(0, 0, 0, 0.5);
+    border-image: linear-gradient(#00A2D5, #0076D7) 1;
+    border-width: 2px;
+    border-style: solid;
+    cursor: pointer;
+}
+
+.showcasedItem:hover .itemImg
+{
+    transform: scale(110%) translateY(16px);
+}
+
+.showcasedItem:hover .showcasedItemImg
+{
+    transform: scale(125%);
+}
