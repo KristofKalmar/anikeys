@@ -14,10 +14,7 @@
     <script src="js/jquery-3.7.1.min.js"></script>
   </head>
   <body>
-	  <script src="./components/header/header.js"></script>
-	  <script src="./components/footer/footer.js"></script>
-	  <script src="./components/rowList/rowList.js"></script>
-    <div id="header"></div>
+    <?php include './componentsphp/header/header.php'; ?>
     <div data-title="Keresés eredménye" data-logo="search_category.svg" data-multiLine="true" id="rowList"></div>
     <div class="pagionationContainer">
         <div class="paginationContentContainer">
@@ -37,8 +34,11 @@
                 10
             </div>
         </div>
-        </div>
+    </div>
+    <?php include './componentsphp/showcasedItem/showcasedItem.php'; ?>
     <div data-title="Kiemelt ajánlatok"  data-logo="sale.svg" ></div>
     <div id="footer"></div>
+    <?php include './componentsphp/rowList/rowList.php"'; ?>
+    <?php include './componentsphp/footer/footer.php'; ?>
   </body>
 </html>
