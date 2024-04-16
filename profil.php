@@ -91,7 +91,6 @@
         </div>
     <div class="contentContainer">
     <div class="sidenav">
-
         <div class="sidenav-url">
             <div class="url">
                 <a href="#profile" onclick="showIdentity()">Profil</a>
@@ -104,6 +103,9 @@
             </div>
             <div class="url">
                 <a href="#notifications" onclick="showNotifications()">Értesítések</a>
+            </div>
+			<div class="url">
+                <a href="logout.php">Kijelentkezés</a>
             </div>
         </div>
     </div>

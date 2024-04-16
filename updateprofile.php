@@ -6,7 +6,7 @@ session_start();
 $servername = "localhost";
 $username = "root"; 
 $password = ""; 
-$dbname = "anikeys-logreg"; 
+$dbname = "anikeys"; 
 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
