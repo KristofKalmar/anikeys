@@ -1,73 +1,48 @@
 <?php
-// Az űrlap elküldése
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
+include('config.php');
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reset'])) {
     $email = $_POST['email'];
 
-    // Gmail SMTP beállítások
-    $smtpHost = 'smtp.gmail.com';
-    $smtpUsername = 'info.anikeys@gmail.com';
-    $smtpPassword = 'anikeys1234';
-    $smtpPort = 587; // Alapértelmezett SMTP port
+    // Check if the email exists in the database
+    $sql = "SELECT * FROM users WHERE email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('s', $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    $to = $email;
-    $subject = "Jelszó emlékeztető";
-    $message = "Kattints a linkre a jelszavad visszaállításához: http://www.example.com/reset_password.php?email=$email";
-    $headers = "From: your@example.com" . "\r\n" .
-               "Reply-To: your@example.com" . "\r\n" .
-               "X-Mailer: PHP/" . phpversion();
+    if ($result->num_rows == 1) {
+        // Generate a unique token for password reset
+        $token = bin2hex(random_bytes(32));
 
-    ini_set("SMTP", $smtpHost);
-    ini_set("smtp_port", $smtpPort);
+        // Update the user's token in the database
+        $sql_update_token = "UPDATE users SET token = ? WHERE email = ?";
+        $stmt_update_token = $conn->prepare($sql_update_token);
+        $stmt_update_token->bind_param('ss', $token, $email);
+        $stmt_update_token->execute();
 
-    $smtpConnection = stream_socket_client("tcp://$smtpHost:$smtpPort", $errno, $errstr, 30);
-    if ($smtpConnection) {
-        fwrite($smtpConnection, "EHLO $smtpHost\r\n");
-        fwrite($smtpConnection, "STARTTLS\r\n");
-        fwrite($smtpConnection, "AUTH LOGIN\r\n");
-        fwrite($smtpConnection, base64_encode($smtpUsername) . "\r\n");
-        fwrite($smtpConnection, base64_encode($smtpPassword) . "\r\n");
-        fwrite($smtpConnection, "MAIL FROM: $smtpUsername\r\n");
-        fwrite($smtpConnection, "RCPT TO: $to\r\n");
-        fwrite($smtpConnection, "DATA\r\n");
-        fwrite($smtpConnection, "Subject: $subject\r\n");
-        fwrite($smtpConnection, "From: your@example.com\r\n");
-        fwrite($smtpConnection, "Content-Type: text/plain; charset=utf-8\r\n");
-        fwrite($smtpConnection, "\r\n");
-        fwrite($smtpConnection, "$message\r\n");
-        fwrite($smtpConnection, ".\r\n");
-        fwrite($smtpConnection, "QUIT\r\n");
-        fclose($smtpConnection);
+        // Send password reset email
+        $to = $email;
+        $subject = "Password Reset Request";
+        $message = "Click the following link to reset your password: http://yourwebsite.com/reset_password.php?token=$token";
+        $headers = "From: kraphexe@gmail.com";
 
-        echo "Az e-mail elküldve. Kérjük, ellenőrizze a postaládáját.";
+        // Send email
+        if (mail($to, $subject, $message, $headers)) {
+            echo "Password reset link has been sent to your email address.";
+        } else {
+            echo "Failed to send password reset email.";
+        }
     } else {
-        echo "Hiba történt az e-mail küldése közben.";
+        echo "Email not found in the database.";
     }
+
+    $stmt->close();
 }
 ?>
-
-<!DOCTYPE html>
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-    <meta name="theme-color" content="#00243D">
-    <link rel="manifest" href="favicon/site.webmanifest">
-    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="stylesheet" href="logreg.css">
-<html lang="hu">
-<head>
-    <meta charset="UTF-8">
-    <title>Jelszó emlékeztető</title>
-</head>
-<body>
-    <h2>Jelszó emlékeztető</h2>
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-        <label for="email">E-mail cím:</label><br>
-        <input type="email" id="email" name="email"><br>
-        <input type="submit" name="submit" value="Küldés">
-    </form>
-</body>
-</html>
