@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link rel="manifest" href="favicon/site.webmanifest">
     <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="css/cart.css">
     <link rel="stylesheet" href="./componentsphp/header/header.css">
     <link rel="stylesheet" href="./componentsphp/footer/footer.css">
     <link rel="stylesheet" href="./componentsphp/rowList/rowList.css">
@@ -25,7 +25,6 @@
                 url: 'remove_from_cart.php',
                 data: { id: productId },
                 success: function(response) {
-                    // Frissítsd a kosár tartalmát
                     location.reload();
                 },
                 error: function(xhr, status, error) {

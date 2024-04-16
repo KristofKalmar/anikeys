@@ -1,6 +1,7 @@
-@import url('../components/header/header.css');
-@import url('../components/footer/footer.css');
-@import url('../components/rowList/rowList.css');
+@import url('../componentsphp/header/header.css');
+@import url('../componentsphp/rowList/rowList.css');
+@import url('../componentsphp/footer/footer.css');
+
 
 body
 {
