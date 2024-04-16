@@ -38,6 +38,7 @@ body
 
 .productDetailsHeroBackgroundImage
 {
+    background-color: black;
     position: absolute;
     width: calc(100% + 128px);
     height: calc(100% + 32px);
@@ -48,6 +49,14 @@ body
 }
 
 .productDetailsDescriptionText
+{
+    color: #fff;
+    font-size: 18px;
+    margin: 0;
+    margin-bottom: 16px;
+}
+
+.productDetailsDescriptionHTMLCode
 {
     color: #fff;
     font-size: 18px;

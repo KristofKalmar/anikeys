@@ -7,27 +7,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
         $email = $_POST['email'];
         $password = $_POST['password'];
         $confirm_password = $_POST['confirm_password'];
-            
+
         // Ellenőrizd, hogy a felhasználónév már létezik-e az adatbázisban
         $sql_check_username = "SELECT * FROM users WHERE username = ?";
         $stmt_check_username = $conn->prepare($sql_check_username);
         $stmt_check_username->bind_param('s', $username);
         $stmt_check_username->execute();
         $result_check_username = $stmt_check_username->get_result();
-        
+
         if ($result_check_username->num_rows > 0) {
             $error = "A felhasználónév már foglalt!";
         } else {
             if ($password === $confirm_password) {
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-                
+
                 // SQL lekérdezés az adatbázisba történő felvételhez
                 $sql = "INSERT INTO users (username, email, hashed_password) VALUES (?, ?, ?)";
-                
+
                 // Prepared statement előkészítése
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param('sss', $username, $email, $hashed_password);
-                
+
                 // Lekérdezés végrehajtása
                 if ($stmt->execute()) {
                     $success = "Sikeres regisztráció! Most már bejelentkezhetsz.";
@@ -36,13 +36,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
                 } else {
                     $error = "Hiba történt a regisztráció során. Kérlek próbáld újra később.";
                 }
-                
+
                 $stmt->close(); // Bezárjuk a prepared statementet
             } else {
                 $error = "A jelszavak nem egyeznek!";
             }
         }
-        
+
         $stmt_check_username->close(); // Bezárjuk a prepared statementet a felhasználónév ellenőrzéséhez
     } else {
         $error = "Kérlek töltsd ki az összes mezőt!";
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
     <meta name="theme-color" content="#00243D">
     <link rel="manifest" href="favicon/site.webmanifest">
     <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="stylesheet" href="logreg.css">
+    <link rel="stylesheet" href="css/logreg.css">
     <title>ANI KEYS - Regisztráció</title>
 </head>
 <body>

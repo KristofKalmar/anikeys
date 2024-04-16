@@ -13,8 +13,8 @@
     <meta name="theme-color" content="#00243D">
     <link rel="manifest" href="favicon/site.webmanifest">
     <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="stylesheet" href="logreg.css">
-    
+    <link rel="stylesheet" href="css/logreg.css">
+
     <title>ANI KEYS</title>
 </head>
 <body>

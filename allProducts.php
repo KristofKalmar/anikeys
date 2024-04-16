@@ -38,7 +38,7 @@
             </div>
         </div>
         </div>
-    <div data-title="Kiemelt ajánlatok"  data-logo="sale.svg" ></div>
+    <div data-title="Kiemelt ajánlatok" data-logo="sale.svg" id="rowList"></div>
     <div id="footer"></div>
   </body>
 </html>
