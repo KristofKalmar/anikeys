@@ -1,0 +1,324 @@
+body, html
+{
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+.rowListContainer
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #fff;
+}
+
+.contentVerticalContainer
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.contentTitleContainer
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    height: 32px;
+    padding: 32px 16px;
+    font-size: 32px;
+    color: #0076D7;
+    width: calc(100% - 32px);
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.rowListDivider
+{
+    height: 2px;
+    width: 100%;
+    background-color: #0076D7;
+    margin-left: 32px;
+}
+
+.contentItemsContainer
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: calc(100% - 32px);
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0 16px;
+    padding-bottom: 32px;
+}
+
+.rowList_multiLine .contentItemsContainer
+{
+    display: block;
+    position: relative;
+    padding-bottom: 0;
+}
+
+.rowList_multiLine
+{
+    background-color: #e5f4ff;
+}
+
+.rowList_multiLine .rowListItem
+{
+    float: left;
+    margin-bottom: 32px;
+    background-color: #cceaff;
+}
+
+.rowList_multiLine .rowListItemLink
+{
+    float: left;
+    margin-bottom: 32px;
+}
+
+.rowListTitleLogo
+{
+    height: 48px;
+    margin-right: 32px;
+}
+
+.rowListVerticalContainer
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1312px;
+}
+
+.rowListItem
+{
+    display: flex;
+    flex-direction: column;
+    width: 296px;
+    min-width: 296px;
+    height: fit-content;
+    background-color: #e5f4ff;
+    margin-right: 32px;
+    scroll-snap-align: start;
+    scroll-margin: 16px;
+}
+
+.rowListItemLink
+{
+    display: flex;
+    flex-direction: column;
+    width: 296px;
+    min-width: 296px;
+    height: fit-content;
+    background-color: #001829;
+    margin-right: 32px;
+    scroll-snap-align: start;
+    scroll-margin: 16px;
+    text-decoration: none;
+    color: #001829;
+}
+
+.rowListItem:last-child
+{
+    margin-right: 0;
+}
+
+.rowListItemImageContainer
+{
+    display: flex;
+    height: fit-content;
+    overflow: hidden;
+}
+
+.rowListItemImg
+{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-sizing: border-box;
+    transform: scale(100%);
+    transition: transform 0.15s ease-in-out;
+}
+
+.rowListItemDataContainer
+{
+    position: relative;
+    color: #001829;
+    padding: 16px;
+}
+
+.rowListItemTitle
+{
+    position: relative;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.rowListItemCartButtonContainer
+{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.rowListItemPrice
+{
+    font-size: 16px;
+    font-weight: lighter;
+    margin-left: 16px;
+    color: #0076D7;
+}
+
+.rowListItemCartButton
+{
+    font-size: 18px;
+    border: none;
+    padding: 8px 32px;
+    background-color: #040F16;
+    color: white;
+    box-shadow: 0 24px 16px -16px rgba(0, 0, 0, 0.5), 0 16px 32px -8px rgba(0, 0, 0, 0.5);
+    border-image: linear-gradient(#00A2D5, #0076D7) 1;
+    border-width: 2px;
+    border-style: solid;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.rowListItem:hover .rowListItemImg
+{
+    transform: scale(125%);
+}
+
+@media screen and (min-width: 1312px)
+{
+    .rowList_multiLine .rowListItem:nth-child(4n)
+    {
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 1311px)
+{
+    .rowList_multiLine .rowListItem
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItem:nth-child(3n)
+    {
+        margin-right: 0;
+    }
+
+    .rowList_multiLine .rowListItem
+    {
+        width: calc((100% - 64px) / 3);
+    }
+    .rowList_multiLine .rowListItemLink
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItemLink:nth-child(3n)
+    {
+        margin-right: 0;
+    }
+
+    .rowList_multiLine .rowListItemLink
+    {
+        width: calc((100% - 64px) / 3);
+    }
+}
+
+@media screen and (max-width: 984px)
+{
+    .rowList_multiLine .rowListItem
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItem:nth-child(3n)
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItem:nth-child(2n)
+    {
+        margin-right: 0;
+    }
+
+    .rowList_multiLine .rowListItem
+    {
+        width: calc((100% - 32px) / 2);
+    }
+    .rowList_multiLine .rowListItemLink
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItemLink:nth-child(3n)
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItemLink:nth-child(2n)
+    {
+        margin-right: 0;
+    }
+
+    .rowList_multiLine .rowListItemLink
+    {
+        width: calc((100% - 32px) / 2);
+    }
+}
+
+@media screen and (max-width: 656px)
+{
+    .rowList_multiLine .rowListItem
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItem:nth-child(3n)
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItem:nth-child(2n)
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItem
+    {
+        width: 100%;
+    }
+    .rowList_multiLine .rowListItemLink
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItemLink:nth-child(3n)
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItemLink:nth-child(2n)
+    {
+        margin-right: 32px;
+    }
+
+    .rowList_multiLine .rowListItemLink
+    {
+        width: 100%;
+    }
+}

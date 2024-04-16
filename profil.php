@@ -1,6 +1,7 @@
 <?php
     session_start();
     include('config.php');
+    $conn = getConnection();
 
 
     if (!isset($_SESSION['username'])) {
@@ -81,9 +82,6 @@
                     <div class="profileTextContainer">
                         <div class="name">
                             <?php echo $user['name']; ?>
-                        </div>
-                        <div class="job">
-                            Egyetemista - SZTE
                         </div>
                     </div>
                 </div>

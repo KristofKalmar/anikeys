@@ -1,0 +1,304 @@
+.header
+{
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    border-bottom: 2px solid #0076D7;
+    box-shadow: 0 24px 16px -16px rgba(0, 0, 0, 0.5), 0 16px 32px -8px rgba(0, 0, 0, 0.5);
+    background-color: #00243D;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+}
+
+.logo
+{
+    height: 40px;
+    pointer-events: none;
+}
+
+.headerContentContainer
+{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 64px;
+    width: calc(100% - 32px);
+    max-width: 1280px;
+    justify-content: space-between;
+}
+
+.headerCartButtonNumberIndicator
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    right: -8px;
+    background-color: red;
+    border-radius: 10px;
+    color: white;
+    font-size: 12px;
+}
+
+.searchBarContainer
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+}
+
+.searchBar
+{
+    z-index: 10;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    max-width: 768px;
+    height: 56px;
+    margin-top: 32px;
+    background-color: #000;
+    border-image: linear-gradient(#00A2D5, #0076D7) 1;
+    border-width: 2px;
+    border-style: solid;
+    box-shadow: 0 24px 16px -16px rgba(0, 0, 0, 0.5), 0 16px 32px -8px rgba(0, 0, 0, 0.5);
+}
+
+.searchBarInput
+{
+    border: none;
+    border-radius: 0;
+    background: none;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding-left: 32px;
+    padding-right: 32px;
+    font-size: 16px;
+    outline: none;
+    color: white;
+}
+
+.searchBarInput::placeholder
+{
+    color: white;
+}
+
+.searchButton
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 96px;
+    height: 100%;
+    background: #040F16;
+    border: none;
+    border-radius: 0;
+    border-left: 2px solid #001829;
+    color: white;
+    padding: 0;
+    margin: 0;
+    min-width: 96px;
+    cursor: pointer;
+}
+
+.searchIcon
+{
+    height: 20px;
+    width: 20px;
+    pointer-events: none;
+}
+
+.headerButtonsContainer
+{
+    width: fit-content;
+    height: 56px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.linksContainer
+{
+    position: relative;
+    height: 64px;
+    width: 100%;
+    background-color: #001829;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.linkItem
+{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 192px;
+    min-width: 192px;
+    height: 64px;
+    color: white;
+    text-decoration: none;
+}
+
+.linkItemText
+{
+    width: 100%;
+    height: 48px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    font-size: 18px;
+    pointer-events: none;
+}
+
+.headerButton
+{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    margin-left: 24px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.headerButtonIcon
+{
+    width: 28px;
+    height: 28px;
+    pointer-events: none;
+}
+
+.underContainer
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    z-index: 1;
+}
+
+.header_cart_function_container
+{
+    position: relative;
+}
+
+.header_cart_card
+{
+    position: absolute;
+    background-color: #000;
+    z-index: 10;
+    right: 0;
+    top: 52px;
+    border-image: linear-gradient(#00A2D5, #0076D7) 1;
+    border-width: 2px;
+    border-style: solid;
+    box-shadow: 0 24px 16px -16px rgba(0, 0, 0, 0.5), 0 16px 32px -8px rgba(0, 0, 0, 0.5);
+    color: white;
+    width: 384px;
+    height: 384px;
+}
+
+.header_cart_card h1
+{
+    font-size: 20px;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    background-color: #040F16;
+    padding: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #001829;
+}
+
+.header_cart_card_checkout
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.header_cart_card_items_list_container
+{
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    background-color: red;
+    margin: 0;
+    padding: 16px;
+}
+
+.header_cart_card_checkout_layout_helper
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+@media screen and (max-width: 1180px)
+{
+    .searchBar
+    {
+        max-width: calc(100% - 380px);
+    }
+}
+
+@media screen and (max-width: 768px)
+{
+    .headerContentContainer
+    {
+        flex-direction: column-reverse;
+        height: fit-content;
+    }
+
+    .searchBarContainer
+    {
+        position: relative;
+    }
+
+    .searchBar
+    {
+        max-width: 100%;
+        margin-bottom: -32px;
+        margin-top: 0;
+    }
+
+    .linksContainer
+    {
+        padding-top: 16px;
+    }
+
+    .linkItem
+    {
+        width: calc((100vw - 32px) / 4);
+        min-width: calc((100vw - 32px) / 4);
+    }
+}
+
+@media screen and (max-width: 1312px)
+{
+    .headerAdminBannerContentContainer
+    {
+        max-width: calc(100% - 32px);
+    }
+}

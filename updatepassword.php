@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('config.php');
+$conn = getConnection();
 
 
 if (!isset($_SESSION['username'])) {

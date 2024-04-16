@@ -1,21 +1,8 @@
 <?php
 
 session_start();
-
-
-$servername = "localhost";
-$username = "root"; 
-$password = ""; 
-$dbname = "anikeys"; 
-
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-
-if ($conn->connect_error) {
-    die("Hiba az adatbázishoz való kapcsolódás közben: " . $conn->connect_error);
-}
-
+include 'config.php';
+$conn = getConnection();
 
 if(isset($_SESSION['loggedin']) && isset($_SESSION['username'])) {
     $username = $_SESSION['username']; 
