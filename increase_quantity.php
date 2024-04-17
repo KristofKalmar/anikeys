@@ -1,5 +1,7 @@
 <?php
 include 'config.php';
+$conn = getConnection();
+
 
 if(isset($_POST['id'])) {
     $id = $_POST['id'];

@@ -56,14 +56,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil</title>
-    <link rel="stylesheet" href="css/profil.css">
+    <link rel="stylesheet" href="profil.css">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link rel="manifest" href="favicon/site.webmanifest">
     <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
     <script src="js/jquery-3.7.1.min.js"></script>
-    <script src="js/profile.js"></script>
+    <script src="profile.js"></script>
 </head>
 <body>
     <script src="./components/header/header.js"></script>
@@ -80,9 +80,16 @@
                 <div class="profile">
                     <img src="assets/profilkep.jpg" alt="profkep">
                     <div class="profileTextContainer">
-                        <div class="name">
-                            <?php echo $user['name']; ?>
+                    <div class="name">
+                            <?php 
+                                echo $user['name']; 
+                            ?>
                         </div>
+                        <div class="job">
+                            <?php 
+                                echo $user['role'];                 
+                            ?>
+                        </div>   
                     </div>
                 </div>
             </div>
@@ -90,6 +97,9 @@
     <div class="contentContainer">
     <div class="sidenav">
         <div class="sidenav-url">
+            <div class="url">
+                <a href="index.php" onclick="showIdentity()">Főoldal</a>
+            </div>
             <div class="url">
                 <a href="#profile" onclick="showIdentity()">Profil</a>
             </div>
@@ -129,13 +139,21 @@
                             <tr>
                                 <td>Felhasználónév</td>
                                 <td>:</td>
-                                <td><?php echo $user['username']; ?></td>
-								
+                                <td>
+                                    <div class="input-wrapper">
+                                        <input type="text" id="newUsername" name="newUsername" value="<?php echo $user['username']; ?>" required>
+                                    </div>
+                                </td>
+                                
                             </tr>
                             <tr>
                                 <td>Email</td>
                                 <td>:</td>
-                                <td><?php echo $user['email']; ?></td>
+                                <td>
+                                    <div class="input-wrapper">
+                                        <input type="text" id="email" name="email" value="<?php echo $user['email']; ?>" required>
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Lakcím</td>

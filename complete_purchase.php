@@ -1,12 +1,24 @@
 <?php
-    include 'config.php';
+    session_start();
+    include_once 'config.php';
+
+
+    $username = $_SESSION['username'];
     $conn = getConnection();
-    $sql = "DELETE FROM cart"; 
-    if ($conn->query($sql) === TRUE) {
-        echo "A fizetés sikeres volt és a termékek törölve lettek a kosárból.";
+
+
+    $sql_delete_cart = "DELETE FROM cart WHERE username = ?";
+    $stmt_delete_cart = $conn->prepare($sql_delete_cart);
+    $stmt_delete_cart->bind_param('s', $username);
+
+    if ($stmt_delete_cart->execute()) {
+        header("Location: index.php");
+        exit();
     } else {
-        echo "Hiba történt a fizetés során: " . $conn->error;
+        header("Location: index.php?error=" . urlencode("Hiba történt a kosár törlése közben: " . $conn->error));
+        exit();
     }
-    
+
+    $stmt_delete_cart->close();
     $conn->close();
 ?>

@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit(); 
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,14 +14,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#00243D">
     <title>ANI KEYS</title>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="index.css">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link rel="manifest" href="favicon/site.webmanifest">
     <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
     <script src="js/jquery-3.7.1.min.js"></script>
-    <script src="js/index.js"></script>
+    <script src="index.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
@@ -39,7 +48,7 @@
       <div class="hl_textbox_contentContainer">
         <img class="hl_logo" alt="h1" src="assets/hfw_logo.svg" />
         <div class="hl_buttonContainer">
-          <a href="productDetails.html" class="hl_button">Megtekintés</a>
+          <a href="productDetails.php" class="hl_button">Megtekintés</a>
           <button class="hl_button">Kosárba</button>
         </div>
       </div>
