@@ -33,6 +33,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
                     $success = "Sikeres regisztráció! Most már bejelentkezhetsz.";
                     header("Location: login.php");
                     exit();
+
+                    $user_id = $conn->insert_id; // Az új felhasználó egyedi azonosítója
+                    $sql_create_cart = "INSERT INTO cart (user_id) VALUES ($user_id)";
+                    if ($conn->query($sql_create_cart) === TRUE) {
+                        // Sikeresen létrehozott kosár
+                    } else {
+                        // Hiba történt a kosár létrehozása során
+                        echo "Error creating cart: " . $conn->error;
+                    }
                 } else {
                     $error = "Hiba történt a regisztráció során. Kérlek próbáld újra később.";
                 }
