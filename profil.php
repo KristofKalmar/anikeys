@@ -80,9 +80,16 @@
                 <div class="profile">
                     <img src="assets/profilkep.jpg" alt="profkep">
                     <div class="profileTextContainer">
-                        <div class="name">
-                            <?php echo $user['name']; ?>
+                    <div class="name">
+                            <?php 
+                                echo $user['name']; 
+                            ?>
                         </div>
+                        <div class="job">
+                            <?php 
+                                echo $user['role'];                 
+                            ?>
+                        </div>   
                     </div>
                 </div>
             </div>
@@ -90,6 +97,9 @@
     <div class="contentContainer">
     <div class="sidenav">
         <div class="sidenav-url">
+            <div class="url">
+                <a href="index.php" onclick="showIdentity()">Főoldal</a>
+            </div>
             <div class="url">
                 <a href="#profile" onclick="showIdentity()">Profil</a>
             </div>
@@ -107,7 +117,6 @@
             </div>
         </div>
     </div>
-
     <!-- Profil (általános) Section -->
     <div class="main">
         <div class="identitySection" id="identitySection">
@@ -130,13 +139,21 @@
                             <tr>
                                 <td>Felhasználónév</td>
                                 <td>:</td>
-                                <td><?php echo $user['username']; ?></td>
-								
+                                <td>
+                                    <div class="input-wrapper">
+                                        <input type="text" id="newUsername" name="newUsername" value="<?php echo $user['username']; ?>" required>
+                                    </div>
+                                </td>
+                                
                             </tr>
                             <tr>
                                 <td>Email</td>
                                 <td>:</td>
-                                <td><?php echo $user['email']; ?></td>
+                                <td>
+                                    <div class="input-wrapper">
+                                        <input type="text" id="email" name="email" value="<?php echo $user['email']; ?>" required>
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Lakcím</td>

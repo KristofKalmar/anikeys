@@ -38,7 +38,6 @@
                         <input type="checkbox" name="save" id="passsave">
                         Jegyezz meg!
                     </p>
-                    <a href="forgot_password.php">Elfelejtetted a jelszavad?</a>
                 </div>
                 <button class="btn" name="login">Bejelentkezés</button>
                 <div class="account-creation">

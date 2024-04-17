@@ -25,7 +25,6 @@
                 url: 'remove_from_cart.php',
                 data: { id: productId },
                 success: function(response) {
-                    // Frissítsd a kosár tartalmát
                     location.reload();
                 },
                 error: function(xhr, status, error) {
@@ -101,8 +100,14 @@
                     <?php
                         include_once 'config.php';
                         $conn = getConnection();
+                        if (!isset($_SESSION['username'])) {
+                            header("Location: login.php");
+                            exit(); 
+                        }
 
-                        $sql = "SELECT * FROM cart";
+                        $username = $_SESSION['username'];
+
+                        $sql = "SELECT * FROM cart WHERE username = '$username'";
                         $result = $conn->query($sql);
 
                         $totalPrice = 0;
@@ -114,16 +119,16 @@
                                 echo "<td><div>" . $row['name'] . "</div></td>";
                                 echo "<td><div>" . $row['price'] * $row['quantity'] . " Ft</div></td>";
                                 echo "<td><div><button onclick='decreaseQuantity(" . $row['id'] . ")'>-</button>" . $row['quantity'] . "<button onclick='increaseQuantity(" . $row['id'] . ")'>+</button></div></td>"; 
-                                echo "<td><div><button onclick='removeFromCart(" . $row['id'] . ")'>Törlés</button></div></td>"; 
+                                echo "<td><div><button class='deleteButton' onclick='removeFromCart(" . $row['id'] . ")'>Törlés</button></div></td>"; 
                                 echo "</tr>";
 
-                                $totalPrice += $row['price'] * $row['quantity'];
+                            $totalPrice += $row['price'] * $row['quantity'];
                             }
                         } else {
                             echo "<tr><td colspan='5'>Nincs elem a kosárban.</td></tr>";
                         }
 
-                    $conn->close(); 
+                        $conn->close(); 
                     ?>
                     </tbody>
                 </table>

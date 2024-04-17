@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit(); 
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -39,7 +48,7 @@
       <div class="hl_textbox_contentContainer">
         <img class="hl_logo" alt="h1" src="assets/hfw_logo.svg" />
         <div class="hl_buttonContainer">
-          <a href="productDetails.html" class="hl_button">Megtekintés</a>
+          <a href="productDetails.php" class="hl_button">Megtekintés</a>
           <button class="hl_button">Kosárba</button>
         </div>
       </div>

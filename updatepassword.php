@@ -4,10 +4,6 @@ include('config.php');
 $conn = getConnection();
 
 
-if (!isset($_SESSION['username'])) {
-    header("Location: login.php");
-    exit();
-}
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save'])) {

@@ -39,6 +39,9 @@
                     </p>
                     <a href="forgot_password.php">Elfelejtetted a jelszavad?</a>
                 </div>
+                <?php if(isset($error)) { ?>
+                    <div class="error"><?php echo $error; ?></div>
+                <?php } ?>
                 <button class="btn" name="login">Bejelentkezés</button>
                 <div class="account-creation">
                     <span>Nincs fiókod? <a href="register.php" class="regLink">Regisztráció</a></span>
@@ -51,9 +54,10 @@
 </html>
 
 <?php
+session_start();
 include ('config.php');
 $conn = getConnection();
-session_start();
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     
@@ -93,10 +97,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
                 header("Location: index.php"); 
                 exit();
             } else {
-                echo "<script>alert('Hibás felhasználónév vagy jelszó!');</script>";
+                echo "<script>alert('Hibás felhasználó név vagy jelszó!');</script>";
             }
         } else {
-            echo "<script>alert('Hibás felhasználónév vagy jelszó!');</script>";
+            echo "<script>alert('Hibás felhasználó név vagy jelszó!');</script>";
         }
         $stmt->close();
     } else {

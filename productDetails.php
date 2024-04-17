@@ -1,41 +1,15 @@
-<?php
+<?php 
+    session_start();    
+    include 'config.php';
+    $conn = getConnection();
 
-define("DB_SERVER", "localhost");
-define("DB_USERNAME", "root");
-define("DB_PASSWORD", "");
-define("DB_NAME", "anikeys");
-
-ini_set('display_errors', 1);
-
-$conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-
-if ($conn->connect_error) {
-    die("Sikertelen kapcsolódás az adatbázishoz: " . $conn->connect_error);
+    if (!isset($_SESSION['username'])) {
+        header("Location: login.php");
+        exit(); 
 }
-
-$table_name = 'products';
-$sql = "SELECT table_name
-        FROM information_schema.tables
-        WHERE table_name = '$table_name'
-        LIMIT 1";
-$table_result = $conn->query($sql);
-
-$product_id = $_GET['id'];
-
-if ($table_result->num_rows > 0)
-{
-    // Table found, download its contents
-    $sql = "SELECT * FROM products WHERE id = {$_GET['id']}";
-    $result = $conn->query($sql);
-    $product = $result->fetch_assoc();
-} else
-{
-    $result = NULL;
-}
-
-$conn->close();
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,30 +27,99 @@ $conn->close();
     <script src="js/jquery-3.7.1.min.js"></script>
   </head>
   <body>
-	  <script src="./components/header/header.js"></script>
+    <?php include './componentsphp/header/header.php'; ?>
 	  <script src="./components/footer/footer.js"></script>
 	  <script src="./components/rowList/rowList.js"></script>
-    <div id="header"></div>
     <div class="productDetailsContainer">
-        <img src="<?php echo $product['imageURL'] ?>" alt="Avatar" class="productDetailsHeroBackgroundImage" />
-        <img src="<?php echo $product['imageURL'] ?>" alt="Herosimg" class="productDetailsHeroImage" />
+        <img src="assets/avatar.jpg" alt="Avatar" class="productDetailsHeroBackgroundImage" />
+        <img src="assets/avatar.jpg" alt="Herosimg" class="productDetailsHeroImage" />
         <div class="productDetailsContentContainer">
-            <p class="productDetailsTitle"><?php echo $product['name'] ?></p>
+            <p class="productDetailsTitle">Avatar: Frontiers of Pandora</p>
             <p class="productDetailsDescriptionText">
                 Termékleírás:
-            </p>
-            <p class="productDetailsDescriptionHTMLCode">
-                <?php echo $product['description'] ?>
+                <br><br>
+                Üdvözöllek a lélegzetelállító Pandora világában az "Avatar: Frontiers of Pandora" epikus nyílt világú akció-kalandjátékban, amely elragad téged James Cameron ikonikus filmuniverzumának buja és vibráló tájaira. A történet az első film eseményei előtt játszódik, és egy Na'vi harcosként indulhatsz el egy úton, hogy megvéd a hazádat az RDA vállalat behatoló ereje ellen.
+                <br><br>
+                Fedezd fel Pandora kiterjedő dzsungeleit, magasodó hegyeit és titokzatos biolumineszcens erdeit, miközben izgalmas harcokba bocsátkozol, megoldasz környezeti rejtvényeket és szövetséget kovácsolsz ennek a idegen világnak a sokféle lakójával. A lenyűgöző grafika, az innovatív játékmechanikák és a lebilincselő történettel az "Avatar: Frontiers of Pandora" egy felejthetetlen játékélményt nyújt, amely másokhoz nem hasonlítható.
+                <br><br>
+                <div class="productDetailsTableTitle">Ajánlott specifikációk:</div>
+                <table class="productDetailsTable">
+                    <tbody>
+                        <tr>
+                            <th>Operációs Rendszer</th>
+                            <td>Windows 10 (64-bit)</td>
+                        </tr>
+                        <tr>
+                            <th>Processzor</th>
+                            <td>AMD Ryzen 7 5800X vagy Intel Core i7-10700K</td>
+                        </tr>
+                        <tr>
+                            <th>Memória</th>
+                            <td>16 GB RAM</td>
+                        </tr>
+                        <tr>
+                            <th>Grafikus Kártya</th>
+                            <td>NVIDIA GeForce RTX 3080 vagy AMD Radeon RX 6800 XT</td>
+                        </tr>
+                        <tr>
+                            <th>Tárhely</th>
+                            <td>50 GB szabad hely (SSD ajánlott)</td>
+                        </tr>
+                        <tr>
+                            <th>DirectX</th>
+                            <td>Verzió 12</td>
+                        </tr>
+                        <tr>
+                            <th>További Megjegyzések</th>
+                            <td>Szélessávú internetkapcsolat szükséges az online funkciókhoz</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="productDetailsTableSpacer"></div>
+                <div class="productDetailsTableTitle">Minimális specifikációk:</div>
+                <table class="productDetailsTable">
+                    <tbody>
+                        <tr>
+                            <th>Operációs Rendszer</th>
+                            <td>Windows 10 (64-bit)</td>
+                        </tr>
+                        <tr>
+                            <th>Processzor</th>
+                            <td>AMD Ryzen 5 3600 vagy Intel Core i5-9400F</td>
+                        </tr>
+                        <tr>
+                            <th>Memória</th>
+                            <td>8 GB RAM</td>
+                        </tr>
+                        <tr>
+                            <th>Grafikus Kártya</th>
+                            <td>NVIDIA GeForce GTX 1660 Ti vagy AMD Radeon RX 5700</td>
+                        </tr>
+                        <tr>
+                            <th>Tárhely</th>
+                            <td>50 GB szabad hely (SSD ajánlott)</td>
+                        </tr>
+                        <tr>
+                            <th>DirectX</th>
+                            <td>Verzió 12</td>
+                        </tr>
+                        <tr>
+                            <th>További Megjegyzések</th>
+                            <td>Szélessávú internetkapcsolat szükséges az online funkciókhoz</td>
+                        </tr>
+                    </tbody>
+                </table>
             </p>
         </div>
     </div>
-    <div data-title="Kiemelt ajánlatok" data-logo="sale.svg" id="rowList"></div>
-    <div id="footer"></div>
     <div class="productDetailsBuyContainer">
         <div class="productDetailsBuyContentContainer">
             <button class="productDetailsPurchaseButton">Kosárba</button>
-            <p class="productDetailsPrice"><?php echo $product['price'] ?> Ft</p>
+            <p class="productDetailsPrice" >27,490 Ft</p>
         </div>
     </div>
+    <?php include './componentsphp/rowList/rowList.php'; ?>
+    <div data-title="Kiemelt ajánlatok" data-logo="sale.svg" id="rowList"></div>
+    <?php include './componentsphp/footer/footer.php'; ?>
   </body>
 </html>
