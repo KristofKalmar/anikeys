@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
                 
                 $sql = "INSERT INTO users (username, email, hashed_password) VALUES (?, ?, ?)";
                 
-                // Prepared statement előkészítése
+                
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param('sss', $username, $email, $hashed_password);
                 
@@ -42,8 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
                     header("Location: login.php");
                     exit();
                 
-                    // Kosár létrehozása a felhasználóhoz
-                    $user_id = $conn->insert_id; // Az új felhasználó egyedi azonosítója
+                    
+                    $user_id = $conn->insert_id; //
                     $sql_create_cart = "INSERT INTO cart (user_id) VALUES ($user_id)";
                     if ($conn->query($sql_create_cart) === TRUE) {
                         echo "Sikeresen létrejött a kosár!";

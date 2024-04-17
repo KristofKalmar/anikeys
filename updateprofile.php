@@ -15,7 +15,7 @@
             $phone = $_POST['phone'];
             $birthday = $_POST['birthday'];
 
-            // Ellenőrzés: Az új felhasználónév és email még nem foglalt-e
+            
             $checkQuery = "SELECT * FROM users WHERE (username='$newUsername' OR email='$email') AND NOT username='$loggedInUsername'";
             $checkResult = $conn->query($checkQuery);
             if ($checkResult->num_rows > 0) {
@@ -26,7 +26,7 @@
             $sql = "UPDATE users SET name='$name', username='$newUsername', email='$email', address='$address', phone='$phone', birthday='$birthday' WHERE username='$loggedInUsername'";
 
             if ($conn->query($sql) === TRUE) {
-                $_SESSION['username'] = $newUsername; // Frissítjük a session változót az új felhasználónévvel
+                $_SESSION['username'] = $newUsername; 
                 echo "<script>alert('Sikeresen frissítve!'); window.location.href = 'profil.php';</script>";
                 exit();
             } else {

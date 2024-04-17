@@ -7,9 +7,8 @@ if(isset($_SESSION['username']) && isset($_POST['name']) && isset($_POST['price'
 
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $price = mysqli_real_escape_string($conn, $_POST['price']);
-    $username = $_SESSION['username']; // Felhasználónév a bejelentkezett felhasználóból
+    $username = $_SESSION['username']; 
 
-    // Kosárba való beszúrás a felhasználónévvel
     $sql = "INSERT INTO cart (name, price, quantity, username) VALUES ('$name', '$price', 1, '$username')";
     if ($conn->query($sql) === TRUE) {
         echo "A termék sikeresen hozzá lett adva a kosárhoz.";
