@@ -1,22 +1,72 @@
 <?php
-session_start();
 
-if(isset($_SESSION['username']) && isset($_POST['name']) && isset($_POST['price'])) {
+if (!isset($_SESSION['username']))
+{
+    session_start();
+}
+
+if(isset($_SESSION['username']) && isset($_POST['product_id'])) {
     include 'config.php';
-    $conn = getConnection();
+    $conn3 = getConnection();
 
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $price = mysqli_real_escape_string($conn, $_POST['price']);
-    $username = $_SESSION['username']; 
+    $name = mysqli_real_escape_string($conn3, $_POST['name']);
+    $product_id = mysqli_real_escape_string($conn3, $_POST['product_id']);
+    $username = $_SESSION['username'];
 
-    $sql = "INSERT INTO cart (name, price, quantity, username) VALUES ('$name', '$price', 1, '$username')";
-    if ($conn->query($sql) === TRUE) {
-        echo "A termék sikeresen hozzá lett adva a kosárhoz.";
-    } else {
-        echo "Hiba történt a kosárhoz adás közben: " . $conn->error;
+    $create_cart_table_sql = "CREATE TABLE IF NOT EXISTS cart (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `product_id` INT NOT NULL,
+        `quantity` INT NOT NULL,
+        `user_id` varchar(255) NOT NULL,
+        `added_at` datetime DEFAULT current_timestamp(),
+        PRIMARY KEY (`id`)
+      );";
+
+    if ($conn3->query($create_cart_table_sql) === TRUE)
+    {
+        $sql_check_pair = "SELECT COUNT(*) as pair_exists
+                    FROM cart
+                    WHERE product_id = ? AND user_id = ?";
+        $stmt3 = $conn3->prepare($sql_check_pair);
+        $stmt3->bind_param("is", $product_id, $username);
+        $stmt3->execute();
+        $result_asd = $stmt3->get_result();
+        $row321 = $result_asd->fetch_assoc();
+        $pair_exists = $row321['pair_exists'];
+
+        if ($pair_exists > 0)
+        {
+            $sql_increment_quantity = "UPDATE cart
+            SET quantity = quantity + 1
+            WHERE product_id = '$product_id' AND user_id = '$username';
+            ";
+
+            if ($conn3->query($sql_increment_quantity) === TRUE)
+            {
+                echo 'asd';
+            } else
+            {
+                echo "Hiba történt a kosárhoz adás közben: " . $conn3->error;
+            }
+        } else
+        {
+            $sql_insert_new_entry = "INSERT INTO cart (product_id, quantity, user_id)
+                                VALUES ('$product_id', 1, '$username');";
+
+            if ($conn3->query($sql_insert_new_entry) === TRUE)
+            {
+                echo 'dsa';
+            } else
+            {
+                echo "Hiba történt a kosárhoz adás közben: " . $conn3->error;
+            }
+        }
+    } else
+    {
+        echo "Error creating table: " . $conn3->error . "<br>";
     }
 
-    $conn->close();
+    $conn3->close();
 } else {
     echo "Hiányzó adatok a kosárhoz adáshoz vagy a felhasználó nincs bejelentkezve.";
 }

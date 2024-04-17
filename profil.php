@@ -1,5 +1,6 @@
 <?php
     session_start();
+    ini_set('display_errors', 1);
     include('config.php');
     $conn = getConnection();
 
@@ -15,26 +16,26 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        
+
         if (!empty($password) && strlen($password) >= 8) {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            
+
             $sql_update_password = "UPDATE users SET hashed_password = ? WHERE username = ?";
             $stmt_update_password = $conn->prepare($sql_update_password);
             $stmt_update_password->bind_param('ss', $hashed_password, $_SESSION['username']);
             $stmt_update_password->execute();
         }
 
-    
+
     $sql_update_user = "UPDATE users SET username = ?, email = ? WHERE username = ?";
     $stmt_update_user = $conn->prepare($sql_update_user);
     $stmt_update_user->bind_param('sss', $name, $email, $_SESSION['username']);
     $stmt_update_user->execute();
 
-    
+
     $_SESSION['username'] = $name;
 
-    
+
     header("Location: profile.php");
     exit();
 }
@@ -56,19 +57,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil</title>
-    <link rel="stylesheet" href="profil.css">
+    <link rel="stylesheet" href="css/profil.css">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link rel="manifest" href="favicon/site.webmanifest">
     <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
     <script src="js/jquery-3.7.1.min.js"></script>
-    <script src="profile.js"></script>
+    <script src="js/profile.js"></script>
 </head>
 <body>
-    <script src="./components/header/header.js"></script>
-    <script src="./components/footer/footer.js"></script>
-	<div id="header"></div>
+    <?php include 'php/components/header.php'; ?>
     <div class="container">
         <div class="colorBG">
 
@@ -81,15 +80,15 @@
                     <img src="assets/profilkep.jpg" alt="profkep">
                     <div class="profileTextContainer">
                     <div class="name">
-                            <?php 
-                                echo $user['name']; 
+                            <?php
+                                echo $user['name'];
                             ?>
                         </div>
                         <div class="job">
-                            <?php 
-                                echo $user['role'];                 
+                            <?php
+                                echo $user['role'];
                             ?>
-                        </div>   
+                        </div>
                     </div>
                 </div>
             </div>
@@ -144,7 +143,7 @@
                                         <input type="text" id="newUsername" name="newUsername" value="<?php echo $user['username']; ?>" required>
                                     </div>
                                 </td>
-                                
+
                             </tr>
                             <tr>
                                 <td>Email</td>
@@ -171,7 +170,7 @@
 									<div class="input-wrapper">
 									<input type="text" id="phone" name="phone" value="<?php echo $user['phone']; ?>" required>
 									</div>
-									
+
 								</td>
                             </tr>
                             <tr>
@@ -193,7 +192,7 @@
 					</form>
                 </div>
             </div>
-        </div>     
+        </div>
 		<!-- Beállítások Section -->
         <div id="settingsSection" style="display:none;">
             <h2>Beállítások</h2>
@@ -407,7 +406,7 @@
     </div>
 
 </div></div>
-    <div id="footer"></div>
+      <?php include 'php/components/footer.php'; ?>
 </body>
-    
+
 </html>

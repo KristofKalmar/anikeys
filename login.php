@@ -11,7 +11,7 @@
     <meta name="theme-color" content="#00243D">
     <link rel="manifest" href="favicon/site.webmanifest">
     <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="stylesheet" href="logreg.css">
+    <link rel="stylesheet" href="css/logreg.css">
     <title>ANI KEYS - Bejelentkezés</title>
 </head>
 <body>
@@ -60,41 +60,41 @@ $conn = getConnection();
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
-    
+
     if (!empty($_POST['username']) && !empty($_POST['password'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
         $sql = "SELECT * FROM users WHERE username = ?";
-        
-        
+
+
         $stmt = $conn->prepare($sql);
         $stmt->bind_param('s', $username);
         $stmt->execute();
         $result = $stmt->get_result();
-        
+
         // Ellenőrzi, hogy a felhasználó létezik-e az adatbázisban
         if ($result->num_rows == 1) {
             $row = $result->fetch_assoc();
             $hashed_password_from_database = $row['hashed_password'];
-            
-            
+
+
             if (password_verify($password, $hashed_password_from_database)) {
-                
+
                 $_SESSION['loggedin'] = true;
                 $_SESSION['username'] = $username;
-                
+
                 if(isset($_POST['save']) && $_POST['save'] == 'on') {
-                    $token = bin2hex(random_bytes(32)); 
-                    
+                    $token = bin2hex(random_bytes(32));
+
                     // Elmentjük a token-t az adatbázisban
                     $sql = "UPDATE users SET token = ? WHERE username = ?";
                     $stmt = $conn->prepare($sql);
                     $stmt->bind_param('ss', $token, $username);
                     $stmt->execute();
-                    
+
                     setcookie('remember_me', $token, time() + (30 * 24 * 60 * 60), '/'); // 30 napig
                 }
-                header("Location: index.php"); 
+                header("Location: index.php");
                 exit();
             } else {
                 echo "<script>alert('Hibás felhasználó név vagy jelszó!');</script>";
@@ -105,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
         $stmt->close();
     } else {
         echo "<script>alert('Kérlek add meg a felhasználóneved és a jelszavad!');</script>";
-        
+
     }
 }
 ?>

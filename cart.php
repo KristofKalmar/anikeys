@@ -1,3 +1,18 @@
+<?php
+
+
+    if (!isset($_SESSION['username']))
+    {
+        session_start();
+    }
+    ini_set('display_errors', 1);
+
+    // include configuration methods for connecting to DB
+    include 'php/config/config.php';
+
+    $conn = getConnection();
+?>
+
 <!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -10,10 +25,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link rel="manifest" href="favicon/site.webmanifest">
     <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="stylesheet" href="cart.css">
-    <link rel="stylesheet" href="./componentsphp/header/header.css">
-    <link rel="stylesheet" href="./componentsphp/footer/footer.css">
-    <link rel="stylesheet" href="./componentsphp/rowList/rowList.css">
+    <link rel="stylesheet" href="css/cart.css">
     <script src="js/jquery-3.7.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Kosár</title>
@@ -62,11 +74,11 @@
                     alert('Hiba történt a darabszám növelése közben.');
                 }
             });
-        }  
+        }
     function completePurchase() {
             $.ajax({
                 type: 'POST',
-                url: 'complete_purchase.php', 
+                url: 'complete_purchase.php',
                 success: function(response) {
                     removeFromCart();
                 },
@@ -75,10 +87,10 @@
                     alert('Hiba történt a fizetés közben.');
                  }
             });
-        }    
+        }
 </script>
 <body>
-<?php include './componentsphp/header/header.php'; ?>
+    <?php include 'php/components/header.php'; ?>
     <div class="cardContainer">
         <div class="card">
             <div class="cardTitleContainer">
@@ -93,49 +105,63 @@
                             <th>Név</th>
                             <th>Bruttó ár</th>
                             <th>Mennyiség</th>
-                            <th>Műveletek</th> 
+                            <th>Műveletek</th>
                         </tr>
                     </thead>
                     <tbody>
                     <?php
-                        include_once 'config.php';
-                        $conn = getConnection();
-                        if (!isset($_SESSION['username'])) {
-                            header("Location: login.php");
-                            exit(); 
-                        }
 
                         $username = $_SESSION['username'];
 
-                        $sql = "SELECT * FROM cart WHERE username = '$username'";
-                        $result = $conn->query($sql);
+                        $create_cart_table_sql = "CREATE TABLE IF NOT EXISTS cart (
+                            `id` int(11) NOT NULL AUTO_INCREMENT,
+                            `product_id` INT NOT NULL,
+                            `quantity` INT NOT NULL,
+                            `user_id` varchar(255) NOT NULL,
+                            `added_at` datetime DEFAULT current_timestamp(),
+                            PRIMARY KEY (`id`)
+                          );";
 
-                        $totalPrice = 0;
+                        if ($conn->query($create_cart_table_sql) === TRUE)
+                        {
+                            $sql = "SELECT cart.*, cart.id AS id_cart, products.*
+                                FROM cart
+                                INNER JOIN products ON cart.product_id = products.id
+                                WHERE cart.user_id = '$username'";
+                            $result = $conn->query($sql);
 
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<tr>";
-                                echo "<td><img class='tableImg' alt='Avatar' src='assets/avatar.jpg' /></td>";
-                                echo "<td><div>" . $row['name'] . "</div></td>";
-                                echo "<td><div>" . $row['price'] * $row['quantity'] . " Ft</div></td>";
-                                echo "<td><div><button onclick='decreaseQuantity(" . $row['id'] . ")'>-</button>" . $row['quantity'] . "<button onclick='increaseQuantity(" . $row['id'] . ")'>+</button></div></td>"; 
-                                echo "<td><div><button class='deleteButton' onclick='removeFromCart(" . $row['id'] . ")'>Törlés</button></div></td>"; 
-                                echo "</tr>";
+                            $totalPrice = 0;
 
-                            $totalPrice += $row['price'] * $row['quantity'];
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc())
+                                {
+                                    $totalPrice += ($row['price'] * (1 - ($row['sale']) / 100)) * $row['quantity'];
+                        ?>
+                                    <tr>
+                                    <td><img class='tableImg' alt='Avatar' src="<?php if($row['imageURL'] !== ""){ echo $row['imageURL'];} else {echo 'assets/placeholder_large.svg';} ?>" /></td>
+                                    <td><div><?php echo $row['name'] ?></div></td>
+                                    <td><div><?php echo number_format(($row['price'] * (1 - ($row['sale']) / 100)), 0, ',', ' ') ?> Ft</div></td>
+                                    <td><div><button onclick="decreaseQuantity(<?php echo $row['id_cart'] ?>)">-</button><?php echo $row['quantity'] ?><button onclick="increaseQuantity(<?php echo $row['id_cart'] ?>)">+</button></div></td>
+                                    <td><div><button class='deleteButton' onclick="removeFromCart(<?php echo $row['id_cart'] ?>)"><img class="deleteCartIcon" src="assets/delete_dark.svg" /></button></div></td>
+                                    </tr>
+                        <?php
+                                }
+                            } else {
+                                echo "<tr><td colspan='5'>Nincs elem a kosárban.</td></tr>";
                             }
-                        } else {
-                            echo "<tr><td colspan='5'>Nincs elem a kosárban.</td></tr>";
-                        }
 
-                        $conn->close(); 
+                            $conn->close();
+                        } else
+                        {
+                            echo "Error creating table: " . $conn->error . "<br>";
+                        }
                     ?>
                     </tbody>
                 </table>
             </div>
             <div class="buttonsContainer">
                 <div class="finalPrice">
-                    Végösszeg: <?php echo number_format($totalPrice, 0, ',', ' '); ?> Ft 
+                    Végösszeg: <?php echo number_format($totalPrice, 0, ',', ' '); ?> Ft
                 </div>
                 <button class="payButton" onclick="completePurchase(); alert('Sikeres fizetés, hamarosan felvesszük Önnel a kapcsolatot! By AniKeys')">
                     Fizetés
@@ -143,8 +169,7 @@
             </div>
         </div>
     </div>
-    <?php include './componentsphp/rowList/rowList.php'; ?>
-    <div data-title="Kiemelt ajánlatok" data-logo="sale.svg" id="rowList"></div>
-    <?php include './componentsphp/footer/footer.php'; ?>
+    <?php include 'php/components/deals.php'; ?>
+    <?php include 'php/components/footer.php'; ?>
 </body>
 </html>

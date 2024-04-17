@@ -1,0 +1,9 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="64" height="64" fill="black"/>
+<g opacity="0.25">
+<path d="M20 31L32 37L44 31L32 25L20 31Z" fill="#00A2D5"/>
+<path d="M20 32.9999V42L32 48L44 42V32.9999L32 38.9999L20 32.9999Z" fill="white"/>
+<ellipse cx="32" cy="31" rx="4" ry="2" fill="black"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M33 23.874C34.7252 23.4299 36 21.8638 36 20C36 17.7909 34.2091 16 32 16C29.7909 16 28 17.7909 28 20C28 21.8638 29.2748 23.4299 31 23.874V30C31 30.5523 31.4477 31 32 31C32.5523 31 33 30.5523 33 30V23.874Z" fill="white"/>
+</g>
+</svg>

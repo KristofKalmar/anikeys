@@ -32,6 +32,12 @@ body
     padding-bottom: 32px;
 }
 
+.deleteCartIcon
+{
+    height: 18px;
+    width: 18px;
+}
+
 .cardTitleContainer
 {
     display: flex;

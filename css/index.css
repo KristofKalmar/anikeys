@@ -8,7 +8,6 @@ body, html
 {
     margin: 0;
     padding: 0;
-    background-color: #040F16;
     font-family: 'Helvetica', 'Arial', sans-serif;
 }
 
@@ -41,6 +40,13 @@ body, html
     justify-content: center;
 }
 
+.hl_titleText
+{
+    font-size: 32px;
+    color: white;
+    font-weight: bold;
+}
+
 .hl_textbox_contentContainer
 {
     position: absolute;
@@ -56,7 +62,6 @@ body, html
     height: 128px;
     position: relative;
     filter: drop-shadow(0 0 8px #000);
-    overflow: visible;
     object-fit: contain;
     object-position: left;
 }

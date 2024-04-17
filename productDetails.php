@@ -1,15 +1,37 @@
-<?php 
-    session_start();    
-    include 'config.php';
+<?php
+
+    ini_set('display_errors', 1);
+
+    // Include configuration methods for connecting to DB
+    include 'php/config/config.php';
+
     $conn = getConnection();
 
-    if (!isset($_SESSION['username'])) {
-        header("Location: login.php");
-        exit(); 
-}
+    // Check if the 'id' parameter exists in the URL
+    if(isset($_GET['id'])) {
+        // Sanitize the input to prevent SQL injection
+        $product_id = $conn->real_escape_string($_GET['id']);
+
+        // SQL query to retrieve the product with the specified ID
+        $sql = "SELECT * FROM products WHERE id = '$product_id'";
+        $result = $conn->query($sql);
+
+        if ($result && $result->num_rows > 0) {
+            // Fetch the result as an associative array
+            $product_data = $result->fetch_assoc();
+
+            // Create an object to match the retrieved data
+            $product = (object) $product_data;
+        } else {
+            echo "No product found with ID: $product_id";
+        }
+    } else {
+        echo "No ID parameter provided.";
+    }
+
+    $conn->close();
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,99 +49,46 @@
     <script src="js/jquery-3.7.1.min.js"></script>
   </head>
   <body>
-    <?php include './componentsphp/header/header.php'; ?>
-	  <script src="./components/footer/footer.js"></script>
-	  <script src="./components/rowList/rowList.js"></script>
+    <?php include 'php/components/header.php'; ?>
     <div class="productDetailsContainer">
-        <img src="assets/avatar.jpg" alt="Avatar" class="productDetailsHeroBackgroundImage" />
-        <img src="assets/avatar.jpg" alt="Herosimg" class="productDetailsHeroImage" />
+        <img src="<?php if($product->imageURL !== ""){echo $product->imageURL;} else {echo "assets/placeholder_larger.svg";} ?>" alt="Avatar" class="productDetailsHeroBackgroundImage" />
+        <img src="<?php if($product->imageURL !== ""){echo $product->imageURL;} else {echo "assets/placeholder_larger.svg";} ?>" alt="Herosimg" class="productDetailsHeroImage" />
         <div class="productDetailsContentContainer">
-            <p class="productDetailsTitle">Avatar: Frontiers of Pandora</p>
+            <p class="productDetailsTitle"><?php echo $product->name ?></p>
             <p class="productDetailsDescriptionText">
                 Termékleírás:
-                <br><br>
-                Üdvözöllek a lélegzetelállító Pandora világában az "Avatar: Frontiers of Pandora" epikus nyílt világú akció-kalandjátékban, amely elragad téged James Cameron ikonikus filmuniverzumának buja és vibráló tájaira. A történet az első film eseményei előtt játszódik, és egy Na'vi harcosként indulhatsz el egy úton, hogy megvéd a hazádat az RDA vállalat behatoló ereje ellen.
-                <br><br>
-                Fedezd fel Pandora kiterjedő dzsungeleit, magasodó hegyeit és titokzatos biolumineszcens erdeit, miközben izgalmas harcokba bocsátkozol, megoldasz környezeti rejtvényeket és szövetséget kovácsolsz ennek a idegen világnak a sokféle lakójával. A lenyűgöző grafika, az innovatív játékmechanikák és a lebilincselő történettel az "Avatar: Frontiers of Pandora" egy felejthetetlen játékélményt nyújt, amely másokhoz nem hasonlítható.
-                <br><br>
-                <div class="productDetailsTableTitle">Ajánlott specifikációk:</div>
-                <table class="productDetailsTable">
-                    <tbody>
-                        <tr>
-                            <th>Operációs Rendszer</th>
-                            <td>Windows 10 (64-bit)</td>
-                        </tr>
-                        <tr>
-                            <th>Processzor</th>
-                            <td>AMD Ryzen 7 5800X vagy Intel Core i7-10700K</td>
-                        </tr>
-                        <tr>
-                            <th>Memória</th>
-                            <td>16 GB RAM</td>
-                        </tr>
-                        <tr>
-                            <th>Grafikus Kártya</th>
-                            <td>NVIDIA GeForce RTX 3080 vagy AMD Radeon RX 6800 XT</td>
-                        </tr>
-                        <tr>
-                            <th>Tárhely</th>
-                            <td>50 GB szabad hely (SSD ajánlott)</td>
-                        </tr>
-                        <tr>
-                            <th>DirectX</th>
-                            <td>Verzió 12</td>
-                        </tr>
-                        <tr>
-                            <th>További Megjegyzések</th>
-                            <td>Szélessávú internetkapcsolat szükséges az online funkciókhoz</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="productDetailsTableSpacer"></div>
-                <div class="productDetailsTableTitle">Minimális specifikációk:</div>
-                <table class="productDetailsTable">
-                    <tbody>
-                        <tr>
-                            <th>Operációs Rendszer</th>
-                            <td>Windows 10 (64-bit)</td>
-                        </tr>
-                        <tr>
-                            <th>Processzor</th>
-                            <td>AMD Ryzen 5 3600 vagy Intel Core i5-9400F</td>
-                        </tr>
-                        <tr>
-                            <th>Memória</th>
-                            <td>8 GB RAM</td>
-                        </tr>
-                        <tr>
-                            <th>Grafikus Kártya</th>
-                            <td>NVIDIA GeForce GTX 1660 Ti vagy AMD Radeon RX 5700</td>
-                        </tr>
-                        <tr>
-                            <th>Tárhely</th>
-                            <td>50 GB szabad hely (SSD ajánlott)</td>
-                        </tr>
-                        <tr>
-                            <th>DirectX</th>
-                            <td>Verzió 12</td>
-                        </tr>
-                        <tr>
-                            <th>További Megjegyzések</th>
-                            <td>Szélessávú internetkapcsolat szükséges az online funkciókhoz</td>
-                        </tr>
-                    </tbody>
-                </table>
+            </p>
+            <p class="productDescriptionText">
+                <?php echo $product->description ?>
             </p>
         </div>
     </div>
     <div class="productDetailsBuyContainer">
         <div class="productDetailsBuyContentContainer">
-            <button class="productDetailsPurchaseButton">Kosárba</button>
-            <p class="productDetailsPrice" >27,490 Ft</p>
+            <a href="javascript:addToCart(<?php echo "$product->id" ?>)" class="productDetailsPurchaseButton">Kosárba</a>
+            <p class="productDetailsPrice" ><?php echo number_format(($product->price * (1 - ($product->sale) / 100)), 0, ',', ' ') ?> Ft<?php if($product->sale > 0){ echo "<p class='productSaleText'> -$product->sale%</p>"; } ?></p>
         </div>
     </div>
-    <?php include './componentsphp/rowList/rowList.php'; ?>
-    <div data-title="Kiemelt ajánlatok" data-logo="sale.svg" id="rowList"></div>
-    <?php include './componentsphp/footer/footer.php'; ?>
+    <?php include 'php/components/deals.php'; ?>
+    <?php include 'php/components/footer.php'; ?>
+    <script>
+        function addToCart(id)
+        {
+            $.ajax({
+                type: 'POST',
+                url: 'add_to_cart.php',
+                data: { product_id: id },
+                success: function(response)
+                {
+                    location.reload();
+                },
+                error: function(xhr, status, error)
+                {
+                    console.error(xhr.responseText);
+                    alert('Hiba történt a kosárhoz adás közben.');
+                }
+            });
+        }
+    </script>
   </body>
 </html>

@@ -37,6 +37,13 @@ body
     mask-image: linear-gradient(rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0) 100%);
 }
 
+.productDescriptionText
+{
+    font-size: 18px;
+    color: white;
+    margin-bottom: 32px;
+}
+
 .productDetailsHeroBackgroundImage
 {
     background-color: black;
@@ -54,7 +61,6 @@ body
     color: #fff;
     font-size: 18px;
     margin: 0;
-    margin-bottom: 16px;
 }
 
 .productDetailsDescriptionHTMLCode
@@ -67,6 +73,7 @@ body
 
 .productDetailsBuyContainer
 {
+    margin-top: -124px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -77,8 +84,16 @@ body
     background-color: black;
 }
 
+.productSaleText
+{
+    font-size: 18px;
+    color: gold;
+    margin-right: 32px;
+}
+
 .productDetailsBuyContentContainer
 {
+    z-index: 2;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -111,6 +126,11 @@ body
     cursor: pointer;
     margin-left: 32px;
     font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .productDetailsPrice
@@ -121,7 +141,7 @@ body
     font-weight: lighter;
     margin-left: auto;
     margin-right: 32px;
-    color: gold;
+    color: white;
     font-weight: bold;
 }
 

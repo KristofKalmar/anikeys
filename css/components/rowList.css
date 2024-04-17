@@ -98,8 +98,20 @@ body, html
     max-width: 1312px;
 }
 
+.rowListItemSale
+{
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fc0;
+    -webkit-text-stroke: 1px #805100;
+}
+
 .rowListItem
 {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 296px;
@@ -140,12 +152,14 @@ body, html
 
 .rowListItemImg
 {
+    aspect-ratio: 2/1.5;
     width: 100%;
     height: 100%;
     object-fit: cover;
     box-sizing: border-box;
     transform: scale(100%);
     transition: transform 0.15s ease-in-out;
+    position: relative;
 }
 
 .rowListItemDataContainer

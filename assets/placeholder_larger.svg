@@ -1,0 +1,9 @@
+<svg width="256" height="128" viewBox="0 0 256 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="256" height="128" fill="black"/>
+<g opacity="0.25">
+<path d="M116 63L128 69L140 63L128 57L116 63Z" fill="#00A2D5"/>
+<path d="M116 64.9999V74L128 80L140 74V64.9999L128 70.9999L116 64.9999Z" fill="white"/>
+<ellipse cx="128" cy="63" rx="4" ry="2" fill="black"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M129 55.874C130.725 55.4299 132 53.8638 132 52C132 49.7909 130.209 48 128 48C125.791 48 124 49.7909 124 52C124 53.8638 125.275 55.4299 127 55.874V62C127 62.5523 127.448 63 128 63C128.552 63 129 62.5523 129 62V55.874Z" fill="white"/>
+</g>
+</svg>

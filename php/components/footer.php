@@ -1,5 +1,3 @@
-<?php
-$element = '
 <footer class="footer">
     <div class="footerContentContainer">
         <div class="footerTop">
@@ -19,7 +17,7 @@ $element = '
             </div>
         </div>
     </div>
-</footer>';
-
-echo $element;
-?>
+    <style>
+        <?php include 'css/components/footer.css' ?>
+    </style>
+</footer>
