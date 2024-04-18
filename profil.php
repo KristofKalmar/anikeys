@@ -65,10 +65,11 @@
             <div class="profileContentWidthContainer">
                 <img class="profileBlurBG" alt="profkep" src="assets/profilkep.jpg" />
                 <div class="profile">
-                    <form action="updateprofile.php" method="post" enctype="multipart/form-data">
-                            <img src="<?php echo $user['imageURL']; ?>" alt="profkep" id="profilePic">
-                            <input type="file" name="fileToUpload" id="fileToUpload" style="display: none;">   
-                    </form>             
+                    <form action="upload.php" method="post" enctype="multipart/form-data">
+                        <img id="profilePic" src="<?php echo $user['imageURL'];?>" alt="Profilkép"> <br>
+                            <input type="file" name="fileToUpload" id="fileToUpload" style="display: none;"> <br>
+                            <button class="button" id="saveBtn" type="imgSubmit" name="imgSubmit">Feltöltés</button>                
+                    </form>   
                     <div class="profileTextContainer">
                     <div class="name">
                             <?php

@@ -19,3 +19,7 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+document.getElementById("fileToUpload").addEventListener("change", function() {
+    document.getElementById("uploadForm").submit();
+});
