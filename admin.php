@@ -1,17 +1,6 @@
 <?php
-
-define("DB_SERVER", "localhost");
-define("DB_USERNAME", "root");
-define("DB_PASSWORD", "");
-define("DB_NAME", "anikeys");
-
-ini_set('display_errors', 1);
-
-$conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-
-if ($conn->connect_error) {
-    die("Sikertelen kapcsolódás az adatbázishoz: " . $conn->connect_error);
-}
+    include 'php/config/config.php';
+    $conn = getConnection();
 
 $table_name = 'products';
 $sql = "SELECT table_name

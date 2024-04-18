@@ -1,41 +1,48 @@
 <?php
-
    ini_set('display_errors', 1);
-
-   // include configuration methods for connecting to DB
    include 'php/config/config.php';
-
    $conn = getConnection();
 
-   // SQL query to check if the products table exists
    $table_exists_sql = "SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'products'";
    $table_exists_result = $conn->query($table_exists_sql);
 
-   if ($table_exists_result && $table_exists_result->num_rows > 0)
-   {
-      // SQL query to retrieve the most recent product
-      $sql = "SELECT * FROM products ORDER BY creationDate DESC LIMIT 1";
-      $result = $conn->query($sql);
-
-      if ($result && $result->num_rows > 0)
+      if ($table_exists_result && $table_exists_result->num_rows > 0)
       {
-         // Fetch the result as an associative array
-         $product_data = $result->fetch_assoc();
+         $sql = "SELECT * FROM products ORDER BY creationDate DESC LIMIT 1";
+         $result = $conn->query($sql);
 
-         // Create an object to match the retrieved data
-         $product = (object) $product_data;
-      } else
-      {
-         echo "No product found.";
+         if ($result && $result->num_rows > 0)
+         {
+            $product_data = $result->fetch_assoc();
+
+            $product = (object) $product_data;
+         } else
+         {
+            echo "Hiba a termék betöltésekor (nincs termék)!";
+         }
+      } else {
+         // HA nem létezik -->
+         $create_table_sql = "CREATE TABLE `products` (
+            `id` int(11) NOT NULL,
+            `name` varchar(255) NOT NULL,
+            `price` int(11) NOT NULL,
+            `description` text NOT NULL,
+            `sale` int(11) NOT NULL,
+            `category_id` int(11) NOT NULL,
+            `creationDate` datetime NOT NULL DEFAULT current_timestamp(),
+            `imageURL` varchar(255) DEFAULT NULL,
+            PRIMARY KEY (`id`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci";
+
+            if ($conn->query($create_table_sql) === TRUE) {
+               echo "A 'products' tábla sikeresen létrehozva!";
+            } else {
+               echo "Hiba a 'products' tábla létrehozása közben: " . $conn->error;
+            }
       }
-   } else
-   {
-      echo "Table 'products' does not exist.";
-   }
-
    $conn->close();
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +69,7 @@
          <h1 class="hl_titleText"><?php echo $product->name ?></h1>
          <div class="hl_buttonContainer">
             <a href="productDetails.php?id=<?php echo $product->id ?>" class="hl_button">Megtekintés</a>
-            <button class="hl_button">Kosárba</button>
+            <button class="hl_button" onclick="addToCart(<?php echo "$product->id" ?>)">Kosárba</button>
          </div>
          </div>
       </div>

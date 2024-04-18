@@ -54,58 +54,58 @@
 </html>
 
 <?php
-session_start();
-include ('config.php');
-$conn = getConnection();
+    session_start();
+    include 'php/config/config.php';
+    $conn = getConnection();
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
 
-    if (!empty($_POST['username']) && !empty($_POST['password'])) {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $sql = "SELECT * FROM users WHERE username = ?";
-
-
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param('s', $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        // Ellenőrzi, hogy a felhasználó létezik-e az adatbázisban
-        if ($result->num_rows == 1) {
-            $row = $result->fetch_assoc();
-            $hashed_password_from_database = $row['hashed_password'];
+        if (!empty($_POST['username']) && !empty($_POST['password'])) {
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            $sql = "SELECT * FROM users WHERE username = ?";
 
 
-            if (password_verify($password, $hashed_password_from_database)) {
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('s', $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-                $_SESSION['loggedin'] = true;
-                $_SESSION['username'] = $username;
+            // Ellenőrzi, hogy a felhasználó létezik-e az adatbázisban
+            if ($result->num_rows == 1) {
+                $row = $result->fetch_assoc();
+                $hashed_password_from_database = $row['hashed_password'];
 
-                if(isset($_POST['save']) && $_POST['save'] == 'on') {
-                    $token = bin2hex(random_bytes(32));
 
-                    // Elmentjük a token-t az adatbázisban
-                    $sql = "UPDATE users SET token = ? WHERE username = ?";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bind_param('ss', $token, $username);
-                    $stmt->execute();
+                if (password_verify($password, $hashed_password_from_database)) {
 
-                    setcookie('remember_me', $token, time() + (30 * 24 * 60 * 60), '/'); // 30 napig
+                    $_SESSION['loggedin'] = true;
+                    $_SESSION['username'] = $username;
+
+                    if(isset($_POST['save']) && $_POST['save'] == 'on') {
+                        $token = bin2hex(random_bytes(32));
+
+                        // Elmentjük a token-t az adatbázisban
+                        $sql = "UPDATE users SET token = ? WHERE username = ?";
+                        $stmt = $conn->prepare($sql);
+                        $stmt->bind_param('ss', $token, $username);
+                        $stmt->execute();
+
+                        setcookie('remember_me', $token, time() + (30 * 24 * 60 * 60), '/'); // 30 napig
+                    }
+                    header("Location: index.php");
+                    exit();
+                } else {
+                    echo "<script>alert('Hibás felhasználó név vagy jelszó!');</script>";
                 }
-                header("Location: index.php");
-                exit();
             } else {
                 echo "<script>alert('Hibás felhasználó név vagy jelszó!');</script>";
             }
+            $stmt->close();
         } else {
-            echo "<script>alert('Hibás felhasználó név vagy jelszó!');</script>";
-        }
-        $stmt->close();
-    } else {
-        echo "<script>alert('Kérlek add meg a felhasználóneved és a jelszavad!');</script>";
+            echo "<script>alert('Kérlek add meg a felhasználóneved és a jelszavad!');</script>";
 
+        }
     }
-}
 ?>

@@ -1,44 +1,36 @@
 <?php
     session_start();
     ini_set('display_errors', 1);
-    include('config.php');
+    include 'php/config/config.php';
     $conn = getConnection();
-
 
     if (!isset($_SESSION['username'])) {
         header("Location: login.php");
         exit();
-}
-
+    }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save'])) {
         $name = $_POST['name'];
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-
+        // További adatok frissítése
         if (!empty($password) && strlen($password) >= 8) {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
             $sql_update_password = "UPDATE users SET hashed_password = ? WHERE username = ?";
             $stmt_update_password = $conn->prepare($sql_update_password);
             $stmt_update_password->bind_param('ss', $hashed_password, $_SESSION['username']);
             $stmt_update_password->execute();
         }
 
+        $sql_update_user = "UPDATE users SET username = ?, email = ? WHERE username = ?";
+        $stmt_update_user = $conn->prepare($sql_update_user);
+        $stmt_update_user->bind_param('sss', $name, $email, $_SESSION['username']);
+        $stmt_update_user->execute();
 
-    $sql_update_user = "UPDATE users SET username = ?, email = ? WHERE username = ?";
-    $stmt_update_user = $conn->prepare($sql_update_user);
-    $stmt_update_user->bind_param('sss', $name, $email, $_SESSION['username']);
-    $stmt_update_user->execute();
-
-
-    $_SESSION['username'] = $name;
-
-
-    header("Location: profile.php");
-    exit();
-}
+        header("Location: profile.php");
+        exit();
+    }
 
     $sql_select_user = "SELECT * FROM users WHERE username = ?";
     $stmt_select_user = $conn->prepare($sql_select_user);
@@ -47,9 +39,6 @@
     $result_user = $stmt_select_user->get_result();
     $user = $result_user->fetch_assoc();
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="hu">
@@ -65,19 +54,21 @@
     <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
     <script src="js/jquery-3.7.1.min.js"></script>
     <script src="js/profile.js"></script>
+    <script src="js/imageUpload.js"></script>
 </head>
 <body>
     <?php include 'php/components/header.php'; ?>
     <div class="container">
-        <div class="colorBG">
-
-        </div>
+        <div class="colorBG"></div>
         <div class="verticalContainer">
         <div class="profileContentContainer">
             <div class="profileContentWidthContainer">
                 <img class="profileBlurBG" alt="profkep" src="assets/profilkep.jpg" />
                 <div class="profile">
-                    <img src="assets/profilkep.jpg" alt="profkep">
+                    <form action="updateprofile.php" method="post" enctype="multipart/form-data">
+                            <img src="<?php echo $user['imageURL']; ?>" alt="profkep" id="profilePic">
+                            <input type="file" name="fileToUpload" id="fileToUpload" style="display: none;">   
+                    </form>             
                     <div class="profileTextContainer">
                     <div class="name">
                             <?php

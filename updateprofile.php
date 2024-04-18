@@ -1,7 +1,6 @@
 <?php
-
     session_start();
-    include 'config.php';
+    include 'php/config/config.php';
     $conn = getConnection();
 
     if(isset($_SESSION['loggedin']) && isset($_SESSION['username'])) {
@@ -15,7 +14,22 @@
             $phone = $_POST['phone'];
             $birthday = $_POST['birthday'];
 
-            
+            // URL és a Kép feltöltése --> valamiért nem mukodik, légyszi nézd majd meg ^^
+            if (!empty($_FILES['fileToUpload']['name'])) {
+                $target_dir = "uploads/";
+                $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+
+                if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                    $profile_picture_url = $target_file;
+
+                    // Profilkép URL frissités --> szintúgy nem működik :(
+                    $sql_update_profile_picture = "UPDATE users SET imageURL = ? WHERE username = ?";
+                    $stmt_update_profile_picture = $conn->prepare($sql_update_profile_picture);
+                    $stmt_update_profile_picture->bind_param('ss', $profile_picture_url, $loggedInUsername);
+                    $stmt_update_profile_picture->execute();
+                }
+            }
+
             $checkQuery = "SELECT * FROM users WHERE (username='$newUsername' OR email='$email') AND NOT username='$loggedInUsername'";
             $checkResult = $conn->query($checkQuery);
             if ($checkResult->num_rows > 0) {
@@ -23,9 +37,10 @@
                 exit();
             }
 
-            $sql = "UPDATE users SET name='$name', username='$newUsername', email='$email', address='$address', phone='$phone', birthday='$birthday' WHERE username='$loggedInUsername'";
-
-            if ($conn->query($sql) === TRUE) {
+            $sql = "UPDATE users SET name=?, username=?, email=?, address=?, phone=?, birthday=? WHERE username=?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('sssssss', $name, $newUsername, $email, $address, $phone, $birthday, $loggedInUsername);
+            if ($stmt->execute()) {
                 $_SESSION['username'] = $newUsername; 
                 echo "<script>alert('Sikeresen frissítve!'); window.location.href = 'profil.php';</script>";
                 exit();

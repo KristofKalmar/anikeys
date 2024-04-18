@@ -1,17 +1,12 @@
 <?php
-
     ini_set('display_errors', 1);
-
-    // Include configuration methods for connecting to DB
     include 'php/config/config.php';
-
     $conn = getConnection();
 
     // Check if the 'id' parameter exists in the URL
     if(isset($_GET['id'])) {
         // Sanitize the input to prevent SQL injection
         $product_id = $conn->real_escape_string($_GET['id']);
-
         // SQL query to retrieve the product with the specified ID
         $sql = "SELECT * FROM products WHERE id = '$product_id'";
         $result = $conn->query($sql);
@@ -19,7 +14,6 @@
         if ($result && $result->num_rows > 0) {
             // Fetch the result as an associative array
             $product_data = $result->fetch_assoc();
-
             // Create an object to match the retrieved data
             $product = (object) $product_data;
         } else {

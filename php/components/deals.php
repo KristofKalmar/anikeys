@@ -1,7 +1,7 @@
 <?php
 
     ini_set('display_errors', 1);
-
+    include 'php/config/config.php';
     $conn = getConnection();
 
     // SQL query to check if the products table exists

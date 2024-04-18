@@ -6,7 +6,7 @@ if (!isset($_SESSION['username']))
 }
 
 if(isset($_SESSION['username']) && isset($_POST['product_id'])) {
-    include 'config.php';
+    include 'php/config/config.php';
     $conn3 = getConnection();
 
     $name = mysqli_real_escape_string($conn3, $_POST['name']);

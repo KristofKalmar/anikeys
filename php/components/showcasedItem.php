@@ -12,9 +12,9 @@
                         <div class="showcasedItemDataContainer">
                             <div class="showcasedItemTitle">' . $title . '</div>
                             <div class="showcasedItemCartButtonContainer">
-                                <a class="showcasedItemCartButton">
-                                    Kosárba
-                                </a>
+                            <button class="showcasedItemCartButton" onclick="addToCart(\'' . $title . '\', \'' . $price . '\')">  
+                            Kosárba
+                            </button>
                                 <div class="showcasedItemPrice">' . $price . '</div>
                             </div>
                         </div>
@@ -22,7 +22,7 @@
             }
 
             for ($i = 0; $i < 4; $i++) {
-                echo generateShowcasedItem("assets/avatar.jpg", "Avatar Frontiers of Pandora (Standard edition) - PS5", "27,490 Ft");
+                echo generateShowcasedItem("assets/avatar.jpg", "Avatar Frontiers of Pandora (Standard edition) - PS5", "27490 Ft");
             }
 
         ?>

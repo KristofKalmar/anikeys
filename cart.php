@@ -1,6 +1,4 @@
 <?php
-
-
     if (!isset($_SESSION['username']))
     {
         session_start();
@@ -110,7 +108,6 @@
                     </thead>
                     <tbody>
                     <?php
-
                         $username = $_SESSION['username'];
 
                         $create_cart_table_sql = "CREATE TABLE IF NOT EXISTS cart (
@@ -140,7 +137,7 @@
                                     <tr>
                                     <td><img class='tableImg' alt='Avatar' src="<?php if($row['imageURL'] !== ""){ echo $row['imageURL'];} else {echo 'assets/placeholder_large.svg';} ?>" /></td>
                                     <td><div><?php echo $row['name'] ?></div></td>
-                                    <td><div><?php echo number_format(($row['price'] * (1 - ($row['sale']) / 100)), 0, ',', ' ') ?> Ft</div></td>
+                                    <td><div><?php echo number_format(($row['price'] * $row['quantity'] * (1 - ($row['sale']) / 100)), 0, ',', ' ')?> Ft</div></td>
                                     <td><div><button onclick="decreaseQuantity(<?php echo $row['id_cart'] ?>)">-</button><?php echo $row['quantity'] ?><button onclick="increaseQuantity(<?php echo $row['id_cart'] ?>)">+</button></div></td>
                                     <td><div><button class='deleteButton' onclick="removeFromCart(<?php echo $row['id_cart'] ?>)"><img class="deleteCartIcon" src="assets/delete_dark.svg" /></button></div></td>
                                     </tr>
