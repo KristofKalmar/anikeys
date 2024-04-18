@@ -14,22 +14,6 @@
             $phone = $_POST['phone'];
             $birthday = $_POST['birthday'];
 
-            // URL és a Kép feltöltése --> valamiért nem mukodik, légyszi nézd majd meg ^^
-            if (!empty($_FILES['fileToUpload']['name'])) {
-                $target_dir = "uploads/";
-                $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-
-                if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                    $profile_picture_url = $target_file;
-
-                    // Profilkép URL frissités --> szintúgy nem működik :(
-                    $sql_update_profile_picture = "UPDATE users SET imageURL = ? WHERE username = ?";
-                    $stmt_update_profile_picture = $conn->prepare($sql_update_profile_picture);
-                    $stmt_update_profile_picture->bind_param('ss', $profile_picture_url, $loggedInUsername);
-                    $stmt_update_profile_picture->execute();
-                }
-            }
-
             $checkQuery = "SELECT * FROM users WHERE (username='$newUsername' OR email='$email') AND NOT username='$loggedInUsername'";
             $checkResult = $conn->query($checkQuery);
             if ($checkResult->num_rows > 0) {
