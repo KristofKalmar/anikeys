@@ -97,9 +97,6 @@
                 <a href="index.php" onclick="showIdentity()">Főoldal</a>
             </div>
             <div class="url">
-                <a href="#profile" onclick="showIdentity()">Profil</a>
-            </div>
-            <div class="url">
                 <a href="#settings" onclick="showSettings()">Beállítások</a>
             </div>
             <div class="url">
