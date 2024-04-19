@@ -3,8 +3,8 @@
     {
         session_start();
     }
-
-    // include configuration methods for connecting to DB
+    
+    ini_set('display_errors', 1);
     include 'php/config/config.php';
 
     $conn = getConnection();
@@ -28,56 +28,14 @@
     <title>Kosár</title>
 </head>
 <script>
-    function removeFromCart(productId = null) {
-            $.ajax({
-                type: 'POST',
-                url: 'remove_from_cart.php',
-                data: { id: productId },
-                success: function(response) {
-                    location.reload();
-                },
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
-                    alert('Hiba történt a termék eltávolítása közben.');
-                }
-            });
-        }
-
-    function decreaseQuantity(productId) {
-            $.ajax({
-                type: 'POST',
-                url: 'decrease_quantity.php',
-                data: { id: productId },
-                success: function(response) {
-                    location.reload();
-                },
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
-                    alert('Hiba történt a darabszám csökkentése közben.');
-                }
-            });
-        }
-
-    function increaseQuantity(productId) {
-            $.ajax({
-                type: 'POST',
-                url: 'increase_quantity.php',
-                data: { id: productId },
-                success: function(response) {
-                    location.reload();
-                },
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
-                    alert('Hiba történt a darabszám növelése közben.');
-                }
-            });
-        }
-    function completePurchase() {
+        function completePurchase() {
             $.ajax({
                 type: 'POST',
                 url: 'complete_purchase.php',
                 success: function(response) {
+                    alert('Sikeresen vásároltál! Hamarosan felvesszük Önnel a kapcsolatot!');
                     removeFromCart();
+                    window.location.href = 'index.php';
                 },
                 error: function(xhr, status, error) {
                     console.error(xhr.responseText);
@@ -85,18 +43,60 @@
                  }
             });
         }
+
+        function removeFromCart(productId) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'remove_from_cart.php',
+                    data: { id: productId },
+                    success: function(response) {
+                        location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                        alert('Hiba történt a termék eltávolítása közben.');
+                    }
+                });
+            }
+
+        function decreaseQuantity(productId) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'decrease_quantity.php',
+                    data: { id: productId },
+                    success: function(response) {
+                        location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                        alert('Hiba történt a darabszám csökkentése közben.');
+                    }
+                });
+            }
+
+        function increaseQuantity(productId) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'increase_quantity.php',
+                    data: { id: productId },
+                    success: function(response) {
+                        location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                        alert('Hiba történt a darabszám növelése közben.');
+                    }
+                });
+            }
 </script>
 <body>
     <?php include 'php/components/header.php'; ?>
-    <div class="hl_textbox">
-        <div class="hl_img_bg"></div>
-        <img src="<?php echo $productBGImage ?>" alt="h1" class="hl_img" />
-        <div class="hl_textbox_contentContainer">
-            <h1 class="hl_titleText">Kosár</h1>
-        </div>
-    </div>
     <div class="cardContainer">
         <div class="card">
+            <div class="cardTitleContainer">
+                <h1>Kosár</h1>
+                <div class="cardTitleDivider"></div>
+            </div>
             <div class="tableContainer">
                 <table>
                     <thead>
@@ -116,7 +116,7 @@
                             `id` int(11) NOT NULL AUTO_INCREMENT,
                             `product_id` INT NOT NULL,
                             `quantity` INT NOT NULL,
-                            `user_id` varchar(255) NOT NULL,
+                            `username` varchar(255) NOT NULL,
                             `added_at` datetime DEFAULT current_timestamp(),
                             PRIMARY KEY (`id`)
                           );";
@@ -126,7 +126,7 @@
                             $sql = "SELECT cart.*, cart.id AS id_cart, products.*
                                 FROM cart
                                 INNER JOIN products ON cart.product_id = products.id
-                                WHERE cart.user_id = '$username'";
+                                WHERE cart.username = '$username'";
                             $result = $conn->query($sql);
 
                             $totalPrice = 0;
@@ -162,9 +162,9 @@
                 <div class="finalPrice">
                     Végösszeg: <?php echo number_format($totalPrice, 0, ',', ' '); ?> Ft
                 </div>
-                <button class="payButton" onclick="completePurchase(); alert('Sikeres fizetés, hamarosan felvesszük Önnel a kapcsolatot! By AniKeys')">
-                    Fizetés
-                </button>
+                <?php
+                    echo "<button class='payButton' onclick=\"completePurchase();\">Fizetés</button>";
+                ?>
             </div>
         </div>
     </div>

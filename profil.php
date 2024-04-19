@@ -94,13 +94,16 @@
                 }
             ?>
             <div class="url">
-                <a href="index.php" onclick="showIdentity()">Főoldal</a>
+                <a href="#profile" onclick="showIdentity()">Profil</a>
             </div>
             <div class="url">
                 <a href="#settings" onclick="showSettings()">Beállítások</a>
             </div>
             <div class="url">
                 <a href="#changepass" onclick="showChangePassword()">Jelszó változtatás</a>
+            </div>
+            <div class="url">
+                <a href="#purchased-products" onclick="showPurchasedProducts()">Megvásárolt termékek</a>
             </div>
             <div class="url">
                 <a href="#notifications" onclick="showNotifications()">Értesítések</a>
@@ -184,6 +187,50 @@
                         </tbody>
                     </table>
 					</form>
+                </div>
+            </div>
+        </div>
+        <div id="purchasedProductsSection" style="display:none;">
+            <h2>Megvásárolt termékek</h2>
+            <div class="card">
+                <div class="card-body">
+                    <?php
+                        $username = $_SESSION['username'];
+
+                        if ($conn->query($create_cart_table_sql) === TRUE)
+                        {
+                            $sql = "SELECT cart.*, cart.id AS id_cart, products.*
+                                FROM cart
+                                INNER JOIN products ON cart.product_id = products.id
+                                WHERE cart.username = '$username'";
+                            $result = $conn->query($sql);
+
+
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc())
+                                {
+                        ?>
+                        <table class="productsTable">
+                            <tbody>
+                                <tr>
+                                    <td class="imageCell"><img class='tableImg' alt='Avatar' src="<?php if($row['imageURL'] !== "") { echo $row['imageURL']; } else { echo 'assets/placeholder_large.svg'; } ?>" width="96" height="96"></td>
+                                    <td class="nameCell"><div><?php echo $row['name'] ?></div></td>
+                                    <td class="priceCell"><div><?php echo number_format(($row['price'] * $row['quantity'] * (1 - ($row['sale']) / 100)), 0, ',', ' ') ?> Ft</div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <?php
+                                }
+                            } else {
+                                echo "<tr><td colspan='5'>Nincs elem a kosárban.</td></tr>";
+                            }
+
+                            $conn->close();
+                        } else
+                        {
+                            echo "Error creating table: " . $conn->error . "<br>";
+                        }
+                    ?>
                 </div>
             </div>
         </div>
@@ -394,11 +441,8 @@
                 </div>
             </div>
         </div>
-
     </div>
-
     </div>
-
 </div></div>
       <?php include 'php/components/footer.php'; ?>
 </body>

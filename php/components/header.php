@@ -25,14 +25,14 @@
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `product_id` INT NOT NULL,
             `quantity` INT NOT NULL,
-            `user_id` varchar(255) NOT NULL,
+            `username` varchar(255) NOT NULL,
             `added_at` datetime DEFAULT current_timestamp(),
             PRIMARY KEY (`id`)
           );";
 
         if ($conn2->query($create_cart_table_sql) === TRUE)
         {
-            $sql123 = "SELECT COALESCE(SUM(quantity), 0) AS total_quantity FROM cart WHERE user_id = '$username1'";
+            $sql123 = "SELECT COALESCE(SUM(quantity), 0) AS total_quantity FROM cart WHERE username = '$username1'";
             $result1 = $conn2->query($sql123);
             $row1 = $result1->fetch_assoc();
             $itemCount = $row1['total_quantity'];

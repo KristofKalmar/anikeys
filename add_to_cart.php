@@ -17,7 +17,7 @@ if(isset($_SESSION['username']) && isset($_POST['product_id'])) {
         `id` int(11) NOT NULL AUTO_INCREMENT,
         `product_id` INT NOT NULL,
         `quantity` INT NOT NULL,
-        `user_id` varchar(255) NOT NULL,
+        `username` varchar(255) NOT NULL,
         `added_at` datetime DEFAULT current_timestamp(),
         PRIMARY KEY (`id`)
       );";
@@ -26,7 +26,7 @@ if(isset($_SESSION['username']) && isset($_POST['product_id'])) {
     {
         $sql_check_pair = "SELECT COUNT(*) as pair_exists
                     FROM cart
-                    WHERE product_id = ? AND user_id = ?";
+                    WHERE product_id = ? AND username = ?";
         $stmt3 = $conn3->prepare($sql_check_pair);
         $stmt3->bind_param("is", $product_id, $username);
         $stmt3->execute();
@@ -38,7 +38,7 @@ if(isset($_SESSION['username']) && isset($_POST['product_id'])) {
         {
             $sql_increment_quantity = "UPDATE cart
             SET quantity = quantity + 1
-            WHERE product_id = '$product_id' AND user_id = '$username';
+            WHERE product_id = '$product_id' AND username = '$username';
             ";
 
             if ($conn3->query($sql_increment_quantity) === TRUE)
@@ -50,7 +50,7 @@ if(isset($_SESSION['username']) && isset($_POST['product_id'])) {
             }
         } else
         {
-            $sql_insert_new_entry = "INSERT INTO cart (product_id, quantity, user_id)
+            $sql_insert_new_entry = "INSERT INTO cart (product_id, quantity, username)
                                 VALUES ('$product_id', 1, '$username');";
 
             if ($conn3->query($sql_insert_new_entry) === TRUE)
