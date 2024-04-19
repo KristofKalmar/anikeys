@@ -3,7 +3,7 @@
     {
         session_start();
     }
-    
+
     ini_set('display_errors', 1);
     include 'php/config/config.php';
 
@@ -17,6 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="icon" type="image/x-icon" href="img/pngwing.com.png">
+      <meta name="theme-color" content="#00243D">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
@@ -33,9 +34,9 @@
                 type: 'POST',
                 url: 'complete_purchase.php',
                 success: function(response) {
-                    alert('Sikeresen vásároltál! Hamarosan felvesszük Önnel a kapcsolatot!');
-                    removeFromCart();
-                    window.location.href = 'index.php';
+                    //alert('Sikeresen vásároltál! Hamarosan felvesszük Önnel a kapcsolatot!');
+                    //removeFromCart();
+                    window.location.href = 'profil.php#purchased-products';
                 },
                 error: function(xhr, status, error) {
                     console.error(xhr.responseText);
@@ -146,7 +147,7 @@
                         <?php
                                 }
                             } else {
-                                echo "<tr><td colspan='5'>Nincs elem a kosárban.</td></tr>";
+                                ?><script>window.location.href = 'index.php';</script><?php
                             }
 
                             $conn->close();

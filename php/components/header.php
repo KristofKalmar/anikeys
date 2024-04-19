@@ -65,7 +65,7 @@
                 <a href="profil.php" class="headerButton">
                     <object class="headerButtonIcon" data="assets/user.svg"></object>
                 </a>
-                <a href="cart.php" class="headerButton">
+                <a href="cart.php" class="headerButton <?php if ($itemCount <= 0) { echo "headerButtonDisabled"; } ?>">
                     <object class="headerButtonIcon" data="assets/cart.svg"></object>
                     <div class="headerCartButtonNumberIndicator">
                         <?php echo $itemCount; ?>

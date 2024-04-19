@@ -1,5 +1,5 @@
 <?php
-    session_start(); 
+    session_start();
 
     if(isset($_POST["imgSubmit"]) && isset($_SESSION["username"])) {
         $targetDirectory = "uploads/";
@@ -28,7 +28,7 @@
 
                 $sql = "UPDATE users SET imageURL='$targetFile' WHERE username='$username'";
                 if ($conn->query($sql) === TRUE) {
-                    echo "<script>alert('A fájl ". basename( $_FILES["fileToUpload"]["name"]). " sikeresen mentve'); window.location.href = 'profil.php';</script>";
+                    echo "<script>window.location.href = 'profil.php';</script>";
                 } else {
                     echo "<script>alert('Hiba az adatok mentésekor: " . $conn->error . "'); window.location.href = 'profil.php';</script>";
                 }

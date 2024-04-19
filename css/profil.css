@@ -26,6 +26,21 @@ body
     left: 45%;
 }
 
+.form
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.identitySection, .settingsContainer
+{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 .profileContentContainer
 {
     display: flex;
@@ -54,7 +69,7 @@ body
 .profileBlurBG
 {
     left: 0;
-    filter: blur(32px) brightness(0.75);
+    filter: brightness(0.75);
     position: absolute;
     width: calc(100% + 128px);
     height: calc(100% + 32px);
@@ -86,13 +101,26 @@ body
     min-height: calc(100vh - 210.5px - 130px);
 }
 
+.purchasedProductsSection
+{
+    background-color: #0076D7;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.sectionContentContainer
+{
+    width: calc(100% - 32px);
+    max-width: 1280px;
+    padding: 32px 0;
+}
+
 .contentContainer
 {
     box-sizing: border-box;
     display: flex;
-    flex-direction: row;
-    width: calc(100% - 32px);
-    max-width: 1280px;
 }
 
 .sidenav {
@@ -105,6 +133,7 @@ body
     width: 228px;
     min-width: 228px;
     padding-bottom: 32px;
+    display: none;
 }
 
 .profile {
@@ -124,6 +153,8 @@ body
     min-height: 192px;
     object-fit: cover;
     background-color: black;
+    border: 2px solid white;
+    box-sizing: border-box;
 }
 
 .profileTextContainer
@@ -184,7 +215,6 @@ body
     margin-left: 1%;
 }
 .main {
-    padding: 32px;
     padding-right: 0;
     box-sizing: border-box;
     font-size: 28px;
@@ -193,19 +223,45 @@ body
     padding-left: 0;
 }
 
-.main h2 {
+.main h2
+{
     color: #001829;
     font-size: 32px;
 }
 
+.contentTitleContainer
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    height: 32px;
+    font-size: 32px;
+    color: white;
+    width: 100%;
+    font-weight: bold;
+    white-space: nowrap;
+    margin-bottom: 32px;
+}
+
+.rowListDivider
+{
+    height: 2px;
+    width: 100%;
+    background-color: white;
+    margin-left: 32px;
+}
+
 .main .card {
     height: 100%;
+    width: 100%;
     box-sizing: border-box;
 }
 
 .card-body
 {
     height: fit-content;
+    overflow-x: auto;
 }
 
 .main .card table {
@@ -215,12 +271,17 @@ body
     width: 100%;
 }
 
-table td
+.dataTable tr td:nth-child(1)
+{
+    width: 25%;
+}
+
+.productsTable td
 {
     height: 48px;
 }
 
-.productsTable {
+.products.productsTable {
     width: 100%;
 }
 
@@ -302,6 +363,8 @@ table td
 }
 .button {
     display: inline-block;
+    width: 256px;
+    margin-top: 32px;
     padding: 10px 20px;
     background-color: #040F16;
     color: white;
@@ -362,9 +425,136 @@ table td
     color: #fffb01 !important;
 }
 
-.identitySection
+.productsTable
 {
-    height: 100%;
+    width: 100%;
+    border-collapse: collapse;
+    color: #fff;
+}
+
+.productsTable thead tr th
+{
+    background-color: #fff;
+    padding: 16px;
+    text-align: left;
+    color: #001829;
+}
+
+.tableImg
+{
+    height: 96px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    margin: 0;
+    padding: 0;
+}
+
+.productsTable tbody tr td
+{
+    padding: 0 16px;
+    background-color: #005aa3;
+    font-size: 0;
+    line-height: 0;
+    white-space: nowrap;
+    position: sticky;
+}
+
+.productsTable thead tr th:nth-child(1)
+{
+    position: sticky;
+    left: 0;
+}
+
+.productsTable tbody tr:last-child td
+{
+  border-bottom: none;
+}
+
+.productsTable tbody tr td
+{
+    overflow: scroll;
+}
+
+.productsTable tbody tr td:nth-child(1)
+{
+  left: 0;
+  z-index: 1;
+}
+
+.productsTable tbody tr td:nth-child(2)
+{
+    width: 100%;
+    position: relative;
+}
+
+.productsTable tbody tr td div
+{
+    font-size: 18px;
+    line-height: normal;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.productsTable tbody tr td div button
+{
+    border: none;
+    border-radius: 0;
+    background: #000;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 0 16px;
+    color: white;
+}
+
+.productsTable tbody tr td div button:first-child
+{
+    margin-left: 0;
+}
+
+.productsTable tbody tr td div button:last-child
+{
+    margin-right: 0;
+}
+
+.productsTable tbody tr td div button:hover
+{
+    background: #0076D7;
+}
+
+.productsTable tbody tr td:nth-child(1)
+{
+    width: 96px;
+    padding: 0;
+}
+
+.productsTable tbody tr:nth-child(odd)
+{
+    height: 4px;
+}
+
+.productsTable tbody tr:nth-child(1)
+{
+    height: 32px;
+}
+
+.titleContainerLight
+{
+    color: #001829;
+}
+
+.titleContainerLight .rowListDivider
+{
+    background-color: #001829;
+}
+
+.noGap
+{
+    padding-bottom: 0;
 }
 
 @media only screen and (max-width: 768px)
@@ -389,5 +579,10 @@ table td
     .url
     {
         text-align: left;
+    }
+
+    .button
+    {
+        width: 100%;
     }
 }

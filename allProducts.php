@@ -28,7 +28,11 @@
         $search_term = '%' . strtolower($name) . '%';
 
         // Now you can use these variables in your SQL query
-        $sql2 = "SELECT * FROM products WHERE category_id = ? OR LOWER(name) LIKE ? ORDER BY name ASC";
+        $sql2 = "SELECT * FROM products WHERE category_id = ?";
+        if (!empty($search_term)) {
+            $sql2 .= " AND LOWER(name) LIKE ?";
+        }
+        $sql2 .= " ORDER BY name ASC";
         $stmt = $conn->prepare($sql2);
 
         // Bind parameters
@@ -39,6 +43,7 @@
 
         // Get result
         $result_rowList = $stmt->get_result();
+        $rowListHideTitleBar = true;
     } else
     {
     }
@@ -90,16 +95,12 @@
   <body>
   <?php include 'php/components/header.php'; ?>
     <div class="hl_textbox">
+      <div class="hl_img_bg"></div>
         <img src="<?php if($product->imageURL !== ""){echo $product->imageURL;} else {echo "assets/placeholder_larger.svg";} ?>" alt="h1" class="hl_img" />
         <div class="hl_textbox_contentContainer">
-        <h1 class="hl_titleText"><?php echo $product->name ?></h1>
-        <div class="hl_buttonContainer">
-        <a href="productDetails.php?id=<?php echo $product->id ?>" class="hl_button">Megtekintés</a>
-        <button class="hl_button" onclick="addToCart(<?php echo "$product->id" ?>)">Kosárba</button>
-        </div>
+        <h1 class="hl_titleText">Keresés eredménye</h1>
         </div>
     </div>
-    <?php include 'php/components/showcasedItem.php'; ?>
     <?php include 'php/components/rowlist.php' ?>
     <?php include 'php/components/deals.php'; ?>
     <?php include 'php/components/footer.php'; ?>

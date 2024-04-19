@@ -2,7 +2,7 @@
     <a href="productDetails.php?id=<?php echo $listItemId ?>" class="rowListItemImageContainer">
         <img class="rowListItemImg" src="<?php if($listItemImage !== ""){ echo $listItemImage;} else {echo "assets/placeholder_large.svg";} ?>" />
     </a>
-    <div class="rowListItemSale">-<?php echo $listItemSale ?>%</div>
+    <div class="rowListItemSale <?php if ($listItemSale <= 0) { echo "hidden"; } ?>">-<?php echo $listItemSale ?>%</div>
     <div class="rowListItemDataContainer">
         <div class="rowListItemTitle"><?php echo $listItemName ?></div>
         <div class="rowListItemCartButtonContainer">

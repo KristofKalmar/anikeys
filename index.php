@@ -63,6 +63,7 @@
    <body>
       <?php include 'php/components/header.php'; ?>
       <div class="hl_textbox">
+         <div class="hl_img_bg"></div>
          <img src="<?php if($product != NULL && $product->imageURL != ""){echo $product->imageURL;} else {echo "assets/placeholder_larger.svg";} ?>" alt="h1" class="hl_img" />
          <div class="hl_textbox_contentContainer">
          <h1 class="hl_titleText"><?php if($product != NULL) {echo $product->name;} else {echo "TERMÉK_NEVE";} ?></h1>

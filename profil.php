@@ -64,28 +64,27 @@
         <div class="profileContentContainer">
             <div class="profileContentWidthContainer">
                 <img class="profileBlurBG" alt="profkep" src="<?php if($user['imageURL'] != "") {echo $user['imageURL'];} else {echo "assets/profilkep.jpg";}?>" />
+                <form action="upload.php" method="post" class="form" enctype="multipart/form-data">
                 <div class="profile">
-                    <form action="upload.php" method="post" enctype="multipart/form-data">
                         <img class="profilePic" id="profilePic" src="<?php if($user['imageURL'] != "") {echo $user['imageURL'];} else {echo "assets/profilkep.jpg";}?>" alt="Profilkép"> <br>
-                            <input type="file" name="fileToUpload" id="fileToUpload" style="display: none;"> <br>
-                            <button class="button" id="saveBtn" type="imgSubmit" name="imgSubmit">Feltöltés</button>
-                    </form>
                     <div class="profileTextContainer">
                     <div class="name">
                             <?php
-                                echo $user['name'];
+                                if ($user['name'] != NULL) { echo $user['name'];} else { echo $user['username'];}
                             ?>
                         </div>
                         <div class="job">
                             <?php
-                                echo $user['role'];
-                            ?>
+                                if ($user['role'] != NULL) { echo $user['role'];} else { echo "Felhasználó";}
+                                ?>
                         </div>
+                            <input type="file" name="fileToUpload" id="fileToUpload" style="display: none;"> <br>
+                            <button class="button" id="saveBtn" type="imgSubmit" name="imgSubmit">Feltöltés</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
-    <div class="contentContainer">
     <div class="sidenav">
         <div class="sidenav-url">
             <?php
@@ -113,15 +112,75 @@
             </div>
         </div>
     </div>
+    <div id="purchasedProductsSection" class="purchasedProductsSection">
+            <div class="sectionContentContainer">
+                <div class="contentTitleContainer">
+                    Termékkulcsaim
+                    <div class="rowListDivider"></div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                            <table class="productsTable">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Név</th>
+                                        <th>Termékkód</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                        <?php
+                            $username = $_SESSION['username'];
+
+                            if ($conn->query($create_cart_table_sql) === TRUE)
+                            {
+                                $sql = "SELECT purchasedProducts.*, purchasedProducts.id AS id_pproduct, products.*
+                                    FROM purchasedProducts
+                                    INNER JOIN products ON purchasedProducts.product_id = products.id
+                                    WHERE purchasedProducts.username = '$username'";
+                                $result = $conn->query($sql);
+
+
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc())
+                                    {
+                            ?>
+                                    <tr>
+                                        <td class="tableImg"><img class='tableImg' alt='Avatar' src="<?php if($row['imageURL'] !== "") { echo $row['imageURL']; } else { echo 'assets/placeholder_large.svg'; } ?>" width="96" height="96"></td>
+                                        <td class="nameCell"><div><?php echo $row['name'] ?></div></td>
+                                        <td class="priceCell"><div><?php echo $row['code'] ?></div></td>
+                                    </tr>
+                            <?php
+                                    }
+                                } else {
+                                    echo "<tr><td colspan='5'>Nincs elem a kosárban.</td></tr>";
+                                }
+
+                                $conn->close();
+                            } else
+                            {
+                                echo "Error creating table: " . $conn->error . "<br>";
+                            }
+                        ?>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     <!-- Profil (általános) Section -->
     <div class="main">
         <div class="identitySection" id="identitySection">
-            <h2>Általános</h2>
+            <div class="sectionContentContainer noGap">
+                <div class="contentTitleContainer titleContainerLight">
+                    Általános
+                    <div class="rowListDivider"></div>
+                </div>
             <div class="card">
                 <div class="card-body">
                     <i class="fa fa-pen fa-xs edit"></i>
 					<form action="updateprofile.php" method="post">
-                    <table>
+                    <table class="dataTable">
                         <tbody>
                             <tr>
                                 <td>Neved</td>
@@ -179,116 +238,27 @@
 									</div>
 								</td>
                             </tr>
-                            <tr>
-                                <td>
-									 <button class="button" id="saveBtn" type="submit" name="save">Adatok mentése</button>
-                                </td>
-                            </tr>
                         </tbody>
-                    </table>
+                    </table>									 <button class="button" id="saveBtn" type="submit" name="save">Adatok mentése</button>
+
 					</form>
                 </div>
-            </div>
-        </div>
-        <div id="purchasedProductsSection" style="display:none;">
-            <h2>Megvásárolt termékek</h2>
-            <div class="card">
-                <div class="card-body">
-                    <?php
-                        $username = $_SESSION['username'];
-
-                        if ($conn->query($create_cart_table_sql) === TRUE)
-                        {
-                            $sql = "SELECT cart.*, cart.id AS id_cart, products.*
-                                FROM cart
-                                INNER JOIN products ON cart.product_id = products.id
-                                WHERE cart.username = '$username'";
-                            $result = $conn->query($sql);
-
-
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc())
-                                {
-                        ?>
-                        <table class="productsTable">
-                            <tbody>
-                                <tr>
-                                    <td class="imageCell"><img class='tableImg' alt='Avatar' src="<?php if($row['imageURL'] !== "") { echo $row['imageURL']; } else { echo 'assets/placeholder_large.svg'; } ?>" width="96" height="96"></td>
-                                    <td class="nameCell"><div><?php echo $row['name'] ?></div></td>
-                                    <td class="priceCell"><div><?php echo number_format(($row['price'] * $row['quantity'] * (1 - ($row['sale']) / 100)), 0, ',', ' ') ?> Ft</div></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <?php
-                                }
-                            } else {
-                                echo "<tr><td colspan='5'>Nincs elem a kosárban.</td></tr>";
-                            }
-
-                            $conn->close();
-                        } else
-                        {
-                            echo "Error creating table: " . $conn->error . "<br>";
-                        }
-                    ?>
-                </div>
-            </div>
-        </div>
-		<!-- Beállítások Section -->
-        <div id="settingsSection" style="display:none;">
-            <h2>Beállítások</h2>
-            <div class="card">
-                <div class="card-body">
-                    <i class="fa fa-pen fa-xs edit"></i>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>Kommunikációs preferenciák</td>
-                                <td>:</td>
-                                <td>
-                                    <label><input type="checkbox" name="email_notification" checked> Email értesítések</label><br>
-                                    <label><input type="checkbox" name="newsletter_subscription" checked> Hírlevél feliratkozás</label><br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Privát beállítások</td>
-                                <td>:</td>
-                                <td>
-                                    <label><input type="checkbox" name="profile_visibility" checked> Profil láthatósága</label><br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Nyelvi preferenciák</td>
-                                <td>:</td>
-                                <td>
-                                    <div class="select-wrapper">
-                                        <select name="select2">
-                                            <option value="angol">Angol</option>
-                                            <option value="nemet">Német</option>
-                                            <option value="magyar" selected>Magyar</option>
-                                         </select>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <button class="button" name="save">Adatok mentése</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                        </div>
             </div>
         </div>
 
         <!-- Jelszó változtatás Section -->
-        <div id="changepassSection" style="display:none;">
-            <h2>Jelszó változtatás</h2>
+        <div class="settingsContainer" id="changepassSection">
+            <div class="sectionContentContainer">
+                <div class="contentTitleContainer titleContainerLight">
+                    Jelszó visszaállítása
+                    <div class="rowListDivider"></div>
+                </div>
             <div class="card">
                 <div class="card-body">
                     <i class="fa fa-pen fa-xs edit"></i>
                     <form action="updatepassword.php" method="post">
-                <table>
+                <table class="dataTable">
                     <tbody>
                         <tr>
                             <td>Felhasználó neved</td>
@@ -326,121 +296,13 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <button class="button" type="submit" name="save">Adatok mentése</button>
-                            </td>
-                        </tr>
                     </tbody>
-                </table>
+                </table>                                <button class="button" type="submit" name="save">Adatok mentése</button>
+
             </form>
                 </div>
             </div>
-        </div>
-
-        <!-- Értesítések Section -->
-        <div id="notificationsSection" style="display:none;">
-            <h2>Értesítések</h2>
-            <div class="card">
-                <div class="card-body">
-                     <i class="fa fa-pen fa-xs edit"></i>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <label class="switcher">
-                                    <input type="checkbox" class="switcher-input" checked>
-                                    <span class="switcher-indicator">
-                                        <span class="switcher-yes"></span>
-                                        <span class="switcher-no"></span>
-                                    </span>
-                                    <span class="switcher-label">Születésnapi ajánlatok</span>
-                                    </label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label class="switcher">
-                                        <input type="checkbox" class="switcher-input" >
-                                        <span class="switcher-indicator">
-                                            <span class="switcher-yes"></span>
-                                            <span class="switcher-no"></span>
-                                        </span>
-                                        <span class="switcher-label">Kiemelt események és időszakok</span>
-                                    </label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label class="switcher">
-                                        <input type="checkbox" class="switcher-input" checked>
-                                        <span class="switcher-indicator">
-                                            <span class="switcher-yes"></span>
-                                            <span class="switcher-no"></span>
-                                        </span>
-                                        <span class="switcher-label">Kiemelt ajánlatok és promóciók</span>
-                                    </label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label class="switcher">
-                                        <input type="checkbox" class="switcher-input" >
-                                        <span class="switcher-indicator">
-                                            <span class="switcher-yes"></span>
-                                            <span class="switcher-no"></span>
-                                        </span>
-                                        <span class="switcher-label">Fontos frissítések és változások</span> <br>
-                                    </label>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <label class="switcher">
-                                        <input type="checkbox" class="switcher-input" checked>
-                                        <span class="switcher-indicator">
-                                            <span class="switcher-yes"></span>
-                                            <span class="switcher-no"></span>
-                                        </span>
-                                        <span class="switcher-label">Elhagyott kosár emlékeztető</span> <br>
-                                    </label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label class="switcher">
-                                        <input type="checkbox" class="switcher-input" >
-                                        <span class="switcher-indicator">
-                                            <span class="switcher-yes"></span>
-                                            <span class="switcher-no"></span>
-                                        </span>
-                                        <span class="switcher-label">Rendelés visszaigazolása</span> <br>
-                                    </label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label class="switcher">
-                                        <input type="checkbox" class="switcher-input" checked>
-                                        <span class="switcher-indicator">
-                                            <span class="switcher-yes"></span>
-                                            <span class="switcher-no"></span>
-                                        </span>
-                                        <span class="switcher-label">Rendelés státusza</span> <br>
-                                    </label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <button class="button">Adatok mentése</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
-        </div>
     </div>
     </div>
 </div></div>

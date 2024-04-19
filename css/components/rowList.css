@@ -37,6 +37,11 @@ body, html
     white-space: nowrap;
 }
 
+.rowListHideTitleBar .contentTitleContainer
+{
+    display: none;
+}
+
 .rowListDivider
 {
     height: 2px;
@@ -266,6 +271,11 @@ body, html
 .rowList_multiLine .rowListItemDarkMode
 {
     background-color: #001829;
+}
+
+.hidden
+{
+    display: none;
 }
 
 @media screen and (min-width: 1312px)

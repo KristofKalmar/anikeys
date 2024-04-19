@@ -1,4 +1,4 @@
-<div class="rowListContainer <?php if($multiLine == true) {echo "rowList_multiLine";} ?>">
+<div class="rowListContainer <?php if ($rowListHideTitleBar == true) { echo "rowListHideTitleBar"; } ?> <?php if($multiLine == true) {echo "rowList_multiLine";} ?>">
     <div class="rowListVerticalContainer">
         <div class="contentVerticalContainer">
             <div class="contentTitleContainer">
@@ -23,9 +23,9 @@
                         include 'php/components/listItem.php';
                     }
 
-                    if ($numItems < 16)
+                    if ($numItems < 4)
                     {
-                        $loopCount = 16 - $numItems;
+                        $loopCount = 4 - $numItems;
                         $listItemDarkMode = false;
 
                         for ($i = 0; $i < $loopCount; $i++)
