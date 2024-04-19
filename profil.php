@@ -63,13 +63,13 @@
         <div class="verticalContainer">
         <div class="profileContentContainer">
             <div class="profileContentWidthContainer">
-                <img class="profileBlurBG" alt="profkep" src="assets/profilkep.jpg" />
+                <img class="profileBlurBG" alt="profkep" src="<?php if($user['imageURL'] != "") {echo $user['imageURL'];} else {echo "assets/profilkep.jpg";}?>" />
                 <div class="profile">
                     <form action="upload.php" method="post" enctype="multipart/form-data">
-                        <img id="profilePic" src="<?php echo $user['imageURL'];?>" alt="Profilkép"> <br>
+                        <img class="profilePic" id="profilePic" src="<?php if($user['imageURL'] != "") {echo $user['imageURL'];} else {echo "assets/profilkep.jpg";}?>" alt="Profilkép"> <br>
                             <input type="file" name="fileToUpload" id="fileToUpload" style="display: none;"> <br>
-                            <button class="button" id="saveBtn" type="imgSubmit" name="imgSubmit">Feltöltés</button>                
-                    </form>   
+                            <button class="button" id="saveBtn" type="imgSubmit" name="imgSubmit">Feltöltés</button>
+                    </form>
                     <div class="profileTextContainer">
                     <div class="name">
                             <?php

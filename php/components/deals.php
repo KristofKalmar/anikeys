@@ -23,7 +23,6 @@
         $products = array();
     } else
     {
-        echo "No product found.";
     }
     } else
     {
@@ -44,6 +43,9 @@
             </div>
             <div class="contentItemsContainer">
                 <?php
+
+                    $numItems = $result->num_rows;
+
                     while ($row = $result->fetch_assoc())
                     {
                         $listItemImage = $row['imageURL'];
@@ -51,8 +53,20 @@
                         $listItemPrice = $row['price'];
                         $listItemSale = $row['sale'];
                         $listItemId = $row['id'];
+                        $listItemDarkMode = false;
 
                         include 'php/components/listItem.php';
+                    }
+
+                    if ($numItems < 4)
+                    {
+                        $loopCount = 4 - $numItems;
+                        $listItemDarkMode = false;
+
+                        for ($i = 0; $i < $loopCount; $i++)
+                        {
+                            include 'php/components/listItemGhost.php';
+                        }
                     }
                 ?>
             </div>

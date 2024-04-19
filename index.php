@@ -18,7 +18,7 @@
             $product = (object) $product_data;
          } else
          {
-            echo "Hiba a termék betöltésekor (nincs termék)!";
+            $product = NULL;
          }
       } else {
          // HA nem létezik -->
@@ -43,7 +43,6 @@
    $conn->close();
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -64,12 +63,12 @@
    <body>
       <?php include 'php/components/header.php'; ?>
       <div class="hl_textbox">
-         <img src="<?php if($product->imageURL !== ""){echo $product->imageURL;} else {echo "assets/placeholder_larger.svg";} ?>" alt="h1" class="hl_img" />
+         <img src="<?php if($product != NULL && $product->imageURL != ""){echo $product->imageURL;} else {echo "assets/placeholder_larger.svg";} ?>" alt="h1" class="hl_img" />
          <div class="hl_textbox_contentContainer">
-         <h1 class="hl_titleText"><?php echo $product->name ?></h1>
+         <h1 class="hl_titleText"><?php if($product != NULL) {echo $product->name;} else {echo "TERMÉK_NEVE";} ?></h1>
          <div class="hl_buttonContainer">
-            <a href="productDetails.php?id=<?php echo $product->id ?>" class="hl_button">Megtekintés</a>
-            <button class="hl_button" onclick="addToCart(<?php echo "$product->id" ?>)">Kosárba</button>
+            <a href="productDetails.php?id=<?php if($product != NULL) {echo $product->id;} ?>" class="hl_button <?php if($product == NULL) {echo "disabled";} ?>">Megtekintés</a>
+            <button class="hl_button <?php if($product == NULL) {echo "disabled";} ?>" onclick="addToCart(<?php if($product != NULL) {echo $product->id;} ?>)">Kosárba</button>
          </div>
          </div>
       </div>

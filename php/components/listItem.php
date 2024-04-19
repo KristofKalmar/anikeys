@@ -1,4 +1,4 @@
-<div class="rowListItem" style="background-color: ' . $themeColor . '">
+<div class="rowListItem <?php if ($listItemDarkMode == true) {echo "rowListItemDarkMode";} ?>">
     <a href="productDetails.php?id=<?php echo $listItemId ?>" class="rowListItemImageContainer">
         <img class="rowListItemImg" src="<?php if($listItemImage !== ""){ echo $listItemImage;} else {echo "assets/placeholder_large.svg";} ?>" />
     </a>

@@ -123,6 +123,16 @@ body, html
     scroll-margin: 16px;
 }
 
+.rowListItemDarkMode
+{
+    background-color: #001829;
+}
+
+.rowListItemDarkMode .rowListItemTitle
+{
+    color: white;
+}
+
 .rowListItemLink
 {
     display: flex;
@@ -174,6 +184,9 @@ body, html
     position: relative;
     font-size: 20px;
     font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    height: 23px;
 }
 
 .rowListItemCartButtonContainer
@@ -211,6 +224,48 @@ body, html
 .rowListItem:hover .rowListItemImg
 {
     transform: scale(125%);
+}
+
+.rowListItemGhost .rowListItemCartButton
+{
+    cursor: default;
+    opacity: 0.5;
+}
+
+.rowListItemGhost:hover .rowListItemImg
+{
+    transform: none;
+}
+
+.rowListItemGhost .rowListItemImg
+{
+    cursor: default;
+}
+
+.rowListItemGhost .rowListItemPrice, .rowListItemGhostDarkMode .rowListItemPrice
+{
+    height: 40px;
+}
+
+.rowListItemGhost .rowListItemTitle, .rowListItemGhost .rowListItemPrice
+{
+    background-color: rgba(0, 149, 255, 0.1);
+    color: rgba(0, 118, 215, 0);
+    width: 100%;
+    font-size: 18px;
+}
+
+.rowListItemGhostDarkMode .rowListItemTitle, .rowListItemGhostDarkMode .rowListItemPrice
+{
+    background-color: #002742;
+    color: #002742;
+    width: 100%;
+    font-size: 18px;
+}
+
+.rowList_multiLine .rowListItemDarkMode
+{
+    background-color: #001829;
 }
 
 @media screen and (min-width: 1312px)

@@ -58,6 +58,7 @@ body
     position: absolute;
     width: calc(100% + 128px);
     height: calc(100% + 32px);
+    background-color: black;
     margin-top: -32px;
     margin-left: -64px;
     object-fit: cover;
@@ -115,7 +116,7 @@ body
     color: white;
 }
 
-.profile img
+.profilePic
 {
     width: 192px;
     height: 192px;

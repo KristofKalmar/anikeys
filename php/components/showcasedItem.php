@@ -1,31 +1,66 @@
+<?php
+
+    ini_set('display_errors', 1);
+    include 'php/config/config.php';
+    $conn = getConnection();
+
+    // SQL query to check if the products table exists
+    $table_exists_sql = "SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'products'";
+    $table_exists_result = $conn->query($table_exists_sql);
+
+    if ($table_exists_result && $table_exists_result->num_rows > 0)
+    {
+    // SQL query to retrieve the most recent product
+    $sql = "SELECT * FROM products
+    ORDER BY creationDate DESC
+    LIMIT 4;";
+    $result = $conn->query($sql);
+
+    if ($result && $result->num_rows > 0)
+    {
+        // Create an empty array to store products
+        $products = array();
+    } else
+    {
+    }
+    } else
+    {
+    }
+
+    $conn->close();
+
+?>
+
 <div class="showcasedContainer">
     <div class="showcasedItemsListContainer">
-        <?php
+    <?php
 
-            function generateShowcasedItem($img, $title, $price)
+            $numItems = $result->num_rows;
+
+            while($row = $result->fetch_assoc())
             {
-                return '
-                    <div class="showcasedItem">
-                        <a href="productDetails.html" class="showcasedItemImgContainer">
-                            <img class="showcasedItemImg" src="' . $img . '" />
-                        </a>
-                        <div class="showcasedItemDataContainer">
-                            <div class="showcasedItemTitle">' . $title . '</div>
-                            <div class="showcasedItemCartButtonContainer">
-                            <button class="showcasedItemCartButton" onclick="addToCart(\'' . $title . '\', \'' . $price . '\')">  
-                            Kosárba
-                            </button>
-                                <div class="showcasedItemPrice">' . $price . '</div>
-                            </div>
-                        </div>
-                    </div>';
+                $listItemImage = $row['imageURL'];
+                $listItemName = $row['name'];
+                $listItemPrice = $row['price'];
+                $listItemSale = $row['sale'];
+                $listItemId = $row['id'];
+                $listItemDarkMode = true;
+
+                include 'php/components/listItem.php';
             }
 
-            for ($i = 0; $i < 4; $i++) {
-                echo generateShowcasedItem("assets/avatar.jpg", "Avatar Frontiers of Pandora (Standard edition) - PS5", "27490 Ft");
+            if ($numItems < 4)
+            {
+                $loopCount = 4 - $numItems;
+                $listItemDarkMode = true;
+
+                for ($i = 0; $i < $loopCount; $i++)
+                {
+                    include 'php/components/listItemGhost.php';
+                }
             }
 
-        ?>
+    ?>
     </div>
     <style>
         <?php include 'css/components/showcasedItem.css' ?>

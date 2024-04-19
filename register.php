@@ -1,6 +1,7 @@
 <?php
     include 'php/config/config.php';
     $conn = getConnection();
+    ini_set('display_errors', 1);
 
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register']))
     {
@@ -18,6 +19,7 @@
                 `name` varchar(255),
                 `username` varchar(50) NOT NULL,
                 `email` varchar(100) NOT NULL,
+                `imageURL` varchar(255),
                 `emailtoken` varchar(255),
                 `hashed_password` varchar(255) NOT NULL,
                 `address` text,
@@ -63,7 +65,7 @@
                             header("Location: login.php");
                             exit();
 
-                            $user_id = $conn->insert_id; 
+                            $user_id = $conn->insert_id;
                         } else {
                             $error = "Hiba történt a regisztráció során. Kérlek próbáld újra később.";
                         }

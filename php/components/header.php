@@ -51,8 +51,8 @@
     <div class="headerContentContainer">
         <div class="searchBarContainer">
             <div class="searchBar">
-                <input class="searchBarInput" placeholder="Fedezd fel kínálatunkat!"></input>
-                <a href="allProducts.php" class="searchButton">
+                <input id="searchInput" class="searchBarInput" placeholder="Fedezd fel kínálatunkat!"></input>
+                <a href="javascript:searchForProducts()" class="searchButton">
                     <object class="searchIcon" data="assets/search.svg"></object>
                 </a>
             </div>
@@ -75,20 +75,28 @@
         </div>
     </div>
     <div class="linksContainer">
-        <a href="allProducts.php" class="linkItem">
+        <a href="allProducts.php?category_id=1" class="linkItem">
             <label class="linkItemText">PC</label>
         </a>
-        <a href="allProducts.php" class="linkItem">
+        <a href="allProducts.php?category_id=2" class="linkItem">
             <label class="linkItemText">Playstation</label>
         </a>
-        <a href="allProducts.php" class="linkItem">
+        <a href="allProducts.php?category_id=3" class="linkItem">
             <label class="linkItemText">Xbox</label>
         </a>
-        <a href="allProducts.php" class="linkItem">
+        <a href="allProducts.php?category_id=4" class="linkItem">
             <label class="linkItemText">Nintendo</label>
         </a>
     </div>
     <style>
         <?php include 'css/components/header.css' ?>
     </style>
+    <script>
+        function searchForProducts()
+        {
+            const name = document.getElementById("searchInput").value;
+
+            window.location.href = `allProducts.php?name=${name}`;
+        }
+    </script>
 </header>

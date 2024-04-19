@@ -115,6 +115,13 @@ body, html
     color: #00A2D5;
 }
 
+.disabled
+{
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+}
+
 @media screen and (max-width: 1312px)
 {
     .hl_textbox_contentContainer

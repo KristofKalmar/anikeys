@@ -1,3 +1,73 @@
+<?php
+   ini_set('display_errors', 1);
+   include 'php/config/config.php';
+   $conn = getConnection();
+
+   $table_exists_sql = "SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'products'";
+   $table_exists_result = $conn->query($table_exists_sql);
+
+    if ($table_exists_result && $table_exists_result->num_rows > 0)
+        {
+        $sql = "SELECT * FROM products ORDER BY creationDate DESC LIMIT 1";
+        $result = $conn->query($sql);
+
+        if ($result && $result->num_rows > 0)
+        {
+        $product_data = $result->fetch_assoc();
+
+        $product = (object) $product_data;
+
+        $category_id = isset($_GET['category_id']) ? $_GET['category_id'] : null;
+        // Sanitize and validate $category_id if needed
+
+        // Retrieving name from URL
+        $name = isset($_GET['name']) ? trim($_GET['name']) : null;
+        // Sanitize and validate $name if needed
+
+        // Add % symbols around the name for LIKE comparison and convert both sides to lowercase
+        $search_term = '%' . strtolower($name) . '%';
+
+        // Now you can use these variables in your SQL query
+        $sql2 = "SELECT * FROM products WHERE category_id = ? OR LOWER(name) LIKE ? ORDER BY name ASC";
+        $stmt = $conn->prepare($sql2);
+
+        // Bind parameters
+        $stmt->bind_param("is", $category_id, $search_term);
+
+        // Execute query
+        $stmt->execute();
+
+        // Get result
+        $result_rowList = $stmt->get_result();
+    } else
+    {
+    }
+    } else
+        {
+        // HA nem létezik -->
+        $create_table_sql = "CREATE TABLE `products` (
+        `id` int(11) NOT NULL,
+        `name` varchar(255) NOT NULL,
+        `price` int(11) NOT NULL,
+        `description` text NOT NULL,
+        `sale` int(11) NOT NULL,
+        `category_id` int(11) NOT NULL,
+        `creationDate` datetime NOT NULL DEFAULT current_timestamp(),
+        `imageURL` varchar(255) DEFAULT NULL,
+        PRIMARY KEY (`id`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci";
+
+        if ($conn->query($create_table_sql) === TRUE) {
+        } else {
+        }
+    }
+    $conn->close();
+
+    $multiLine = true;
+    $titleText = "Keresés eredménye";
+    $rowListImage = "assets/searchResult.svg";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,28 +88,19 @@
     <script src="js/jquery-3.7.1.min.js"></script>
   </head>
   <body>
-  <?php include 'php/components/header.php'; ?> 
-    <div data-title="Keresés eredménye" data-logo="search_category.svg" data-multiLine="true" id="rowList"></div>
-    <div class="pagionationContainer">
-        <div class="paginationContentContainer">
-            <div class="paginationPage">
-                1
-            </div>
-            <div class="paginationPage">
-                2
-            </div>
-            <div class="paginationDots">
-                ...
-            </div>
-            <div class="paginationPage">
-                →
-            </div>
-            <div class="paginationPage">
-                10
-            </div>
-        </div> 
-    </div>  <br> <br> 
+  <?php include 'php/components/header.php'; ?>
+    <div class="hl_textbox">
+        <img src="<?php if($product->imageURL !== ""){echo $product->imageURL;} else {echo "assets/placeholder_larger.svg";} ?>" alt="h1" class="hl_img" />
+        <div class="hl_textbox_contentContainer">
+        <h1 class="hl_titleText"><?php echo $product->name ?></h1>
+        <div class="hl_buttonContainer">
+        <a href="productDetails.php?id=<?php echo $product->id ?>" class="hl_button">Megtekintés</a>
+        <button class="hl_button" onclick="addToCart(<?php echo "$product->id" ?>)">Kosárba</button>
+        </div>
+        </div>
+    </div>
     <?php include 'php/components/showcasedItem.php'; ?>
+    <?php include 'php/components/rowlist.php' ?>
     <?php include 'php/components/deals.php'; ?>
     <?php include 'php/components/footer.php'; ?>
   </body>
