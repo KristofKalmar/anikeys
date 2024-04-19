@@ -16,9 +16,6 @@
         $product_data = $result->fetch_assoc();
 
         $product = (object) $product_data;
-        $productBGImage = $product->imageURL;
-        $rowListImageBGBool = true;
-        $rowListImageBG = $product->imageURL;
 
         $category_id = isset($_GET['category_id']) ? $_GET['category_id'] : null;
         // Sanitize and validate $category_id if needed
@@ -69,7 +66,6 @@
     $multiLine = true;
     $titleText = "Keresés eredménye";
     $rowListImage = "assets/searchResult.svg";
-    $rowListHideTitleBar = true;
 ?>
 
 <!DOCTYPE html>
@@ -94,13 +90,17 @@
   <body>
   <?php include 'php/components/header.php'; ?>
     <div class="hl_textbox">
-        <div class="hl_img_bg"></div>
-        <img src="<?php echo $productBGImage ?>" alt="h1" class="hl_img" />
+        <img src="<?php if($product->imageURL !== ""){echo $product->imageURL;} else {echo "assets/placeholder_larger.svg";} ?>" alt="h1" class="hl_img" />
         <div class="hl_textbox_contentContainer">
-            <h1 class="hl_titleText">Keresés eredménye</h1>
+        <h1 class="hl_titleText"><?php echo $product->name ?></h1>
+        <div class="hl_buttonContainer">
+        <a href="productDetails.php?id=<?php echo $product->id ?>" class="hl_button">Megtekintés</a>
+        <button class="hl_button" onclick="addToCart(<?php echo "$product->id" ?>)">Kosárba</button>
+        </div>
         </div>
     </div>
-    <?php include 'php/components/rowlist.php'; ?>
+    <?php include 'php/components/showcasedItem.php'; ?>
+    <?php include 'php/components/rowlist.php' ?>
     <?php include 'php/components/deals.php'; ?>
     <?php include 'php/components/footer.php'; ?>
   </body>

@@ -268,16 +268,6 @@ body, html
     background-color: #001829;
 }
 
-.hideTitleBar .contentTitleContainer
-{
-    display: none;
-}
-
-.hideTitleBar
-{
-    margin-top: -64px;
-}
-
 @media screen and (min-width: 1312px)
 {
     .rowList_multiLine .rowListItem:nth-child(4n)

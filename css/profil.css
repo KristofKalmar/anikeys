@@ -215,13 +215,34 @@ body
     width: 100%;
 }
 
-table
-{
-}
-
 table td
 {
     height: 48px;
+}
+
+.productsTable {
+    width: 100%;
+}
+
+.imageCell {
+    width: 10%;
+}
+
+.imageCell img {
+    margin-top: 10%;
+}
+.nameCell,
+.priceCell {
+    width: 40%;
+}
+
+.nameCell div,
+.priceCell div {
+    font-size: 16px;
+}
+
+.nameCell div {
+    font-weight: bold;
 }
 
 .select-wrapper {
