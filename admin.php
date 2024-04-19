@@ -2,22 +2,22 @@
     include 'php/config/config.php';
     $conn = getConnection();
 
-$table_name = 'products';
-$sql = "SELECT table_name
-        FROM information_schema.tables
-        WHERE table_name = '$table_name'
-        LIMIT 1";
-$table_result = $conn->query($sql);
+    $table_name = 'products';
+    $sql = "SELECT table_name
+            FROM information_schema.tables
+            WHERE table_name = '$table_name'
+            LIMIT 1";
+    $table_result = $conn->query($sql);
 
-if ($table_result->num_rows > 0) {
-    // Table found, download its contents
-    $download_sql = "SELECT * FROM $table_name";
-    $result = $conn->query($download_sql);
-} else {
-    $result = [];
-}
+    if ($table_result->num_rows > 0) {
+        // Table found, download its contents
+        $download_sql = "SELECT * FROM $table_name";
+        $result = $conn->query($download_sql);
+    } else {
+        $result = [];
+    }
 
-$conn->close();
+    $conn->close();
 
 ?>
 
@@ -33,7 +33,7 @@ $conn->close();
 </head>
 <body>
     <header>
-        <a href="index.html" class="adminLogoAnchor">
+        <a href="index.php" class="adminLogoAnchor">
         <object
             class="logo"
             data="assets/logo.svg"

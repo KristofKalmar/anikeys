@@ -88,6 +88,11 @@
     <div class="contentContainer">
     <div class="sidenav">
         <div class="sidenav-url">
+            <?php
+                if ($user['role'] == 'admin') {
+                    echo '<div class="url"><a href="admin.php">Admin</a></div>';
+                }
+            ?>
             <div class="url">
                 <a href="index.php" onclick="showIdentity()">Főoldal</a>
             </div>
