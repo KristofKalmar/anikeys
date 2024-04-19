@@ -66,6 +66,41 @@ body
     width: 100%;
 }
 
+.blurred::after {
+    content: "";
+    position: absolute;
+    width: calc(100% + 128px);
+    height: calc(100% + 32px);
+    margin-top: -32px;
+    margin-left: -64px;
+    backdrop-filter: blur(10px); 
+    pointer-events: none; 
+}
+
+.blurred {
+    left: 0;
+    filter: brightness(0.75);
+    position: absolute;
+    width: calc(100% + 128px);
+    height: calc(100% + 32px);
+    background: black;
+    margin-top: -32px;
+    margin-left: -64px;
+    object-fit: cover;
+}
+
+.profilePic
+{
+    width: 192px;
+    height: 192px;
+    min-width: 192px;
+    min-height: 192px;
+    object-fit: cover;
+    background: black;
+    border: 2px solid white;
+    box-sizing: border-box;
+}
+
 .profileBlurBG
 {
     left: 0;
@@ -73,7 +108,7 @@ body
     position: absolute;
     width: calc(100% + 128px);
     height: calc(100% + 32px);
-    background-color: black;
+    background: black;
     margin-top: -32px;
     margin-left: -64px;
     object-fit: cover;
@@ -85,7 +120,6 @@ body
     left: 0;
     top: 0;
     bottom: 0;
-    background-color: #e5f4ff;
     width: calc((100vw - 1280px)/2);
     display: none;
 }
@@ -143,18 +177,6 @@ body
     flex-direction: row;
     align-items: flex-end;
     color: white;
-}
-
-.profilePic
-{
-    width: 192px;
-    height: 192px;
-    min-width: 192px;
-    min-height: 192px;
-    object-fit: cover;
-    background-color: black;
-    border: 2px solid white;
-    box-sizing: border-box;
 }
 
 .profileTextContainer

@@ -43,7 +43,7 @@ if(isset($_SESSION['username']) && isset($_POST['product_id'])) {
 
             if ($conn3->query($sql_increment_quantity) === TRUE)
             {
-                echo 'asd';
+                echo '';
             } else
             {
                 echo "Hiba történt a kosárhoz adás közben: " . $conn3->error;

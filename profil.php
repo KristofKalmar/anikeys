@@ -63,7 +63,9 @@
         <div class="verticalContainer">
         <div class="profileContentContainer">
             <div class="profileContentWidthContainer">
-                <img class="profileBlurBG" alt="profkep" src="<?php if($user['imageURL'] != "") {echo $user['imageURL'];} else {echo "assets/profilkep.jpg";}?>" />
+                <div class="blurred">
+                    <img class="profileBlurBG" alt="profkep" src="<?php if($user['imageURL'] != "") {echo $user['imageURL'];} else {echo "assets/profilkep.jpg";}?>" />
+                </div>
                 <form action="upload.php" method="post" class="form" enctype="multipart/form-data">
                 <div class="profile">
                         <img class="profilePic" id="profilePic" src="<?php if($user['imageURL'] != "") {echo $user['imageURL'];} else {echo "assets/profilkep.jpg";}?>" alt="Profilkép"> <br>
@@ -72,11 +74,22 @@
                             <?php
                                 if ($user['name'] != NULL) { echo $user['name'];} else { echo $user['username'];}
                             ?>
-                        </div>
+                            <a href="logout.php">
+                                <img src="assets/logout.svg" alt="Logout" width="18" height="18">
+                            </a>
+                    </div>
                         <div class="job">
                             <?php
-                                if ($user['role'] != NULL) { echo $user['role'];} else { echo "Felhasználó";}
-                                ?>
+                                if ($user['role'] != NULL) {
+                                    if ($user['role'] == 'admin') {
+                                        echo '<a href="admin.php" style="color: white; text-decoration: none;">' . $user['role'] . '</a>';
+                                    } else {
+                                        echo $user['role'];
+                                    }
+                                } else {
+                                    echo "Felhasználó";
+                                }
+                            ?>
                         </div>
                             <input type="file" name="fileToUpload" id="fileToUpload" style="display: none;"> <br>
                             <button class="button" id="saveBtn" type="imgSubmit" name="imgSubmit">Feltöltés</button>

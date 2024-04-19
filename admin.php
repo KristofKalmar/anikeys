@@ -1,6 +1,12 @@
 <?php
     include 'php/config/config.php';
     $conn = getConnection();
+    session_start();
+
+    if (!isset($_SESSION['username'])) {
+        header("Location: login.php");
+        exit(); 
+    }
 
     $table_name = 'products';
     $sql = "SELECT table_name
@@ -10,7 +16,6 @@
     $table_result = $conn->query($sql);
 
     if ($table_result->num_rows > 0) {
-        // Table found, download its contents
         $download_sql = "SELECT * FROM $table_name";
         $result = $conn->query($download_sql);
     } else {

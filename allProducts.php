@@ -13,37 +13,25 @@
 
         if ($result && $result->num_rows > 0)
         {
-        $product_data = $result->fetch_assoc();
+          $product_data = $result->fetch_assoc();
+          $product = (object) $product_data;
+          $category_id = isset($_GET['category_id']) ? $_GET['category_id'] : null;
+          $name = isset($_GET['name']) ? trim($_GET['name']) : null;
+          $search_term = '%' . strtolower($name) . '%';
 
-        $product = (object) $product_data;
+          $sql2 = "SELECT * FROM products WHERE category_id = ?";
+          if (!empty($search_term)) {
+              $sql2 .= " AND LOWER(name) LIKE ?";
+          }
+          $sql2 .= " ORDER BY name ASC";
+          $stmt = $conn->prepare($sql2);
 
-        $category_id = isset($_GET['category_id']) ? $_GET['category_id'] : null;
-        // Sanitize and validate $category_id if needed
+          $stmt->bind_param("is", $category_id, $search_term);
 
-        // Retrieving name from URL
-        $name = isset($_GET['name']) ? trim($_GET['name']) : null;
-        // Sanitize and validate $name if needed
+          $stmt->execute();
 
-        // Add % symbols around the name for LIKE comparison and convert both sides to lowercase
-        $search_term = '%' . strtolower($name) . '%';
-
-        // Now you can use these variables in your SQL query
-        $sql2 = "SELECT * FROM products WHERE category_id = ?";
-        if (!empty($search_term)) {
-            $sql2 .= " AND LOWER(name) LIKE ?";
-        }
-        $sql2 .= " ORDER BY name ASC";
-        $stmt = $conn->prepare($sql2);
-
-        // Bind parameters
-        $stmt->bind_param("is", $category_id, $search_term);
-
-        // Execute query
-        $stmt->execute();
-
-        // Get result
-        $result_rowList = $stmt->get_result();
-        $rowListHideTitleBar = true;
+          $result_rowList = $stmt->get_result();
+          $rowListHideTitleBar = true;
     } else
     {
     }

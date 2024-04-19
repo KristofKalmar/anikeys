@@ -2,12 +2,18 @@
     session_start();
 
     if(isset($_POST["imgSubmit"]) && isset($_SESSION["username"])) {
+        //ha éppen nincs kiválasztva semmi
+        if(empty($_FILES["fileToUpload"]["name"])) {
+            echo "<script>alert('Kérjük, válasszon ki egy fájlt a feltöltéshez.'); window.location.href = 'profil.php';</script>";
+            exit; 
+        }
+
         $targetDirectory = "uploads/";
         $targetFile = $targetDirectory . basename($_FILES["fileToUpload"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($targetFile,PATHINFO_EXTENSION));
         //méret kezelés
-        if ($_FILES["fileToUpload"]["size"] > 50000000000) {
+        if ($_FILES["fileToUpload"]["size"] > 50000000) {
             echo "<script>alert('Sajnáljuk, a fájl túl nagy.'); window.location.href = 'profil.php';</script>";
             $uploadOk = 0;
         }

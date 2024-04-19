@@ -9,12 +9,11 @@
     {
         $data = random_bytes(16);
 
-        $data[6] = chr(ord($data[6]) & 0x0f | 0x40); // set version to 0100
-        $data[8] = chr(ord($data[8]) & 0x3f | 0x80); // set bits 6-7 to 10
+        $data[6] = chr(ord($data[6]) & 0x0f | 0x40); // verziószám 0100
+        $data[8] = chr(ord($data[8]) & 0x3f | 0x80); // bitek értéke 6-7 to 10
 
         return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
     }
-
     $sql_delete_cart = "DELETE FROM cart WHERE username = ?";
     $stmt_delete_cart = $conn->prepare($sql_delete_cart);
     $stmt_delete_cart->bind_param('s', $username);
@@ -55,7 +54,6 @@
                         }
                     }
                 }
-
                 header("Location: profil.php");
                 exit();
             } else
@@ -71,7 +69,6 @@
         header("Location: index.php?error=" . urlencode("Hiba történt a kosár törlése közben: " . $conn->error));
         exit();
     }
-
     $stmt_delete_cart->close();
     $conn->close();
 ?>
