@@ -44,18 +44,6 @@ body
     margin-bottom: 32px;
 }
 
-.productDetailsHeroBackgroundImage
-{
-    background-color: black;
-    position: absolute;
-    width: calc(100% + 128px);
-    height: calc(100% + 32px);
-    top: -32px;
-    left: -64px;
-    object-fit: cover;
-    filter: blur(32px) brightness(0.75);
-}
-
 .productDetailsDescriptionText
 {
     color: #fff;

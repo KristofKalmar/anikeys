@@ -3,7 +3,6 @@
     {
         session_start();
     }
-    ini_set('display_errors', 1);
 
     // include configuration methods for connecting to DB
     include 'php/config/config.php';
@@ -89,12 +88,15 @@
 </script>
 <body>
     <?php include 'php/components/header.php'; ?>
+    <div class="hl_textbox">
+        <div class="hl_img_bg"></div>
+        <img src="<?php echo $productBGImage ?>" alt="h1" class="hl_img" />
+        <div class="hl_textbox_contentContainer">
+            <h1 class="hl_titleText">Kosár</h1>
+        </div>
+    </div>
     <div class="cardContainer">
         <div class="card">
-            <div class="cardTitleContainer">
-                <h1>Kosár</h1>
-                <div class="cardTitleDivider"></div>
-            </div>
             <div class="tableContainer">
                 <table>
                     <thead>
