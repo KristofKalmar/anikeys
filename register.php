@@ -85,8 +85,6 @@
         } else {
             $error = "Kérlek töltsd ki az összes mezőt!";
         }
-
-        $create_users_table_sql->close();
     }
 ?>
 
@@ -135,7 +133,7 @@
                     <i class='bx bxs-lock-alt reg__eye' id="reg-eye2"></i>
                 </div>
                 <?php if(isset($error)) { ?>
-                    <div class="error"><?php echo $error; ?></div>
+                    <div class="error" style="color: red;"><?php echo $error; ?></div>
                 <?php } ?>
                 <button class="btn" name="register">Regisztráció</button>
                 <div class="account-creation">

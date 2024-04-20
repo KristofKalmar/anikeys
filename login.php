@@ -40,7 +40,7 @@
                     <a href="forgot_password.php">Elfelejtetted a jelszavad?</a>
                 </div>
                 <?php if(isset($error)) { ?>
-                    <div class="error"><?php echo $error; ?></div>
+                    <div class="error" style="color: red;"><?php echo $error; ?></div>
                 <?php } ?>
                 <button class="btn" name="login">Bejelentkezés</button>
                 <div class="account-creation">
