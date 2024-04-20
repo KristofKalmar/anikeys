@@ -49,7 +49,7 @@
             </form>
         </div>
     </div>
-    <script src="logreg.js"></script>
+    <script src="js/logreg.js"></script>
 </body>
 </html>
 
