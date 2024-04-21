@@ -1,6 +1,12 @@
-<div class="rowListItem rowListItemGhost<?php if ($listItemDarkMode == true) {echo " rowListItemGhostDarkMode";} ?> <?php if ($listItemDarkMode == true) {echo "rowListItemDarkMode";} ?>">
+<div class="rowListItem rowListItemGhost<?php if ($listItemDarkMode == true) {
+                                            echo " rowListItemGhostDarkMode";
+                                        } ?> <?php if ($listItemDarkMode == true) {
+                                                                                                                        echo "rowListItemDarkMode";
+                                                                                                                    } ?>">
     <div class="rowListItemImageContainer">
-        <img class="rowListItemImg" src="assets/placeholder_large_ghost<?php if ($listItemDarkMode == true) {echo "_dark";} ?>.svg" />
+        <img class="rowListItemImg" src="assets/placeholder_large_ghost<?php if ($listItemDarkMode == true) {
+                                                                            echo "_dark";
+                                                                        } ?>.svg" />
     </div>
     <div class="rowListItemDataContainer">
         <div class="rowListItemTitle">TITLETEXT</div>

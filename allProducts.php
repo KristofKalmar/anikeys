@@ -1,44 +1,42 @@
 <?php
-   ini_set('display_errors', 1);
-   include 'php/config/config.php';
-   $conn = getConnection();
 
-   $table_exists_sql = "SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'products'";
-   $table_exists_result = $conn->query($table_exists_sql);
+if (!isset($_SESSION['username'])) {
+    session_start();
+}
+include 'php/config/config.php';
+$conn = getConnection();
 
-    if ($table_exists_result && $table_exists_result->num_rows > 0)
-        {
-        $sql = "SELECT * FROM products ORDER BY creationDate DESC LIMIT 1";
-        $result = $conn->query($sql);
+$table_exists_sql = "SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'products'";
+$table_exists_result = $conn->query($table_exists_sql);
 
-        if ($result && $result->num_rows > 0)
-        {
-          $product_data = $result->fetch_assoc();
-          $product = (object) $product_data;
-          $category_id = isset($_GET['category_id']) ? $_GET['category_id'] : null;
-          $name = isset($_GET['name']) ? trim($_GET['name']) : null;
-          $search_term = '%' . strtolower($name) . '%';
+if ($table_exists_result && $table_exists_result->num_rows > 0) {
+    $sql = "SELECT * FROM products ORDER BY creationDate DESC LIMIT 1";
+    $result = $conn->query($sql);
 
-          $sql2 = "SELECT * FROM products WHERE category_id = ?";
-          if (!empty($search_term)) {
-              $sql2 .= " AND LOWER(name) LIKE ?";
-          }
-          $sql2 .= " ORDER BY name ASC";
-          $stmt = $conn->prepare($sql2);
+    if ($result && $result->num_rows > 0) {
+        $product_data = $result->fetch_assoc();
+        $product = (object) $product_data;
+        $category_id = isset($_GET['category_id']) ? $_GET['category_id'] : null;
+        $name = isset($_GET['name']) ? trim($_GET['name']) : null;
+        $search_term = '%' . strtolower($name) . '%';
 
-          $stmt->bind_param("is", $category_id, $search_term);
+        $sql2 = "SELECT * FROM products WHERE category_id = ?";
+        if (!empty($search_term)) {
+            $sql2 .= " AND LOWER(name) LIKE ?";
+        }
+        $sql2 .= " ORDER BY name ASC";
+        $stmt = $conn->prepare($sql2);
 
-          $stmt->execute();
+        $stmt->bind_param("is", $category_id, $search_term);
 
-          $result_rowList = $stmt->get_result();
-    } else
-    {
+        $stmt->execute();
+
+        $result_rowList = $stmt->get_result();
+    } else {
     }
-    } else
-        {
-        // HA nem létezik -->
-        $create_table_sql = "CREATE TABLE `products` (
-        `id` int(11) NOT NULL,
+} else {
+    $create_table_sql = "CREATE TABLE `products` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
         `name` varchar(255) NOT NULL,
         `price` int(11) NOT NULL,
         `description` text NOT NULL,
@@ -49,21 +47,42 @@
         PRIMARY KEY (`id`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci";
 
-        if ($conn->query($create_table_sql) === TRUE) {
-        } else {
-        }
+    if ($conn->query($create_table_sql) === TRUE) {
+    } else {
     }
-    $conn->close();
+}
 
-    $multiLine = true;
-    $titleText = "Keresés eredménye";
-    $rowListImage = "assets/searchResult.svg";
-    $rowListHideTitleBar = true;
+$username = $_SESSION['username'];
+
+$sql = "SELECT * FROM users WHERE username = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param('s', $username);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    $user_data = $result->fetch_assoc();
+
+    $user = new stdClass();
+    foreach ($user_data as $key => $value) {
+        $user->$key = $value;
+    }
+} else {
+}
+
+$stmt->close();
+$conn->close();
+
+$multiLine = true;
+$titleText = "Keresés eredménye";
+$rowListImage = "assets/searchResult.svg";
+$rowListHideTitleBar = true;
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#00243D">
@@ -79,18 +98,24 @@
     <link rel="stylesheet" href="css/components/showcasedItem.css">
     <link rel="mask-icon" href="favicon/safari-pinned-tab.svg">
     <script src="js/jquery-3.7.1.min.js"></script>
-  </head>
-  <body>
-  <?php include 'php/components/header.php'; ?>
+</head>
+
+<body>
+    <?php include 'php/components/header.php'; ?>
     <div class="hl_textbox">
-      <div class="hl_img_bg"></div>
-        <img src="<?php if(isset($product) && $product->imageURL != ""){echo $product->imageURL;} else {echo "assets/placeholder_larger.svg";} ?>" alt="h1" class="hl_img" />
+        <div class="hl_img_bg"></div>
+        <img src="<?php if (isset($product) && $product->imageURL != "") {
+                        echo $product->imageURL;
+                    } else {
+                        echo "assets/placeholder_larger.svg";
+                    } ?>" alt="h1" class="hl_img" />
         <div class="hl_textbox_contentContainer">
-        <h1 class="hl_titleText">Keresés eredménye</h1>
+            <h1 class="hl_titleText">Keresés eredménye</h1>
         </div>
     </div>
     <?php include 'php/components/rowlist.php' ?>
     <?php include 'php/components/deals.php'; ?>
     <?php include 'php/components/footer.php'; ?>
-  </body>
+</body>
+
 </html>

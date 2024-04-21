@@ -12,14 +12,14 @@ if ($conn->connect_error) {
     die("Sikertelen kapcsolódás az adatbázishoz: " . $conn->connect_error);
 }
 
-// Validate input data
+
 $name = $_POST['name'];
 $priceVAT = $_POST['priceVAT'];
 $sale = $_POST['sale'];
 $category = $_POST['category'];
 
 if (empty($name) || strlen($name) > 255) {
-    http_response_code(400); // Set HTTP status code to 400 (Bad Request)
+    http_response_code(400);
     echo json_encode(["error" => "Invalid name: Name cannot be empty or longer than 255 characters."]);
     exit;
 }
@@ -42,13 +42,13 @@ if (!is_numeric($category) || $category < 0 || $category > 4) {
     exit;
 }
 
-if (!empty($_FILES)){
+if (!empty($_FILES)) {
     unlink($_POST['oldImagePath']);
     $newImagePath = '../uploads/' . $_FILES['imageURL']['name'];
     $newUploadPath = 'uploads/' . $_FILES['imageURL']['name'];
     move_uploaded_file($_FILES['imageURL']['tmp_name'], $newImagePath);
 } else {
-    // No image uploaded, use the old image path
+
     $newUploadPath = $_POST['oldImagePath'];
     $newImagePath = $_POST['oldImagePath'];
 }
@@ -69,9 +69,8 @@ SET name = ?,
     imageURL = ?
 WHERE id = ?";
 
-// Assuming you have already established a database connection $conn
+
 $stmt = $conn->prepare($query);
 $stmt->bind_param("sdsiiiiiiisi", $name, $priceVAT, $_POST['descriptionHTML'], $sale, $category, $_POST['CPU'], $_POST['GPU'], $_POST['MEMORY'], $_POST['OPSYSTEM'], $_POST['STORAGE'], $imageURL, $_POST['id']);
 $stmt->execute();
 $stmt->close();
-?>

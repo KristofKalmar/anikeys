@@ -12,14 +12,14 @@ if ($conn->connect_error) {
     die("Sikertelen kapcsolódás az adatbázishoz: " . $conn->connect_error);
 }
 
-// Validate input data
+
 $name = $_POST['name'];
 $priceVAT = $_POST['priceVAT'];
 $sale = $_POST['sale'];
 $category = $_POST['category'];
 
 if (empty($name) || strlen($name) > 255) {
-    http_response_code(400); // Set HTTP status code to 400 (Bad Request)
+    http_response_code(400);
     echo json_encode(["error" => "Invalid name: Name cannot be empty or longer than 255 characters."]);
     exit;
 }
@@ -42,12 +42,12 @@ if (!is_numeric($category) || $category < 0 || $category > 4) {
     exit;
 }
 
-// Handle image upload (if provided)
+
 if (!empty($_FILES)) {
     move_uploaded_file($_FILES['imageURL']['tmp_name'], '../uploads/' . $_FILES['imageURL']['name']);
 }
 
-// Construct the SQL query
+
 $imageURL = !empty($_FILES) ? 'uploads/' . $_FILES['imageURL']['name'] : '';
 
 $sql = "CREATE TABLE IF NOT EXISTS products (
@@ -68,28 +68,27 @@ $sql = "CREATE TABLE IF NOT EXISTS products (
   CONSTRAINT CHK_CategoryID CHECK (category_id BETWEEN 0 AND 4)
 );";
 
-  // Execute the CREATE TABLE statement
-  if (!mysqli_query($conn, $sql)) {
+
+if (!mysqli_query($conn, $sql)) {
     echo "Error creating table: " . mysqli_error($conn);
-  } else {
-    // If table creation is successful, proceed with the INSERT statement
+} else {
+
 
     $sql = "INSERT INTO products (name, price, description, sale, category_id, CPU, GPU, MEMORY, OPSYSTEM, STORAGE_GB, imageURL)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = $conn->prepare($sql);
 
-    // Bind parameters
+
     $stmt->bind_param("sdssdddddds", $name, $priceVAT, $_POST['descriptionHTML'], $sale, $category, $_POST['CPU'], $_POST['GPU'], $_POST['MEMORY'], $_POST['OPSYSTEM'], $_POST['STORAGE'], $imageURL);
 
-    // Execute the INSERT statement
-    if (!$stmt->execute()) {
-      echo "Error inserting data: " . mysqli_error($conn);
-    } else {
-      // Data inserted successfully (optional: show success message)
-    }
-  }
 
-// Close the database connection
+    if (!$stmt->execute()) {
+        echo "Error inserting data: " . mysqli_error($conn);
+    } else {
+
+    }
+}
+
+
 mysqli_close($conn);
-?>

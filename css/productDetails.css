@@ -1,8 +1,3 @@
-@import url('../componentsphp/header/header.css');
-@import url('../componentsphp/rowList/rowList.css');
-@import url('../componentsphp/footer/footer.css');
-
-
 body
 {
     overflow-x: hidden;

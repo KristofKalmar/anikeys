@@ -1,18 +1,16 @@
 <?php
-    include 'php/config/config.php';
-    $conn = getConnection();
-    ini_set('display_errors', 1);
+include 'php/config/config.php';
+$conn = getConnection();
+ini_set('display_errors', 1);
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register']))
-    {
-        if (!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['confirm_password']))
-        {
-            $username = $_POST['username'];
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            $confirm_password = $_POST['confirm_password'];
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
+    if (!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['confirm_password'])) {
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $confirm_password = $_POST['confirm_password'];
 
-            $create_users_table_sql = "CREATE TABLE IF NOT EXISTS users (
+        $create_users_table_sql = "CREATE TABLE IF NOT EXISTS users (
                 `id` int(11) NOT NULL AUTO_INCREMENT,
                 `token` varchar(1000),
                 `role` varchar(255),
@@ -33,67 +31,61 @@
                 PRIMARY KEY (`id`)
             );";
 
-            if ($conn->query($create_users_table_sql) === TRUE)
-            {
-                // Felhasználónév ell.
-                $sql_check_username = "SELECT * FROM users WHERE username = ?";
-                $stmt_check_username = $conn->prepare($sql_check_username);
-                $stmt_check_username->bind_param('s', $username);
-                $stmt_check_username->execute();
-                $result_check_username = $stmt_check_username->get_result();
+        if ($conn->query($create_users_table_sql) === TRUE) {
+            $sql_check_username = "SELECT * FROM users WHERE username = ?";
+            $stmt_check_username = $conn->prepare($sql_check_username);
+            $stmt_check_username->bind_param('s', $username);
+            $stmt_check_username->execute();
+            $result_check_username = $stmt_check_username->get_result();
+            $sql_check_email = "SELECT * FROM users WHERE email = ?";
+            $stmt_check_email = $conn->prepare($sql_check_email);
+            $stmt_check_email->bind_param('s', $email);
+            $stmt_check_email->execute();
+            $result_check_email = $stmt_check_email->get_result();
 
-                // Email cím ell.
-                $sql_check_email = "SELECT * FROM users WHERE email = ?";
-                $stmt_check_email = $conn->prepare($sql_check_email);
-                $stmt_check_email->bind_param('s', $email);
-                $stmt_check_email->execute();
-                $result_check_email = $stmt_check_email->get_result();
+            if ($result_check_username->num_rows > 0) {
+                $error = "A felhasználónév már foglalt!";
+            } elseif ($result_check_email->num_rows > 0) {
+                $error = "Az e-mail cím már regisztrálva van!";
+            } else {
+                if ($password === $confirm_password) {
+                    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-                if ($result_check_username->num_rows > 0)
-                {
-                    $error = "A felhasználónév már foglalt!";
-                } elseif ($result_check_email->num_rows > 0)
-                {
-                    $error = "Az e-mail cím már regisztrálva van!";
-                } else {
-                    if ($password === $confirm_password) {
-                        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                    $sql = "INSERT INTO users (username, email, hashed_password) VALUES (?, ?, ?)";
 
-                        $sql = "INSERT INTO users (username, email, hashed_password) VALUES (?, ?, ?)";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param('sss', $username, $email, $hashed_password);
 
-                        $stmt = $conn->prepare($sql);
-                        $stmt->bind_param('sss', $username, $email, $hashed_password);
+                    if ($stmt->execute()) {
+                        $success = "Sikeres regisztráció! Most már bejelentkezhetsz.";
+                        header("Location: login.php");
+                        exit();
 
-                        if ($stmt->execute()) {
-                            $success = "Sikeres regisztráció! Most már bejelentkezhetsz.";
-                            header("Location: login.php");
-                            exit();
-
-                            $user_id = $conn->insert_id;
-                        } else {
-                            $error = "Hiba történt a regisztráció során. Kérlek próbáld újra később.";
-                        }
-
-                        $stmt->close();
+                        $user_id = $conn->insert_id;
                     } else {
-                        $error = "A jelszavak nem egyeznek!";
+                        $error = "Hiba történt a regisztráció során. Kérlek próbáld újra később.";
                     }
-                }
-            } else
-            {
-                echo "Error creating table: " . $conn->error . "<br>";
-            }
 
-            $stmt_check_username->close();
-            $stmt_check_email->close();
+                    $stmt->close();
+                } else {
+                    $error = "A jelszavak nem egyeznek!";
+                }
+            }
         } else {
-            $error = "Kérlek töltsd ki az összes mezőt!";
+            echo "Error creating table: " . $conn->error . "<br>";
         }
+
+        $stmt_check_username->close();
+        $stmt_check_email->close();
+    } else {
+        $error = "Kérlek töltsd ki az összes mezőt!";
     }
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -108,6 +100,7 @@
     <link rel="stylesheet" href="css/logreg.css">
     <title>ANI KEYS - Regisztráció</title>
 </head>
+
 <body>
     <div class="header">
         <object data="assets/logo.svg"></object>
@@ -136,7 +129,7 @@
                     <label for="confirm_password">Jelszó mégegyszer</label>
                     <i class='bx bxs-lock-alt reg__eye' id="reg-eye2"></i>
                 </div>
-                <?php if(isset($error)) { ?>
+                <?php if (isset($error)) { ?>
                     <div class="error" style="color: red;"><?php echo $error; ?></div>
                 <?php } ?>
                 <button class="btn" name="register">Regisztráció</button>
@@ -147,5 +140,6 @@
         </div>
     </div>
 </body>
-<script src="logreg.js"></script>
+<script src="js/logreg.js"></script>
+
 </html>
