@@ -68,7 +68,7 @@ $conn->close();
                         echo "assets/placeholder_larger.svg";
                     } ?>" alt="Herosimg" class="productDetailsHeroImage" />
         <?php
-        if (isset($_SESSION['username']) && (
+        if (isset($_SESSION['username']) && isset($user) && (
             ($user->CPU > 0 && $product->CPU > 0 && $user->CPU < $product->CPU) ||
             ($user->GPU > 0 && $product->GPU > 0 && $user->GPU < $product->GPU) ||
             ($user->MEMORY > 0 && $product->MEMORY > 0 && $user->MEMORY < $product->MEMORY) ||
@@ -166,7 +166,7 @@ $conn->close();
             }
             ?>
             <?php
-            if ($product->category_id == 1 && isset($_SESSION['username'])) {
+            if ($product->category_id == 1 && isset($_SESSION['username']) && isset($user)) {
             ?>
                 <p class="productTableTitle productsTableTitleSecond">
                     Te rendszered:
