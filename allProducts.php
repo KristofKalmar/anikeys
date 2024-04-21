@@ -36,7 +36,7 @@ if ($table_exists_result && $table_exists_result->num_rows > 0) {
     }
 } else {
     $create_table_sql = "CREATE TABLE `products` (
-        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
         `name` varchar(255) NOT NULL,
         `price` int(11) NOT NULL,
         `description` text NOT NULL,
