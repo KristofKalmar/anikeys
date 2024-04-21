@@ -8,7 +8,7 @@
                                                 echo "assets/placeholder_large.svg";
                                             } ?>" />
                                             <?php
-        if (isset($_SESSION['username']) && (
+        if (isset($_SESSION['username']) && isset($user) && (
             ($user->CPU > 0 && $product->CPU > 0 && $user->CPU < $product->CPU) ||
             ($user->GPU > 0 && $product->GPU > 0 && $user->GPU < $product->GPU) ||
             ($user->MEMORY > 0 && $product->MEMORY > 0 && $user->MEMORY < $product->MEMORY) ||

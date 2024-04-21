@@ -4,6 +4,7 @@ if (!isset($_SESSION['username'])) {
     session_start();
 }
 include 'php/config/config.php';
+ini_set('display_errors', 1);
 $conn = getConnection();
 
 $table_exists_sql = "SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'products'";
@@ -36,7 +37,7 @@ if ($table_exists_result && $table_exists_result->num_rows > 0) {
     }
 } else {
     $create_table_sql = "CREATE TABLE `products` (
-        `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        `id` int(11) NOT NULL AUTO_INCREMENT,
         `name` varchar(255) NOT NULL,
         `price` int(11) NOT NULL,
         `description` text NOT NULL,
@@ -52,25 +53,32 @@ if ($table_exists_result && $table_exists_result->num_rows > 0) {
     }
 }
 
-$username = $_SESSION['username'];
+$table_exists_sqlUser = "SHOW TABLES LIKE 'users'";
+$table_exists_resultUser = $conn->query($table_exists_sqlUser);
 
-$sql = "SELECT * FROM users WHERE username = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param('s', $username);
-$stmt->execute();
-$result = $stmt->get_result();
+if ($table_exists_resultUser && $table_exists_resultUser->num_rows > 0) {
+    $username = $_SESSION['username'];
 
-if ($result->num_rows > 0) {
-    $user_data = $result->fetch_assoc();
+    $sql = "SELECT * FROM users WHERE username = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('s', $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    $user = new stdClass();
-    foreach ($user_data as $key => $value) {
-        $user->$key = $value;
+    if ($result->num_rows > 0) {
+        $user_data = $result->fetch_assoc();
+
+        $user = new stdClass();
+        foreach ($user_data as $key => $value) {
+            $user->$key = $value;
+        }
+    } else {
+        $user = NULL;
     }
-} else {
+
+    $stmt->close();
 }
 
-$stmt->close();
 $conn->close();
 
 $multiLine = true;
@@ -78,6 +86,7 @@ $titleText = "Keresés eredménye";
 $rowListImage = "assets/searchResult.svg";
 $rowListHideTitleBar = true;
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
