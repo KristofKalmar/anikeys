@@ -10,7 +10,7 @@
         </div>
         <div class="footerBottom">
             <div class="footerRights">
-                2024 ANI KEYS COMPANY. Semmilyen jog nincs fenntartva. PLS Don\'t sue us UWU
+                2024 ANI KEYS COMPANY. Semmilyen jog nincs fenntartva. PLS Don't sue us UWU
             </div>
             <div class="footerMadeBy">
                 Az oldalt készítette: 404 not found csapat

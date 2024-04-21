@@ -8,6 +8,42 @@
         header("Location: login.php");
         exit();
     }
+    $username = $_SESSION['username'];
+
+    $create_cart_table_sql = "CREATE TABLE IF NOT EXISTS purchasedProducts (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `product_id` INT NOT NULL,
+        `username` varchar(255) NOT NULL,
+        `added_at` datetime DEFAULT current_timestamp(),
+        `code` varchar(255) NOT NULL,
+        `revealed` INT NOT NULL,
+        PRIMARY KEY (`id`)
+    );";
+
+    if ($conn->query($create_cart_table_sql) === TRUE)
+    {
+        $tableExistsQuery = "SELECT COUNT(*) AS table_exists
+            FROM INFORMATION_SCHEMA.TABLES
+            WHERE TABLE_NAME = 'purchasedProducts'";
+
+        $result = mysqli_query($conn, $tableExistsQuery);
+        $row = mysqli_fetch_assoc($result);
+        $tableExists = $row['table_exists'];
+
+        // If the table exists, execute the query, otherwise return an empty array
+        if ($tableExists) {
+            $sql = "SELECT purchasedProducts.*, purchasedProducts.id AS id_pproduct, products.*
+                    FROM purchasedProducts
+                    INNER JOIN products ON purchasedProducts.product_id = products.id
+                    WHERE purchasedProducts.username = '$username' ORDER BY products.name";
+            $results = mysqli_query($conn, $sql);
+        } else {
+            $results = NULL;
+        }
+    } else
+    {
+        echo "Error creating table: " . $conn->error . "<br>";
+    }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save'])) {
         $name = $_POST['name'];
@@ -28,7 +64,23 @@
         $stmt_update_user->bind_param('sss', $name, $email, $_SESSION['username']);
         $stmt_update_user->execute();
 
-        header("Location: profile.php");
+        header("Location: profil.php");
+        exit();
+    }
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save']))
+    {
+        $CPU = $_POST['CPU'];
+        $GPU = $_POST['GPU'];
+        $MEMORY = $_POST['MEMORY'];
+        $OPSYSTEM = $_POST['OPSYSTEM'];
+
+        $sql_update_user = "UPDATE users SET CPU = ?, GPU = ?, MEMORY = ?, OPSYSTEM = ? WHERE username = ?";
+        $stmt_update_user = $conn->prepare($sql_update_user);
+        $stmt_update_user->bind_param('dddd', $CPU, $GPU, $MEMORY, $OPSYSTEM);
+        $stmt_update_user->execute();
+
+        header("Location: profil.php");
         exit();
     }
 
@@ -57,6 +109,41 @@
     <script src="js/imageUpload.js"></script>
 </head>
 <body>
+    <script>
+        function revealCode(productId)
+        {
+            $.ajax({
+                type: 'POST',
+                url: 'revealProduct.php',
+                data: { id: productId },
+                success: function(response) {
+                    location.reload();
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                    alert('Hiba történt a termék eltávolítása közben.');
+                }
+            });
+        }
+
+        function deleteProfile(id)
+        {
+            $.ajax({
+                type: 'POST',
+                url: 'deleteUser.php',
+                data: { id: id },
+                success: function(response) {
+                    window.location.href = "index.php";
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                    alert('Hiba történt a termék eltávolítása közben.');
+                }
+            });
+
+            return false;
+        }
+    </script>
     <?php include 'php/components/header.php'; ?>
     <div class="container">
         <div class="colorBG"></div>
@@ -64,11 +151,11 @@
         <div class="profileContentContainer">
             <div class="profileContentWidthContainer">
                 <div class="blurred">
-                    <img class="profileBlurBG" alt="profkep" src="<?php if($user['imageURL'] != "") {echo $user['imageURL'];} else {echo "assets/profilkep.jpg";}?>" />
+                    <img class="profileBlurBG" alt="profkep" src="<?php if($user['imageURL'] != "") {echo $user['imageURL'];} else {echo "assets/placeholder_large.svg";}?>" />
                 </div>
                 <form action="upload.php" method="post" class="form" enctype="multipart/form-data">
                 <div class="profile">
-                        <img class="profilePic" id="profilePic" src="<?php if($user['imageURL'] != "") {echo $user['imageURL'];} else {echo "assets/profilkep.jpg";}?>" alt="Profilkép"> <br>
+                        <img class="profilePic" id="profilePic" src="<?php if($user['imageURL'] != "") {echo $user['imageURL'];} else {echo "assets/placeholder_large.svg";}?>" alt="Profilkép"> <br>
                     <div class="profileTextContainer">
                     <div class="name">
                             <?php
@@ -125,6 +212,10 @@
             </div>
         </div>
     </div>
+    <?php
+        if ($results != NULL && $results->num_rows > 0)
+        {
+    ?>
     <div id="purchasedProductsSection" class="purchasedProductsSection">
             <div class="sectionContentContainer">
                 <div class="contentTitleContainer">
@@ -132,7 +223,7 @@
                     <div class="rowListDivider"></div>
                 </div>
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body card-table">
                             <table class="productsTable">
                                 <thead>
                                     <tr>
@@ -143,26 +234,16 @@
                                 </thead>
                                 <tbody>
                         <?php
-                            $username = $_SESSION['username'];
-
-                            if ($conn->query($create_cart_table_sql) === TRUE)
-                            {
-                                $sql = "SELECT purchasedProducts.*, purchasedProducts.id AS id_pproduct, products.*
-                                    FROM purchasedProducts
-                                    INNER JOIN products ON purchasedProducts.product_id = products.id
-                                    WHERE purchasedProducts.username = '$username'";
-                                $result = $conn->query($sql);
-
-
-                                if ($result->num_rows > 0) {
-                                    while ($row = $result->fetch_assoc())
-                                    {
+                            if ($results != NULL && $results->num_rows > 0) {
+                                while ($row = $results->fetch_assoc())
+                                {
                             ?>
                                     <tr>
                                         <td class="tableImg"><img class='tableImg' alt='Avatar' src="<?php if($row['imageURL'] !== "") { echo $row['imageURL']; } else { echo 'assets/placeholder_large.svg'; } ?>" width="96" height="96"></td>
                                         <td class="nameCell"><div><?php echo $row['name'] ?></div></td>
-                                        <td class="priceCell"><div><?php echo $row['code'] ?></div></td>
+                                        <td class="priceCell"><div><?php if ($row['revealed'] == true) {echo $row['code'];} ?><?php if ($row['revealed'] == false) { ?><button onclick="revealCode(<?php echo $row['id_pproduct'] ?>)">Felfedés</button><?php } ?></div></td>
                                     </tr>
+                                    <tr class="separator"></tr>
                             <?php
                                     }
                                 } else {
@@ -170,10 +251,6 @@
                                 }
 
                                 $conn->close();
-                            } else
-                            {
-                                echo "Error creating table: " . $conn->error . "<br>";
-                            }
                         ?>
                         </tbody>
                     </table>
@@ -181,6 +258,7 @@
                 </div>
             </div>
         </div>
+    <?php } ?>
     <!-- Profil (általános) Section -->
     <div class="main">
         <div class="identitySection" id="identitySection">
@@ -190,14 +268,12 @@
                     <div class="rowListDivider"></div>
                 </div>
             <div class="card">
-                <div class="card-body">
                     <i class="fa fa-pen fa-xs edit"></i>
 					<form action="updateprofile.php" method="post">
                     <table class="dataTable">
                         <tbody>
                             <tr>
                                 <td>Neved</td>
-                                <td>:</td>
                                 <td>
 									<div class="input-wrapper">
 									<input type="text" id="name" name="name" value="<?php echo $user['name']; ?>" required>
@@ -206,7 +282,6 @@
                             </tr>
                             <tr>
                                 <td>Felhasználónév</td>
-                                <td>:</td>
                                 <td>
                                     <div class="input-wrapper">
                                         <input type="text" id="newUsername" name="newUsername" value="<?php echo $user['username']; ?>" required>
@@ -216,7 +291,6 @@
                             </tr>
                             <tr>
                                 <td>Email</td>
-                                <td>:</td>
                                 <td>
                                     <div class="input-wrapper">
                                         <input type="text" id="email" name="email" value="<?php echo $user['email']; ?>" required>
@@ -225,7 +299,6 @@
                             </tr>
                             <tr>
                                 <td>Lakcím</td>
-                                <td>:</td>
                                 <td>
 									<div class="input-wrapper">
 									<input type="text" id="address"   name="address" value="<?php echo $user['address']; ?>" required>
@@ -234,7 +307,6 @@
                             </tr>
                             <tr>
                                 <td>Telefonszám:</td>
-                                <td>:</td>
                                 <td>
 									<div class="input-wrapper">
 									<input type="text" id="phone" name="phone" value="<?php echo $user['phone']; ?>" required>
@@ -244,7 +316,6 @@
                             </tr>
                             <tr>
                                 <td>Születésnap</td>
-                                <td>:</td>
                                 <td>
 									<div class="input-wrapper">
 									<input type="date" id="birthday"  name="birthday" value="<?php echo $user['birthday']; ?>" required >
@@ -252,30 +323,106 @@
 								</td>
                             </tr>
                         </tbody>
-                    </table>									 <button class="button" id="saveBtn" type="submit" name="save">Adatok mentése</button>
-
+                    </table>
+                    <button class="button" id="saveBtn" type="submit" name="save">Adatok mentése</button>
+					</form>
+                        </div>
+            </div>
+        </div><div class="identitySection card-specifications" id="identitySection">
+            <div class="sectionContentContainer noGap">
+                <div class="contentTitleContainer titleContainerLight">
+                    Saját specifikációk
+                    <div class="rowListDivider"></div>
+                </div>
+            <div class="card">
+                    <i class="fa fa-pen fa-xs edit"></i>
+					<form action="updateSpecs.php" method="post">
+                    <table class="dataTable">
+                        <tbody>
+                            <tr>
+                                <td>CPU</td>
+                                <td>
+									<div class="input-wrapper">
+                                    <select id="CPU" name="CPU">
+                                        <option <?php if($user['CPU'] == 0){echo "selected";} ?> value="0">-</option>
+                                        <option <?php if($user['CPU'] == 1){echo "selected";} ?> value="1">i3</option>
+                                        <option <?php if($user['CPU'] == 2){echo "selected";} ?> value="2">i5</option>
+                                        <option <?php if($user['CPU'] == 3){echo "selected";} ?> value="3">i7</option>
+                                        <option <?php if($user['CPU'] == 4){echo "selected";} ?> value="4">i9</option>
+                                    </select>
+									</div>
+								</td>
+                            </tr>
+                            <tr>
+                                <td>GPU</td>
+                                <td>
+									<div class="input-wrapper">
+                                    <select id="GPU" name="GPU">
+                                        <option <?php if($user['GPU'] == 0){echo "selected";} ?> value="0">-</option>
+                                        <option <?php if($user['GPU'] == 1){echo "selected";} ?> value="1">Nvidia GeForce RTX 3050</option>
+                                        <option <?php if($user['GPU'] == 2){echo "selected";} ?> value="2">Nvidia GeForce RTX 3060</option>
+                                        <option <?php if($user['GPU'] == 3){echo "selected";} ?> value="3">Nvidia GeForce RTX 3070</option>
+                                        <option <?php if($user['GPU'] == 4){echo "selected";} ?> value="4">Nvidia GeForce RTX 3080</option>
+                                        <option <?php if($user['GPU'] == 5){echo "selected";} ?> value="5">Nvidia GeForce RTX 3090</option>
+                                        <option <?php if($user['GPU'] == 6){echo "selected";} ?> value="6">Nvidia GeForce RTX 4060</option>
+                                        <option <?php if($user['GPU'] == 7){echo "selected";} ?> value="7">Nvidia GeForce RTX 4070</option>
+                                        <option <?php if($user['GPU'] == 8){echo "selected";} ?> value="8">Nvidia GeForce RTX 4080</option>
+                                        <option <?php if($user['GPU'] == 9){echo "selected";} ?> value="9">Nvidia GeForce RTX 4090</option>
+                                    </select>
+									</div>
+								</td>
+                            </tr>
+                            <tr>
+                                <td>Memória</td>
+                                <td>
+									<div class="input-wrapper">
+                                    <select id="MEMORY" name="MEMORY">
+                                        <option <?php if($user['MEMORY'] == 0){echo "selected";} ?> value="0">-</option>
+                                        <option <?php if($user['MEMORY'] == 1){echo "selected";} ?> value="1">2 GB</option>
+                                        <option <?php if($user['MEMORY'] == 2){echo "selected";} ?> value="2">4 GB</option>
+                                        <option <?php if($user['MEMORY'] == 3){echo "selected";} ?> value="3">8 GB</option>
+                                        <option <?php if($user['MEMORY'] == 4){echo "selected";} ?> value="4">16 GB</option>
+                                        <option <?php if($user['MEMORY'] == 5){echo "selected";} ?> value="5">32 GB</option>
+                                        <option <?php if($user['MEMORY'] == 6){echo "selected";} ?> value="6">64 GB</option>
+                                    </select>
+									</div>
+								</td>
+                            </tr>
+                            <tr>
+                                <td>Operációs rendszer</td>
+                                <td>
+									<div class="input-wrapper">
+                                    <select id="OPSYSTEM" name="OPSYSTEM">
+                                        <option <?php if($user['OPSYSTEM'] == 0){echo "selected";} ?> value="0">-</option>
+                                        <option <?php if($user['OPSYSTEM'] == 1){echo "selected";} ?> value="1">Windows 7 (64bit)</option>
+                                        <option <?php if($user['OPSYSTEM'] == 2){echo "selected";} ?> value="2">Windows 10 (64bit)</option>
+                                        <option <?php if($user['OPSYSTEM'] == 3){echo "selected";} ?> value="3">Windows 11 (64bit)</option>
+                                    </select>
+									</div>
+								</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="button" id="saveBtn" type="submit" name="save_specs">Adatok mentése</button>
 					</form>
                 </div>
-                        </div>
             </div>
         </div>
 
         <!-- Jelszó változtatás Section -->
-        <div class="settingsContainer" id="changepassSection">
+        <div class="settingsContainer card-password" id="changepassSection">
             <div class="sectionContentContainer">
                 <div class="contentTitleContainer titleContainerLight">
                     Jelszó visszaállítása
                     <div class="rowListDivider"></div>
                 </div>
             <div class="card">
-                <div class="card-body">
                     <i class="fa fa-pen fa-xs edit"></i>
                     <form action="updatepassword.php" method="post">
                 <table class="dataTable">
                     <tbody>
                         <tr>
                             <td>Felhasználó neved</td>
-                            <td>:</td>
                             <td>
                                 <div class="input-wrapper">
                                     <input type="text" name="username" maxlength="25" id="felhasznaloneved" placeholder="Minta név" required>
@@ -284,7 +431,6 @@
                         </tr>
                         <tr>
                             <td>Jelenlegi jelszó</td>
-                            <td>:</td>
                             <td>
                                 <div class="input-wrapper">
                                     <input type="password" name="password" maxlength="25" required id="jelenlegijelszod">
@@ -293,7 +439,6 @@
                         </tr>
                         <tr>
                             <td>Új jelszó</td>
-                            <td>:</td>
                             <td>
                                 <div class="input-wrapper">
                                     <input type="password" name="new_password" maxlength="25" required id="ujjelszod">
@@ -302,7 +447,6 @@
                         </tr>
                         <tr>
                             <td>Új jelszó mégegyszer</td>
-                            <td>:</td>
                             <td>
                                 <div class="input-wrapper">
                                     <input type="password" name="confirm_new_password" maxlength="25" required id="ujjelszod_megerosit">
@@ -310,10 +454,15 @@
                             </td>
                         </tr>
                     </tbody>
-                </table>                                <button class="button" type="submit" name="save">Adatok mentése</button>
-
-            </form>
+                </table>
+                <div class="buttonsContainer">
+                    <button class="button" type="submit" name="save">Adatok mentése</button>
                 </div>
+            </form>
+            <div class="deleteProfileContainer">
+                <button class="button" onclick="return deleteProfile(<?php echo $user['id'] ?>);">Profil törlése</button>
+                Figyelem, a törlés után a profilt nem lehet visszaállítani!
+            </div>
             </div>
             </div>
     </div>

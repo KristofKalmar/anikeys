@@ -13,7 +13,9 @@
         die("Sikertelen kapcsolódás az adatbázishoz: " . $conn2->connect_error);
     }
 
-    if (!isset($_SESSION['username']))
+
+    if (session_status() == PHP_SESSION_ACTIVE) {
+    } else
     {
         session_start();
     }
@@ -51,7 +53,7 @@
     <div class="headerContentContainer">
         <div class="searchBarContainer">
             <div class="searchBar">
-                <input id="searchInput" class="searchBarInput" placeholder="Fedezd fel kínálatunkat!"></input>
+                <input id="searchInput" class="searchBarInput" placeholder="Fedezd fel kínálatunkat!">
                 <a href="javascript:searchForProducts()" class="searchButton">
                     <object class="searchIcon" data="assets/search.svg"></object>
                 </a>

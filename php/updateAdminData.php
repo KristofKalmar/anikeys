@@ -56,21 +56,22 @@ if (!empty($_FILES)){
 $imageURL = $newUploadPath;
 
 $query = "UPDATE products
-SET name = '$name',
-    price = $priceVAT,
-    description = '{$_POST['descriptionHTML']}',
-    sale = $sale,
-    category_id = $category,
-    imageURL = '$imageURL'
-WHERE id = {$_POST['id']};";
+SET name = ?,
+    price = ?,
+    description = ?,
+    sale = ?,
+    category_id = ?,
+    CPU = ?,
+    GPU = ?,
+    MEMORY = ?,
+    OPSYSTEM = ?,
+    STORAGE_GB = ?,
+    imageURL = ?
+WHERE id = ?";
 
-// Execute the query
-if (mysqli_query($conn, $query)) {
-    echo "Product inserted successfully!";
-} else {
-    echo "Error: " . mysqli_error($conn);
-}
-
-// Close the database connection
-mysqli_close($conn);
+// Assuming you have already established a database connection $conn
+$stmt = $conn->prepare($query);
+$stmt->bind_param("sdsiiiiiiisi", $name, $priceVAT, $_POST['descriptionHTML'], $sale, $category, $_POST['CPU'], $_POST['GPU'], $_POST['MEMORY'], $_POST['OPSYSTEM'], $_POST['STORAGE'], $imageURL, $_POST['id']);
+$stmt->execute();
+$stmt->close();
 ?>

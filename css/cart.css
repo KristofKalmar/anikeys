@@ -262,10 +262,18 @@ table
 
 table thead tr th
 {
-    background-color: #fff;
+    background-color: #001829;
     padding: 16px;
     text-align: left;
-    color: #001829;
+    color: #fff;
+}
+
+table tbody:before
+{
+    content:"@";
+    display:block;
+    line-height:16px;
+    text-indent:-99999px;
 }
 
 .tableImg
@@ -425,4 +433,14 @@ table tbody tr:nth-child(1)
   cursor: pointer;
   margin-left: auto;
   font-weight: bold;
+}
+
+.separator
+{
+    height: 16px;
+}
+
+.separator:last-child
+{
+    display: none;
 }

@@ -106,7 +106,7 @@
                             <th>Név</th>
                             <th>Bruttó ár</th>
                             <th>Mennyiség</th>
-                            <th>Műveletek</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -144,6 +144,7 @@
                                     <td><div><button onclick="decreaseQuantity(<?php echo $row['id_cart'] ?>)">-</button><?php echo $row['quantity'] ?><button onclick="increaseQuantity(<?php echo $row['id_cart'] ?>)">+</button></div></td>
                                     <td><div><button class='deleteButton' onclick="removeFromCart(<?php echo $row['id_cart'] ?>)"><img class="deleteCartIcon" src="assets/delete_dark.svg" /></button></div></td>
                                     </tr>
+                                    <tr class="separator"></tr>
                         <?php
                                 }
                             } else {

@@ -9,9 +9,9 @@
             <div class="contentItemsContainer">
                 <?php
 
-                    $numItems = $result_rowList->num_rows;
+                    $numItems = isset($result_rowList) ? $result_rowList->num_rows : 0;
 
-                    while ($row = $result_rowList->fetch_assoc())
+                    while ($row = isset($result_rowList) ? $result_rowList->fetch_assoc() : NULL)
                     {
                         $listItemImage = $row['imageURL'];
                         $listItemName = $row['name'];

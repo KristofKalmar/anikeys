@@ -5,7 +5,7 @@
 
     if (!isset($_SESSION['username'])) {
         header("Location: login.php");
-        exit(); 
+        exit();
     }
 
     $table_name = 'products';
@@ -69,6 +69,11 @@
                     <th>Leírás</th>
                     <th>Bruttó ár</th>
                     <th>Kedvezmény</th>
+                    <th>CPU</th>
+                    <th>GPU</th>
+                    <th>Memória</th>
+                    <th>Operációs rendszer</th>
+                    <th>Tárhely</th>
                     <th>Kategória</th>
                     <th></th>
                 </tr>
@@ -106,6 +111,48 @@
                             <input name="tableInputSale" id="tableInputSale_${currentIndex}" placeholder="Kedvezmény (%)" type="number" class="tableInput tableInputPrice" value="<?php echo $row['sale'] ?>">
                             <div class="tablePriceText">
                                 %
+                            </div>
+                        </div>
+                    </td>
+                    <td><select name="tableInputCPU" id="tableInputCPU_${currentIndex}" class="tableInput tableInputSelect">
+                        <option <?php if($row['CPU'] == 0){echo "selected";} ?>>...</option>
+                        <option <?php if($row['CPU'] == 1){echo "selected";} ?>>i3</option>
+                        <option <?php if($row['CPU'] == 2){echo "selected";} ?>>i5</option>
+                        <option <?php if($row['CPU'] == 3){echo "selected";} ?>>i7</option>
+                        <option <?php if($row['CPU'] == 4){echo "selected";} ?>>i9</option>
+                    </select></td>
+                    <td><select name="tableInputGPU" id="tableInputGPU_${currentIndex}" class="tableInput tableInputSelect">
+                        <option <?php if($row['GPU'] == 0){echo "selected";} ?>>...</option>
+                        <option <?php if($row['GPU'] == 1){echo "selected";} ?>>Nvidia GeForce RTX 3050</option>
+                        <option <?php if($row['GPU'] == 2){echo "selected";} ?>>Nvidia GeForce RTX 3060</option>
+                        <option <?php if($row['GPU'] == 3){echo "selected";} ?>>Nvidia GeForce RTX 3070</option>
+                        <option <?php if($row['GPU'] == 4){echo "selected";} ?>>Nvidia GeForce RTX 3080</option>
+                        <option <?php if($row['GPU'] == 5){echo "selected";} ?>>Nvidia GeForce RTX 3090</option>
+                        <option <?php if($row['GPU'] == 6){echo "selected";} ?>>Nvidia GeForce RTX 4060</option>
+                        <option <?php if($row['GPU'] == 7){echo "selected";} ?>>Nvidia GeForce RTX 4070</option>
+                        <option <?php if($row['GPU'] == 8){echo "selected";} ?>>Nvidia GeForce RTX 4080</option>
+                        <option <?php if($row['GPU'] == 9){echo "selected";} ?>>Nvidia GeForce RTX 4090</option>
+                    </select></td>
+                    <td><select name="tableInputMEMORY" id="tableInputMEMORY_${currentIndex}" class="tableInput tableInputSelect">
+                        <option <?php if($row['MEMORY'] == 0){echo "selected";} ?>>...</option>
+                        <option <?php if($row['MEMORY'] == 1){echo "selected";} ?>>2 GB</option>
+                        <option <?php if($row['MEMORY'] == 2){echo "selected";} ?>>4 GB</option>
+                        <option <?php if($row['MEMORY'] == 3){echo "selected";} ?>>8 GB</option>
+                        <option <?php if($row['MEMORY'] == 4){echo "selected";} ?>>16 GB</option>
+                        <option <?php if($row['MEMORY'] == 5){echo "selected";} ?>>32 GB</option>
+                        <option <?php if($row['MEMORY'] == 6){echo "selected";} ?>>64 GB</option>
+                    </select></td>
+                    <td><select name="tableInputOPSYSTEM" id="tableInputOPSYSTEM_${currentIndex}" class="tableInput tableInputSelect">
+                        <option <?php if($row['OPSYSTEM'] == 0){echo "selected";} ?>>...</option>
+                        <option <?php if($row['OPSYSTEM'] == 1){echo "selected";} ?>>Windows (64bit)</option>
+                        <option <?php if($row['OPSYSTEM'] == 2){echo "selected";} ?>>Windows 10 (64bit)</option>
+                        <option <?php if($row['OPSYSTEM'] == 3){echo "selected";} ?>>Windows 11 (64bit)</option>
+                    </select></td>
+                    <td>
+                        <div class="tableInputContainer">
+                            <input name="tableInputSTORAGE" id="tableInputSTORAGE_${currentIndex}" placeholder="Minimum tárhely (GB)" type="number" class="tableInput tableInputPrice" value="<?php if($row['STORAGE_GB'] == 0) {echo "";} else {echo $row['STORAGE_GB'];} ?>">
+                            <div class="tablePriceText">
+                                GB
                             </div>
                         </div>
                     </td>

@@ -12,6 +12,11 @@ const imageURLInputs = document.getElementsByName('tableInputFile');
 const descriptionInputs = document.getElementsByName('tableInputDescription');
 const priceInputs = document.getElementsByName('tableInputPrice');
 const saleInputs = document.getElementsByName('tableInputSale');
+const CPUInputs = document.getElementsByName('tableInputCPU');
+const GPUInputs = document.getElementsByName('tableInputGPU');
+const MEMORYInputs = document.getElementsByName('tableInputMEMORY');
+const OPSYSTEMInputs = document.getElementsByName('tableInputOPSYSTEM');
+const STORAGEInputs = document.getElementsByName('tableInputSTORAGE');
 const categoryInputs = document.getElementsByName('tableInputCategory');
 
 var unsavedFinalProductIndexes = [];
@@ -137,6 +142,91 @@ for (var sI = 0; sI < saleInputs.length; ++sI)
     })
 }
 
+for (var CPUI = 0; CPUI < CPUInputs.length; ++CPUI)
+{
+    const currentIndex = CPUI;
+
+    CPUInputs[CPUI].addEventListener('input', function (event)
+    {
+        if (!unsavedFinalProductIndexes.includes(currentIndex))
+        {
+            unsavedFinalProductIndexes.push(currentIndex);
+            const currentRow = document.getElementById(`tableRow_final_${currentIndex}`);
+            currentRow.classList.toggle('tableRowUnSaved');
+        }
+        uploadButton.disabled = false;
+        currentRow.classList.remove('hasError');
+    })
+}
+
+for (var GPUI = 0; GPUI < GPUInputs.length; ++GPUI)
+{
+    const currentIndex = GPUI;
+
+    GPUInputs[GPUI].addEventListener('input', function (event)
+    {
+        if (!unsavedFinalProductIndexes.includes(currentIndex))
+        {
+            unsavedFinalProductIndexes.push(currentIndex);
+            const currentRow = document.getElementById(`tableRow_final_${currentIndex}`);
+            currentRow.classList.toggle('tableRowUnSaved');
+        }
+        uploadButton.disabled = false;
+        currentRow.classList.remove('hasError');
+    })
+}
+
+for (var MEMORYI = 0; MEMORYI < MEMORYInputs.length; ++MEMORYI)
+{
+    const currentIndex = MEMORYI;
+
+    MEMORYInputs[MEMORYI].addEventListener('input', function (event)
+    {
+        if (!unsavedFinalProductIndexes.includes(currentIndex))
+        {
+            unsavedFinalProductIndexes.push(currentIndex);
+            const currentRow = document.getElementById(`tableRow_final_${currentIndex}`);
+            currentRow.classList.toggle('tableRowUnSaved');
+        }
+        uploadButton.disabled = false;
+        currentRow.classList.remove('hasError');
+    })
+}
+
+for (var OPSYSTEMI = 0; OPSYSTEMI < OPSYSTEMInputs.length; ++OPSYSTEMI)
+{
+    const currentIndex = OPSYSTEMI;
+
+    OPSYSTEMInputs[OPSYSTEMI].addEventListener('input', function (event)
+    {
+        if (!unsavedFinalProductIndexes.includes(currentIndex))
+        {
+            unsavedFinalProductIndexes.push(currentIndex);
+            const currentRow = document.getElementById(`tableRow_final_${currentIndex}`);
+            currentRow.classList.toggle('tableRowUnSaved');
+        }
+        uploadButton.disabled = false;
+        currentRow.classList.remove('hasError');
+    })
+}
+
+for (var STORAGEI = 0; STORAGEI < STORAGEInputs.length; ++STORAGEI)
+{
+    const currentIndex = STORAGEI;
+
+    STORAGEInputs[STORAGEI].addEventListener('input', function (event)
+    {
+        if (!unsavedFinalProductIndexes.includes(currentIndex))
+        {
+            unsavedFinalProductIndexes.push(currentIndex);
+            const currentRow = document.getElementById(`tableRow_final_${currentIndex}`);
+            currentRow.classList.toggle('tableRowUnSaved');
+        }
+        uploadButton.disabled = false;
+        currentRow.classList.remove('hasError');
+    })
+}
+
 for (var cI = 0; cI < categoryInputs.length; ++cI)
 {
     const currentIndex = cI;
@@ -165,6 +255,11 @@ uploadButton.onclick = () =>
         const descriptionField = descriptionInputs[index].value;
         const priceField = priceInputs[index].value;
         const saleField = saleInputs[index].value;
+        const CPUField = CPUInputs[index].selectedIndex;
+        const GPUField = GPUInputs[index].selectedIndex;
+        const MEMORYField = MEMORYInputs[index].selectedIndex;
+        const OPSYSTEMField = OPSYSTEMInputs[index].selectedIndex;
+        const STORAGEField = STORAGEInputs[index].value;
         const categoryField = categoryInputs[index].selectedIndex;
 
         const tableRow = document.getElementById(`tableRow_final_${index}`);
@@ -186,6 +281,11 @@ uploadButton.onclick = () =>
         formData.append('priceVAT', priceField);
         formData.append('sale', saleField);
         formData.append('category', categoryField);
+        formData.append('CPU', CPUField);
+        formData.append('GPU', GPUField);
+        formData.append('MEMORY', MEMORYField);
+        formData.append('OPSYSTEM', OPSYSTEMField);
+        formData.append('STORAGE', STORAGEField);
         formData.append('id', id);
 
         $.ajax({
@@ -274,7 +374,14 @@ uploadButton.onclick = () =>
         formData.append('descriptionHTML', product.descriptionHTML);
         formData.append('priceVAT', product.priceVAT);
         formData.append('sale', product.sale);
+        formData.append('CPU', product.CPU);
+        formData.append('GPU', product.GPU);
+        formData.append('MEMORY', product.MEMORY);
+        formData.append('OPSYSTEM', product.OPSYSTEM);
+        formData.append('STORAGE', product.STORAGE);
         formData.append('category', product.category);
+
+        console.log(product);
 
         $.ajax({
             url: 'php/createAdminData.php',
@@ -284,7 +391,8 @@ uploadButton.onclick = () =>
             cache: false,
             processData: false,
             contentType: false,
-            success:function(data) {
+            success:function(data)
+            {
                 console.log(data)
                 const tableRow = document.getElementById(`tableRow_${currentIndex}`);
 
@@ -344,6 +452,48 @@ addProductButton.onclick = () =>
             <input id="tableInputSale_${currentIndex}" placeholder="Kedvezmény (%)" type="number" class="tableInput tableInputPrice" value="">
             <div class="tablePriceText">
                 %
+            </div>
+        </div>
+    </td>
+    <td><select id="tableInputCPU_${currentIndex}" class="tableInput tableInputSelect">
+        <option>...</option>
+        <option>i3</option>
+        <option>i5</option>
+        <option>i7</option>
+        <option>i9</option>
+    </select></td>
+    <td><select id="tableInputGPU_${currentIndex}" class="tableInput tableInputSelect">
+        <option>...</option>
+        <option>Nvidia GeForce RTX 3050</option>
+        <option>Nvidia GeForce RTX 3060</option>
+        <option>Nvidia GeForce RTX 3070</option>
+        <option>Nvidia GeForce RTX 3080</option>
+        <option>Nvidia GeForce RTX 3090</option>
+        <option>Nvidia GeForce RTX 4060</option>
+        <option>Nvidia GeForce RTX 4070</option>
+        <option>Nvidia GeForce RTX 4080</option>
+        <option>Nvidia GeForce RTX 4090</option>
+    </select></td>
+    <td><select id="tableInputMEMORY_${currentIndex}" class="tableInput tableInputSelect">
+        <option>...</option>
+        <option>2 GB</option>
+        <option>4 GB</option>
+        <option>8 GB</option>
+        <option>16 GB</option>
+        <option>32 GB</option>
+        <option>64 GB</option>
+    </select></td>
+    <td><select id="tableInputOPSYSTEM_${currentIndex}" class="tableInput tableInputSelect">
+        <option>...</option>
+        <option>Windows 7 (64bit)</option>
+        <option>Windows 10 (64bit)</option>
+        <option>Windows 11 (64bit)</option>
+    </select></td>
+    <td>
+        <div class="tableInputContainer">
+            <input id="tableInputSTORAGE_${currentIndex}" placeholder="Minimum tárhely (GB)" type="number" class="tableInput tableInputPrice" value="">
+            <div class="tablePriceText">
+                GB
             </div>
         </div>
     </td>
@@ -419,6 +569,51 @@ addProductButton.onclick = () =>
     document.getElementById(`tableInputCategory_${currentIndex}`).addEventListener('input', event =>
     {
         unsavedProductsList[currentIndex].category = event.target.selectedIndex;
+
+        uploadButton.disabled = false;
+
+        tableRow.classList.remove('hasError');
+    });
+
+    document.getElementById(`tableInputCPU_${currentIndex}`).addEventListener('input', event =>
+    {
+        unsavedProductsList[currentIndex].CPU = event.target.selectedIndex;
+
+        uploadButton.disabled = false;
+
+        tableRow.classList.remove('hasError');
+    });
+
+    document.getElementById(`tableInputGPU_${currentIndex}`).addEventListener('input', event =>
+    {
+        unsavedProductsList[currentIndex].GPU = event.target.selectedIndex;
+
+        uploadButton.disabled = false;
+
+        tableRow.classList.remove('hasError');
+    });
+
+    document.getElementById(`tableInputMEMORY_${currentIndex}`).addEventListener('input', event =>
+    {
+        unsavedProductsList[currentIndex].MEMORY = event.target.selectedIndex;
+
+        uploadButton.disabled = false;
+
+        tableRow.classList.remove('hasError');
+    });
+
+    document.getElementById(`tableInputOPSYSTEM_${currentIndex}`).addEventListener('input', event =>
+    {
+        unsavedProductsList[currentIndex].OPSYSTEM = event.target.selectedIndex;
+
+        uploadButton.disabled = false;
+
+        tableRow.classList.remove('hasError');
+    });
+
+    document.getElementById(`tableInputSTORAGE_${currentIndex}`).addEventListener('input', event =>
+    {
+        unsavedProductsList[currentIndex].STORAGE = Number(event.target.value);
 
         uploadButton.disabled = false;
 

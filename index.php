@@ -55,7 +55,7 @@
       <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
       <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
       <link rel="manifest" href="favicon/site.webmanifest">
-      <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+      <link rel="mask-icon" href="favicon/safari-pinned-tab.svg">
       <script src="js/jquery-3.7.1.min.js"></script>
       <script src="js/index.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -64,7 +64,7 @@
       <?php include 'php/components/header.php'; ?>
       <div class="hl_textbox">
          <div class="hl_img_bg"></div>
-         <img src="<?php if($product != NULL && $product->imageURL != ""){echo $product->imageURL;} else {echo "assets/placeholder_larger.svg";} ?>" alt="h1" class="hl_img" />
+         <img src="<?php if($product != NULL && $product->imageURL != NULL){echo $product->imageURL;} else {echo "assets/placeholder_larger.svg";} ?>" alt="h1" class="hl_img" />
          <div class="hl_textbox_contentContainer">
          <h1 class="hl_titleText"><?php if($product != NULL) {echo $product->name;} else {echo "TERMÉK_NEVE";} ?></h1>
          <div class="hl_buttonContainer">

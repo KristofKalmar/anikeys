@@ -33,6 +33,17 @@ body
     align-items: center;
 }
 
+.card-specifications
+{
+    background-color: #e5f4ff;
+}
+
+.card-password
+{
+    background-color: #cceaff;
+}
+
+
 .identitySection, .settingsContainer
 {
     width: 100%;
@@ -73,8 +84,8 @@ body
     height: calc(100% + 32px);
     margin-top: -32px;
     margin-left: -64px;
-    backdrop-filter: blur(10px); 
-    pointer-events: none; 
+    backdrop-filter: blur(10px);
+    pointer-events: none;
 }
 
 .blurred {
@@ -99,6 +110,12 @@ body
     background: black;
     border: 2px solid white;
     box-sizing: border-box;
+    cursor: pointer;
+}
+
+.profilePic:hover
+{
+    opacity: 0.5;
 }
 
 .profileBlurBG
@@ -144,11 +161,17 @@ body
     justify-content: center;
 }
 
+.purchasedProductsSection .card
+{
+    padding-bottom: 0;
+}
+
 .sectionContentContainer
 {
     width: calc(100% - 32px);
     max-width: 1280px;
     padding: 32px 0;
+    padding-bottom: 0;
 }
 
 .contentContainer
@@ -280,10 +303,16 @@ body
     box-sizing: border-box;
 }
 
+.card
+{
+    padding-bottom: 32px;
+}
+
 .card-body
 {
     height: fit-content;
     overflow-x: auto;
+    padding-bottom: 32px;
 }
 
 .main .card table {
@@ -363,7 +392,6 @@ body
 .input-wrapper input[type="password"] {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
     font-size: 14px;
     font-family: Arial, sans-serif;
     box-sizing: border-box;
@@ -456,10 +484,17 @@ body
 
 .productsTable thead tr th
 {
-    background-color: #fff;
+    background-color: #001829;
     padding: 16px;
     text-align: left;
-    color: #001829;
+    color: #fff;
+}
+
+.productsTable tbody:before {
+    content:"@";
+    display:block;
+    line-height:16px;
+    text-indent:-99999px;
 }
 
 .tableImg
@@ -523,7 +558,7 @@ body
     border: none;
     border-radius: 0;
     background: #000;
-    width: 32px;
+    width: 100%;
     height: 32px;
     display: flex;
     align-items: center;
@@ -577,6 +612,61 @@ body
 .noGap
 {
     padding-bottom: 0;
+}
+
+select, input
+{
+    width: 100%;
+    padding: 0 16px;
+    height: 48px;
+    border-radius: 0;
+    background-color: rgba(0, 118, 215, 0.1);
+    border: none;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    box-shadow: none;
+}
+
+select
+{
+    border-right: 16px solid transparent
+}
+
+.separator
+{
+    height: 8px;
+}
+
+.card-table
+{
+    padding-bottom: 24px;
+}
+
+.buttonsContainer
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.deleteProfileContainer
+{
+    font-size: 18px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.deleteProfileContainer button
+{
+    margin-right: 16px;
+}
+
+.deleteProfileContainer button:hover
+{
+    background-color: red;
+    border: 2px solid darkred;
 }
 
 @media only screen and (max-width: 768px)

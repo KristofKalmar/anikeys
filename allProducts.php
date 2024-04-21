@@ -31,7 +31,6 @@
           $stmt->execute();
 
           $result_rowList = $stmt->get_result();
-          $rowListHideTitleBar = true;
     } else
     {
     }
@@ -59,6 +58,7 @@
     $multiLine = true;
     $titleText = "Keresés eredménye";
     $rowListImage = "assets/searchResult.svg";
+    $rowListHideTitleBar = true;
 ?>
 
 <!DOCTYPE html>
@@ -77,14 +77,14 @@
     <link rel="stylesheet" href="css/components/footer.css">
     <link rel="stylesheet" href="css/components/rowList.css">
     <link rel="stylesheet" href="css/components/showcasedItem.css">
-    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg">
     <script src="js/jquery-3.7.1.min.js"></script>
   </head>
   <body>
   <?php include 'php/components/header.php'; ?>
     <div class="hl_textbox">
       <div class="hl_img_bg"></div>
-        <img src="<?php if($product->imageURL !== ""){echo $product->imageURL;} else {echo "assets/placeholder_larger.svg";} ?>" alt="h1" class="hl_img" />
+        <img src="<?php if(isset($product) && $product->imageURL != ""){echo $product->imageURL;} else {echo "assets/placeholder_larger.svg";} ?>" alt="h1" class="hl_img" />
         <div class="hl_textbox_contentContainer">
         <h1 class="hl_titleText">Keresés eredménye</h1>
         </div>

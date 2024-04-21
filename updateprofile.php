@@ -4,7 +4,7 @@
     $conn = getConnection();
 
     if(isset($_SESSION['loggedin']) && isset($_SESSION['username'])) {
-        $loggedInUsername = $_SESSION['username']; 
+        $loggedInUsername = $_SESSION['username'];
 
         if(isset($_POST['name']) && isset($_POST['newUsername']) && isset($_POST['email']) && isset($_POST['address']) && isset($_POST['phone']) && isset($_POST['birthday'])) {
             $name = $_POST['name'];
@@ -25,8 +25,8 @@
             $stmt = $conn->prepare($sql);
             $stmt->bind_param('sssssss', $name, $newUsername, $email, $address, $phone, $birthday, $loggedInUsername);
             if ($stmt->execute()) {
-                $_SESSION['username'] = $newUsername; 
-                echo "<script>alert('Sikeresen frissítve!'); window.location.href = 'profil.php';</script>";
+                $_SESSION['username'] = $newUsername;
+                echo "<script>window.location.href = 'profil.php';</script>";
                 exit();
             } else {
                 echo "<script>alert('Hiba az adatbázis frissítése közben: " . $conn->error . "');</script>";

@@ -51,16 +51,21 @@ if (!empty($_FILES)) {
 $imageURL = !empty($_FILES) ? 'uploads/' . $_FILES['imageURL']['name'] : '';
 
 $sql = "CREATE TABLE IF NOT EXISTS products (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    price INT NOT NULL,
-    description TEXT NOT NULL,
-    sale INT NOT NULL,
-    category_id INT NOT NULL,
-    creationDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    imageURL VARCHAR(255) DEFAULT NULL,
-    CONSTRAINT CHK_Sale CHECK (sale BETWEEN 0 AND 100),
-    CONSTRAINT CHK_CategoryID CHECK (category_id BETWEEN 0 AND 4)
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  price INT NOT NULL,
+  description TEXT NOT NULL,
+  sale INT NOT NULL,
+  category_id INT NOT NULL,
+  creationDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  imageURL VARCHAR(255) DEFAULT NULL,
+  CPU INT DEFAULT 0,
+  GPU INT DEFAULT 0,
+  MEMORY INT DEFAULT 0,
+  OPSYSTEM INT DEFAULT 0,
+  STORAGE_GB INT DEFAULT 0,
+  CONSTRAINT CHK_Sale CHECK (sale BETWEEN 0 AND 100),
+  CONSTRAINT CHK_CategoryID CHECK (category_id BETWEEN 0 AND 4)
 );";
 
   // Execute the CREATE TABLE statement
@@ -69,11 +74,16 @@ $sql = "CREATE TABLE IF NOT EXISTS products (
   } else {
     // If table creation is successful, proceed with the INSERT statement
 
-    $sql = "INSERT INTO products (name, price, description, sale, category_id, imageURL)
-    VALUES ('$name', $priceVAT, '{$_POST['descriptionHTML']}', $sale, $category, '$imageURL');";
+    $sql = "INSERT INTO products (name, price, description, sale, category_id, CPU, GPU, MEMORY, OPSYSTEM, STORAGE_GB, imageURL)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    $stmt = $conn->prepare($sql);
+
+    // Bind parameters
+    $stmt->bind_param("sdssdddddds", $name, $priceVAT, $_POST['descriptionHTML'], $sale, $category, $_POST['CPU'], $_POST['GPU'], $_POST['MEMORY'], $_POST['OPSYSTEM'], $_POST['STORAGE'], $imageURL);
 
     // Execute the INSERT statement
-    if (!mysqli_query($conn, $sql)) {
+    if (!$stmt->execute()) {
       echo "Error inserting data: " . mysqli_error($conn);
     } else {
       // Data inserted successfully (optional: show success message)

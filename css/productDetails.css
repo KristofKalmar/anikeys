@@ -37,6 +37,20 @@ body
     mask-image: linear-gradient(rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0) 100%);
 }
 
+.weakSpecsWarning
+{
+    position: relative;
+    background-color: rgba(4, 15, 22, 0.75);
+    color: red;
+    padding: 16px;
+    box-sizing: border-box;
+    font-size: 24px;
+    width: calc(100% - 32px);
+    max-width: 1280px;
+    font-weight: bold;
+    text-align: center;
+}
+
 .productDescriptionText
 {
     font-size: 18px;
@@ -56,11 +70,21 @@ body
     filter: blur(32px) brightness(0.75);
 }
 
-.productDetailsDescriptionText
+.productDetailsDescriptionText, .productTableTitle
 {
     color: #fff;
     font-size: 18px;
     margin: 0;
+}
+
+.productTableTitle
+{
+    margin-bottom: 16px;
+}
+
+.productsTableTitleSecond
+{
+    margin-top: 32px;
 }
 
 .productDetailsDescriptionHTMLCode
@@ -107,6 +131,11 @@ body
     border-width: 2px;
     border-style: solid;
     box-shadow: 0 24px 16px -16px rgba(0, 0, 0, 0.5), 0 16px 32px -8px rgba(0, 0, 0, 0.5);
+}
+
+.productDetailsBuyContentContainer p:nth-child(4)
+{
+    display: none;
 }
 
 .productDetailsPurchaseButton
@@ -184,6 +213,15 @@ body
     color: #fff;
 }
 
+.productDetailsPriceContainer
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-end;
+}
+
 @media screen and (max-width: 1312px)
 {
     .productDetailsBuyContentContainer
@@ -216,5 +254,26 @@ body
         width: calc(100% - 32px);
         margin: 0;
         margin-left: 16px;
+    }
+
+    .productDetailsPriceContainer
+    {
+        justify-content: space-between;
+        padding-left: 16px;
+        padding-right: 16px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .productDetailsPriceContainer p
+    {
+        margin: 0;
+        margin-bottom: 16px;
+    }
+
+    .productDetailsPriceContainer p:nth-child(2)
+    {
+        margin-left: auto;
+        text-align: right;
     }
 }

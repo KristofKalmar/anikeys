@@ -24,6 +24,10 @@
                 `hashed_password` varchar(255) NOT NULL,
                 `address` text,
                 `phone` varchar(255),
+                `CPU` INT DEFAULT 0,
+                `GPU` INT DEFAULT 0,
+                `MEMORY` INT DEFAULT 0,
+                `OPSYSTEM` INT DEFAULT 0,
                 `birthday` date,
                 `created_at` datetime DEFAULT current_timestamp(),
                 PRIMARY KEY (`id`)
